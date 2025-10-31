@@ -23,13 +23,10 @@ export interface Score {
 
 export interface Profile {
   id: string;
-  name: string;
-  email: string;
+  name: string | null;
+  email: string | null;
 }
 
 export interface ScoreWithProfile extends Score {
-  profiles: {
-    name: string;
-    email: string;
-  } | null;
+  profiles: Profile;
 }

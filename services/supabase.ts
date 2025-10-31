@@ -1,6 +1,6 @@
 
 import { createClient } from '@supabase/supabase-js';
-import { type Word, type Category, type Score } from '../types';
+import { type Word, type Category, type Score, type Profile } from '../types';
 
 interface Database {
   public: {
@@ -19,6 +19,11 @@ interface Database {
         Row: Score;
         Insert: Omit<Score, 'id' | 'created_at'>;
         Update: Partial<Omit<Score, 'id' | 'created_at' | 'user_id'>>;
+      };
+      profiles: {
+        Row: Profile;
+        Insert: Omit<Profile, 'id'>;
+        Update: Partial<Omit<Profile, 'id'>>;
       };
     };
   };

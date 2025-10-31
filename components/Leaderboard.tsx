@@ -3,7 +3,8 @@ import { supabase } from '../services/supabase';
 import type { ScoreWithProfile, Category } from '../types';
 import Spinner from './Spinner';
 
-const formatPlayerName = (email: string | null | undefined) => {
+const formatPlayerName = (name: string | null | undefined, email: string | null | undefined) => {
+    if (name && name.trim() !== '') return name;
     if (!email) return 'Anonymous';
     return email.split('@')[0];
 };
@@ -127,8 +128,8 @@ export default function Leaderboard() {
                             <td className="p-4 text-center">
                                 <RankDisplay rank={index + 1} />
                             </td>
-                            <td className="p-4 text-white font-medium truncate" title={s.profiles?.name ?? ''}>
-                                {formatPlayerName(s.profiles?.name)}
+                            <td className="p-4 text-white font-medium truncate" title={s.profiles?.name ?? s.profiles?.email ?? ''}>
+                                {formatPlayerName(s.profiles?.name, s.profiles?.email)}
                             </td>
                             <td className="p-4 text-purple-300 font-bold text-xl">{s.score}</td>
                             <td className="p-4 text-gray-300 hidden sm:table-cell">{categories.find(c => c.id === s.category_id)?.name}</td>

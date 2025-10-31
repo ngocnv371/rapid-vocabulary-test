@@ -7,9 +7,10 @@ import CategorySelector from './components/CategorySelector';
 import Quiz from './components/Quiz';
 import GameOver from './components/GameOver';
 import Leaderboard from './components/Leaderboard';
+import Profile from './components/Profile';
 import type { Category } from './types';
 
-type GameState = 'auth' | 'category' | 'quiz' | 'gameover' | 'leaderboard';
+type GameState = 'auth' | 'category' | 'quiz' | 'gameover' | 'leaderboard' | 'profile';
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
@@ -75,7 +76,18 @@ export default function App() {
     await supabase.auth.signOut();
   }
   
-  const isLeaderboard = gameState === 'leaderboard';
+  const isSubPage = gameState === 'leaderboard' || gameState === 'profile';
+
+  const getHeaderTitle = () => {
+    switch (gameState) {
+      case 'leaderboard':
+        return 'Leaderboard';
+      case 'profile':
+        return 'Profile';
+      default:
+        return 'Vocabulary Test';
+    }
+  };
 
   const renderContent = () => {
     switch (gameState) {
@@ -90,6 +102,8 @@ export default function App() {
         return <GameOver score={finalScore} onPlayAgain={handlePlayAgain} onViewLeaderboard={handleViewLeaderboard} />;
       case 'leaderboard':
         return <Leaderboard />;
+      case 'profile':
+        return <Profile />;
       case 'category':
       default:
         // FIX: Corrected function name from `handleSelectCategory` to `handleCategorySelect`.
@@ -105,7 +119,7 @@ export default function App() {
     <div className="min-h-screen w-full text-white font-sans flex flex-col items-center p-4 relative">
       <header className="w-full max-w-6xl flex justify-between items-center p-4">
         <div className="flex items-center gap-4">
-          {isLeaderboard && (
+          {isSubPage && (
               <button
                 onClick={handlePlayAgain}
                 className="p-2 rounded-md hover:bg-purple-500/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -117,10 +131,10 @@ export default function App() {
               </button>
           )}
           <h1 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-            {isLeaderboard ? 'Leaderboard' : 'Vocabulary Test'}
+            {getHeaderTitle()}
           </h1>
         </div>
-        {!isLeaderboard && (
+        {!isSubPage && (
           <div className="relative" ref={menuRef}>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -150,6 +164,18 @@ export default function App() {
                   </svg>
                   Leaderboard
                 </button>
+                 <button
+                  onClick={() => {
+                    setGameState('profile');
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-3 hover:bg-purple-500/20 text-purple-300 hover:text-white font-medium transition-colors flex items-center gap-3"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  Profile
+                </button>
                 <button
                   onClick={() => {
                     handleLogout();
@@ -165,7 +191,7 @@ export default function App() {
           </div>
         )}
       </header>
-      <main className={`w-full flex-grow flex justify-center ${isLeaderboard ? 'items-start' : 'items-center'}`}>
+      <main className={`w-full flex-grow flex justify-center ${isSubPage ? 'items-start' : 'items-center'}`}>
         {renderContent()}
       </main>
     </div>
