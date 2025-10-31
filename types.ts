@@ -17,12 +17,19 @@ export interface Score {
   id: number;
   user_id: string;
   score: number;
-  category_id: string;
+  category_id: number;
   created_at: string;
 }
 
-export interface ScoreWithEmail extends Score {
+export interface Profile {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export interface ScoreWithProfile extends Score {
   profiles: {
+    name: string;
     email: string;
   } | null;
 }

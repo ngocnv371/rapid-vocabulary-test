@@ -1,3 +1,4 @@
+
 import { createClient } from '@supabase/supabase-js';
 import { type Word, type Category, type Score } from '../types';
 
@@ -16,7 +17,7 @@ interface Database {
       };
       scores: {
         Row: Score;
-        Insert: Omit<Score, 'id'>;
+        Insert: Omit<Score, 'id' | 'created_at'>;
         Update: Partial<Omit<Score, 'id' | 'created_at' | 'user_id'>>;
       };
     };

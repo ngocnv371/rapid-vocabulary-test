@@ -1,14 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../services/supabase';
-import type { ScoreWithEmail, Category } from '../types';
+import type { ScoreWithProfile, Category } from '../types';
 import Spinner from './Spinner';
 
-interface LeaderboardProps {
-  onBack: () => void;
-}
+const formatPlayerName = (email: string | null | undefined) => {
+    if (!email) return 'Anonymous';
+    return email.split('@')[0];
+};
 
-export default function Leaderboard({ onBack }: LeaderboardProps) {
-  const [scores, setScores] = useState<ScoreWithEmail[]>([]);
+const RankDisplay: React.FC<{ rank: number }> = ({ rank }) => {
+    const medals: { [key: number]: string } = { 1: '🥇', 2: '🥈', 3: '🥉' };
+    const medal = medals[rank];
+
+    const rankClasses: { [key: number]: string } = {
+        1: 'text-yellow-400',
+        2: 'text-gray-300',
+        3: 'text-yellow-600'
+    };
+    const rankClass = rankClasses[rank] || 'text-gray-400';
+
+    return (
+        <span className={`font-bold text-xl ${rankClass} flex items-center justify-center gap-2`}>
+            {medal ? 
+                <>
+                    <span className="text-2xl">{medal}</span>
+                    <span className="hidden sm:inline">{rank}</span>
+                </> : 
+                rank
+            }
+        </span>
+    );
+};
+
+export default function Leaderboard() {
+  const [scores, setScores] = useState<ScoreWithProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filterCategory, setFilterCategory] = useState<string>('All');
@@ -31,12 +56,12 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
       
       let query = supabase
         .from('scores')
-        .select('*, profiles(email)')
+        .select('*, profiles(id, name, email)')
         .order('score', { ascending: false })
         .limit(20);
 
       if (filterCategory !== 'All') {
-        query = query.eq('category', filterCategory);
+        query = query.eq('category_id', filterCategory);
       }
 
       const { data, error } = await query;
@@ -55,26 +80,15 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4 flex flex-col">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-          Leaderboard
-        </h2>
-        <button
-          onClick={onBack}
-          className="px-6 py-2 border border-purple-500 text-purple-400 hover:bg-purple-500/20 rounded-lg font-semibold transition-colors"
-        >
-          &larr; Back to Categories
-        </button>
-      </div>
-      
-      <div className="mb-4">
+      <div className="mb-4 self-start">
         <select
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
           className="bg-gray-700 border border-gray-600 rounded-md p-2 text-white focus:ring-purple-500 focus:border-purple-500"
+          aria-label="Filter scores by category"
         >
           <option value="All">All Categories</option>
-          {categories.map(cat => <option key={cat.id} value={cat.name}>{cat.name}</option>)}
+          {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
         </select>
       </div>
 
@@ -100,7 +114,7 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
                 <table className="w-full text-left">
                     <thead className="bg-gray-900/70">
                     <tr>
-                        <th className="p-4 font-bold text-purple-400">Rank</th>
+                        <th className="p-4 font-bold text-purple-400 text-center w-24">Rank</th>
                         <th className="p-4 font-bold text-purple-400">Player</th>
                         <th className="p-4 font-bold text-purple-400">Score</th>
                         <th className="p-4 font-bold text-purple-400 hidden sm:table-cell">Category</th>
@@ -109,12 +123,16 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
                     </thead>
                     <tbody>
                     {scores.map((s, index) => (
-                        <tr key={s.id || index} className="border-t border-gray-700 hover:bg-gray-700/50">
-                        <td className="p-4 font-bold text-lg">{index + 1}</td>
-                        <td className="p-4 text-white">{s.profiles?.email || 'Anonymous'}</td>
-                        <td className="p-4 text-purple-300 font-semibold text-lg">{s.score}</td>
-                        <td className="p-4 text-gray-300 hidden sm:table-cell">{s.category}</td>
-                        <td className="p-4 text-gray-400 text-sm hidden md:table-cell">{new Date(s.created_at).toLocaleDateString()}</td>
+                        <tr key={s.id || index} className="border-t border-gray-700 hover:bg-gray-700/50 transition-colors">
+                            <td className="p-4 text-center">
+                                <RankDisplay rank={index + 1} />
+                            </td>
+                            <td className="p-4 text-white font-medium truncate" title={s.profiles?.name ?? ''}>
+                                {formatPlayerName(s.profiles?.name)}
+                            </td>
+                            <td className="p-4 text-purple-300 font-bold text-xl">{s.score}</td>
+                            <td className="p-4 text-gray-300 hidden sm:table-cell">{categories.find(c => c.id === s.category_id)?.name}</td>
+                            <td className="p-4 text-gray-400 text-sm hidden md:table-cell">{new Date(s.created_at).toLocaleDateString()}</td>
                         </tr>
                     ))}
                     </tbody>
