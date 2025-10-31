@@ -1,0 +1,157 @@
+-- initialize Supabase tables (PostgreSQL) with RLS
+
+-- profiles
+CREATE TABLE IF NOT EXISTS public.profiles (
+  id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  name text,
+  email text,
+  avatar_url text
+);
+
+CREATE OR REPLACE FUNCTION public.handle_new_auth_user()
+RETURNS trigger
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+BEGIN
+  INSERT INTO public.profiles (id, name, avatar_url, email)
+  VALUES (NEW.id, NULL, NULL)
+  ON CONFLICT (id) DO NOTHING;
+
+  RETURN NEW;
+END;
+$$;
+
+
+DROP TRIGGER IF EXISTS trigger_handle_new_auth_user ON auth.users;
+
+CREATE TRIGGER trigger_handle_new_auth_user
+AFTER INSERT ON auth.users
+FOR EACH ROW
+EXECUTE FUNCTION public.handle_new_auth_user();
+
+ALTER TABLE IF EXISTS public.profiles ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public to read all profiles"
+  ON public.profiles
+  FOR SELECT
+  TO public
+  USING (true);
+CREATE POLICY "Allow authenticated to update their profile"
+  ON public.profiles
+  FOR UPDATE
+  TO authenticated
+  USING ((auth.uid())::uuid = id)
+  WITH CHECK ((auth.uid())::uuid = id);
+
+-- categories
+CREATE TABLE IF NOT EXISTS public.categories (
+  id              BIGSERIAL PRIMARY KEY,
+  name            TEXT NOT NULL UNIQUE,
+  icon            TEXT,
+  created_by      uuid NOT NULL DEFAULT (auth.uid()),
+  created_at      timestamptz NOT NULL DEFAULT now(),
+  updated_at      timestamptz NOT NULL DEFAULT now()
+);
+ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public to read all categories" ON public.categories
+  FOR SELECT
+  TO public
+  USING (true);
+
+CREATE POLICY "Allow authenticated to insert categories" ON public.categories
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (true);
+
+CREATE POLICY "Allow authenticated to update their categories" ON public.categories
+  FOR UPDATE
+  TO authenticated
+  USING (created_by = auth.uid());
+
+CREATE POLICY "Allow authenticated to delete their categories" ON public.categories
+  FOR DELETE
+  TO authenticated
+  USING (created_by = auth.uid());
+
+-- insert some default categories
+INSERT INTO public.categories (name, icon, created_by) VALUES
+  ('Fruits', '🍎', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+  ('Animals', '🐶', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+  ('Colors', '🎨', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+  ('Countries', '🌍', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+  ('Sports', '⚽', '3da70352-47b3-4676-9f6e-38b005119b4c');
+
+
+CREATE TABLE IF NOT EXISTS public.words (
+  id              BIGSERIAL PRIMARY KEY,
+  word            TEXT NOT NULL,
+  category_id     BIGINT NOT NULL REFERENCES public.categories(id) ON DELETE CASCADE,
+  language        TEXT NOT NULL,
+  meaning         TEXT NOT NULL,
+  created_by      uuid NOT NULL DEFAULT (auth.uid()),
+  created_at      timestamptz NOT NULL DEFAULT now(),
+  updated_at      timestamptz NOT NULL DEFAULT now()
+);
+ALTER TABLE public.words ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public to read all words" ON public.words
+  FOR SELECT
+  TO public
+  USING (true);
+
+CREATE POLICY "Allow authenticated to insert words" ON public.words
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (true);
+
+CREATE POLICY "Allow authenticated to update their words" ON public.words
+  FOR UPDATE
+  TO authenticated
+  USING (created_by = auth.uid());
+
+CREATE POLICY "Allow authenticated to delete their words" ON public.words
+  FOR DELETE
+  TO authenticated
+  USING (created_by = auth.uid());
+
+-- insert some default words
+INSERT INTO public.words (word, category_id, language, meaning, created_by) VALUES
+    ('Apple', 1, 'vi', 'táo', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Banana', 1, 'vi', 'chuối', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Orange', 1, 'vi', 'cam', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Grapes', 1, 'vi', 'nho', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Cat', 2, 'vi', 'mèo', '3da70352-47b3-4676-9f6e-38b005119b4c'),    
+    ('Dog', 2, 'vi', 'chó', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Elephant', 2, 'vi', 'voi', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Tiger', 2, 'vi', 'hổ', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Red', 3, 'vi', 'đỏ', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Blue', 3, 'vi', 'xanh dương', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Green', 3, 'vi', 'xanh lá', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Yellow', 3, 'vi', 'vàng', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('USA', 4, 'vi', 'Mỹ', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('France', 4, 'vi', 'Pháp', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Germany', 4, 'vi', 'Đức', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Japan', 4, 'vi', 'Nhật Bản', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Football', 5, 'vi', 'bóng đá', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Basketball', 5, 'vi', 'bóng rổ', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Tennis', 5, 'vi', 'quần vợt', '3da70352-47b3-4676-9f6e-38b005119b4c'),
+    ('Soccer', 5, 'vi', 'bóng đá', '3da70352-47b3-4676-9f6e-38b005119b4c');
+
+-- table scores for leaderboard
+CREATE TABLE IF NOT EXISTS public.scores (
+  id              BIGSERIAL PRIMARY KEY,
+  user_id         uuid NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
+  category_id     BIGINT NOT NULL REFERENCES public.categories(id) ON DELETE CASCADE,
+  score           INT NOT NULL,
+  created_at      timestamptz NOT NULL DEFAULT now()
+);
+ALTER TABLE public.scores ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow authenticated to insert scores" ON public.scores
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (true);
+CREATE POLICY "Allow public to read all scores" ON public.scores
+  FOR SELECT
+  TO public
+  USING (true);

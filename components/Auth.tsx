@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 import { supabase } from '../services/supabase';
 import Spinner from './Spinner';
 
-const Auth: React.FC = () => {
+interface AuthProps {
+  onSignInSuccess?: () => void;
+}
+
+const Auth: React.FC<AuthProps> = ({ onSignInSuccess }) => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,8 +38,9 @@ const Auth: React.FC = () => {
       });
       if (error) {
         setError(error.message);
+      } else {
+        onSignInSuccess?.();
       }
-      // On success, the onAuthStateChange listener in App.tsx will handle the state change
     }
     setLoading(false);
   };

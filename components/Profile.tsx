@@ -65,8 +65,9 @@ export default function Profile() {
             if (name !== initialName) {
                 const { error: profileError } = await supabase
                     .from('profiles')
-                    .update({ name: name })
-                    .eq('id', user.id);
+                    .update({ name })
+                    .eq('id', user.id)
+                    .select();
                 
                 if (profileError) throw profileError;
                 setInitialName(name);
