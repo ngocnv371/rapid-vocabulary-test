@@ -8,7 +8,7 @@ export interface Category {
 export interface Word {
   id: number;
   word: string;
-  category_id: string;
+  category: string;
   language: string;
   meaning: string;
 }
@@ -17,7 +17,7 @@ export interface Score {
   id: number;
   user_id: string;
   score: number;
-  category_id: number;
+  category: number;
   created_at: string;
 }
 

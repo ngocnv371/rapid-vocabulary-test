@@ -38,7 +38,7 @@ export default function App() {
             supabase.from('scores').insert([{
                 user_id: session.user.id,
                 score,
-                category_id: categoryId,
+                category: categoryId,
             }]).select().then(({ error }) => {
                 if (!error) {
                     localStorage.removeItem('scoreToSave');

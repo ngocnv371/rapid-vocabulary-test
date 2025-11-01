@@ -62,7 +62,7 @@ export default function Leaderboard() {
         .limit(20);
 
       if (filterCategory !== 'All') {
-        query = query.eq('category_id', filterCategory);
+        query = query.eq('category', filterCategory);
       }
 
       const { data, error } = await query;
@@ -132,7 +132,7 @@ export default function Leaderboard() {
                                 {formatPlayerName(s.profiles?.name, s.profiles?.email)}
                             </td>
                             <td className="p-4 text-purple-300 font-bold text-xl">{s.score}</td>
-                            <td className="p-4 text-gray-300 hidden sm:table-cell">{categories.find(c => c.id === s.category_id)?.name}</td>
+                            <td className="p-4 text-gray-300 hidden sm:table-cell">{categories.find(c => c.id === s.category)?.name}</td>
                             <td className="p-4 text-gray-400 text-sm hidden md:table-cell">{new Date(s.created_at).toLocaleDateString()}</td>
                         </tr>
                     ))}

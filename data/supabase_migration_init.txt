@@ -31,10 +31,10 @@ FOR EACH ROW
 EXECUTE FUNCTION public.handle_new_auth_user();
 
 ALTER TABLE IF EXISTS public.profiles ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow public to read all profiles"
+CREATE POLICY "Allow authenticated to read all profiles"
   ON public.profiles
   FOR SELECT
-  TO public
+  TO authenticated
   USING (true);
 CREATE POLICY "Allow authenticated to update their profile"
   ON public.profiles
@@ -45,7 +45,7 @@ CREATE POLICY "Allow authenticated to update their profile"
 
 -- categories
 CREATE TABLE IF NOT EXISTS public.categories (
-  id              BIGSERIAL PRIMARY KEY,
+  id              TEXT PRIMARY KEY,
   name            TEXT NOT NULL UNIQUE,
   icon            TEXT,
   created_by      uuid NOT NULL DEFAULT (auth.uid()),
@@ -54,9 +54,9 @@ CREATE TABLE IF NOT EXISTS public.categories (
 );
 ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow public to read all categories" ON public.categories
+CREATE POLICY "Allow authenticated to read all categories" ON public.categories
   FOR SELECT
-  TO public
+  TO authenticated
   USING (true);
 
 CREATE POLICY "Allow authenticated to insert categories" ON public.categories
@@ -86,7 +86,7 @@ INSERT INTO public.categories (name, icon, created_by) VALUES
 CREATE TABLE IF NOT EXISTS public.words (
   id              BIGSERIAL PRIMARY KEY,
   word            TEXT NOT NULL,
-  category_id     BIGINT NOT NULL REFERENCES public.categories(id) ON DELETE CASCADE,
+  category        TEXT NOT NULL REFERENCES public.categories(id) ON DELETE CASCADE,
   language        TEXT NOT NULL,
   meaning         TEXT NOT NULL,
   created_by      uuid NOT NULL DEFAULT (auth.uid()),
@@ -95,9 +95,9 @@ CREATE TABLE IF NOT EXISTS public.words (
 );
 ALTER TABLE public.words ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow public to read all words" ON public.words
+CREATE POLICY "Allow authenticated to read all words" ON public.words
   FOR SELECT
-  TO public
+  TO authenticated
   USING (true);
 
 CREATE POLICY "Allow authenticated to insert words" ON public.words
@@ -116,7 +116,7 @@ CREATE POLICY "Allow authenticated to delete their words" ON public.words
   USING (created_by = auth.uid());
 
 -- insert some default words
-INSERT INTO public.words (word, category_id, language, meaning, created_by) VALUES
+INSERT INTO public.words (word, category, language, meaning, created_by) VALUES
     ('Apple', 1, 'vi', 'táo', '3da70352-47b3-4676-9f6e-38b005119b4c'),
     ('Banana', 1, 'vi', 'chuối', '3da70352-47b3-4676-9f6e-38b005119b4c'),
     ('Orange', 1, 'vi', 'cam', '3da70352-47b3-4676-9f6e-38b005119b4c'),
@@ -142,7 +142,7 @@ INSERT INTO public.words (word, category_id, language, meaning, created_by) VALU
 CREATE TABLE IF NOT EXISTS public.scores (
   id              BIGSERIAL PRIMARY KEY,
   user_id         uuid NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
-  category_id     BIGINT NOT NULL REFERENCES public.categories(id) ON DELETE CASCADE,
+  category        TEXT NOT NULL REFERENCES public.categories(id) ON DELETE CASCADE,
   score           INT NOT NULL,
   created_at      timestamptz NOT NULL DEFAULT now()
 );
@@ -151,7 +151,7 @@ CREATE POLICY "Allow authenticated to insert scores" ON public.scores
   FOR INSERT
   TO authenticated
   WITH CHECK (true);
-CREATE POLICY "Allow public to read all scores" ON public.scores
+CREATE POLICY "Allow authenticated to read all scores" ON public.scores
   FOR SELECT
-  TO public
+  TO authenticated
   USING (true);

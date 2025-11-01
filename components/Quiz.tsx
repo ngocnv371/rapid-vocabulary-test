@@ -29,7 +29,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories }: QuizP
       const { data, error } = await supabase
         .from('words')
         .select('*')
-        .eq('category_id', category.id)
+        .eq('category', category.id)
         .limit(100);
 
       if (error) {
