@@ -151,7 +151,7 @@ export default function App() {
       case "profile":
         return "Profile";
       default:
-        return "Vocabulary Test";
+        return "Rapid Test";
     }
   };
 

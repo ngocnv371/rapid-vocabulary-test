@@ -31,8 +31,17 @@ export default function Header({
     onLogin
 }: HeaderProps) {
   return (
-    <header className="w-full max-w-6xl flex justify-between items-center p-4">
+    <header className="w-full max-w-6xl flex justify-between items-center p-4 pl-0 pr-8">
       <div className="flex items-center gap-4">
+        {isMenuVisible && (
+          <HamburgerMenu 
+            session={session}
+            onLogout={onLogout}
+            onViewLeaderboard={onViewLeaderboard}
+            onViewProfile={onViewProfile}
+            onLogin={onLogin}
+          />
+        )}
         {isSubPage && (
           <button
             onClick={onBack}
@@ -48,7 +57,7 @@ export default function Header({
           {title}
         </h1>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 pr-8">
         {!session && !isSubPage && (
           <button
             onClick={onShowHeartsInfo}
@@ -58,15 +67,6 @@ export default function Header({
             <span>{hearts}</span>
             <span role="img" aria-label="heart emoji">💖</span>
           </button>
-        )}
-        {isMenuVisible && (
-          <HamburgerMenu 
-            session={session}
-            onLogout={onLogout}
-            onViewLeaderboard={onViewLeaderboard}
-            onViewProfile={onViewProfile}
-            onLogin={onLogin}
-          />
         )}
       </div>
     </header>

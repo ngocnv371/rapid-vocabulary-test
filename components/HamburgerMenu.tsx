@@ -39,7 +39,7 @@ export default function HamburgerMenu({ session, onLogout, onViewLeaderboard, on
         </svg>
       </button>
       {isMenuOpen && (
-        <div className="absolute top-full right-0 mt-2 w-64 bg-gray-800 border border-purple-500/50 rounded-lg shadow-lg z-10">
+        <div className="absolute top-full left-0 mt-2 w-64 bg-gray-800 border border-purple-500/50 rounded-lg shadow-lg z-10">
           {session ? (
             <>
               <div className="p-4 border-b border-gray-700">
