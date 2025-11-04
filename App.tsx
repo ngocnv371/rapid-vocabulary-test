@@ -1,32 +1,38 @@
+import React, { useState, useEffect } from "react";
+import { supabase } from "./services/supabase";
+import type { Session } from "@supabase/supabase-js";
+import Auth from "./components/Auth";
+import CategorySelector from "./components/CategorySelector";
+import Quiz from "./components/Quiz";
+import GameOver from "./components/GameOver";
+import Leaderboard from "./components/Leaderboard";
+import Profile from "./components/Profile";
+import type { Category } from "./types";
+import HeartsInfoDialog from "./components/HeartsInfoDialog";
+import OutOfHeartsDialog from "./components/OutOfHeartsDialog";
+import Header from "./components/Header";
+import ProgressBar from "./components/ProgressBar";
 
-import React, { useState, useEffect } from 'react';
-import { supabase } from './services/supabase';
-import type { Session } from '@supabase/supabase-js';
-import Auth from './components/Auth';
-import CategorySelector from './components/CategorySelector';
-import Quiz from './components/Quiz';
-import GameOver from './components/GameOver';
-import Leaderboard from './components/Leaderboard';
-import Profile from './components/Profile';
-import type { Category } from './types';
-import HeartsInfoDialog from './components/HeartsInfoDialog';
-import OutOfHeartsDialog from './components/OutOfHeartsDialog';
-import Header from './components/Header';
-
-type GameState = 'category' | 'quiz' | 'gameover' | 'leaderboard' | 'profile';
+type GameState = "category" | "quiz" | "gameover" | "leaderboard" | "profile";
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
-  const [gameState, setGameState] = useState<GameState>('category');
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [gameState, setGameState] = useState<GameState>("category");
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
   const [finalScore, setFinalScore] = useState(0);
   const [showAuth, setShowAuth] = useState(false);
-  const [postAuthGameState, setPostAuthGameState] = useState<GameState>('category');
+  const [postAuthGameState, setPostAuthGameState] =
+    useState<GameState>("category");
 
   // New state for hearts system
   const [hearts, setHearts] = useState<number>(3);
   const [showHeartsInfoDialog, setShowHeartsInfoDialog] = useState(false);
   const [showOutOfHeartsDialog, setShowOutOfHeartsDialog] = useState(false);
+
+  // Progress tracking for quiz
+  const [quizProgress, setQuizProgress] = useState({ current: 0, total: 0 });
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -37,18 +43,24 @@ export default function App() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
-      if (event === 'SIGNED_IN' && session) {
-        const scoreData = localStorage.getItem('scoreToSave');
+      if (event === "SIGNED_IN" && session) {
+        const scoreData = localStorage.getItem("scoreToSave");
         if (scoreData) {
-            const { score, categoryId } = JSON.parse(scoreData);
-            supabase.from('scores').insert([{
+          const { score, categoryId } = JSON.parse(scoreData);
+          supabase
+            .from("scores")
+            .insert([
+              {
                 user_id: session.user.id,
                 score,
                 category: categoryId,
-            }]).select().then(({ error }) => {
-                if (!error) {
-                    localStorage.removeItem('scoreToSave');
-                }
+              },
+            ])
+            .select()
+            .then(({ error }) => {
+              if (!error) {
+                localStorage.removeItem("scoreToSave");
+              }
             });
         }
       }
@@ -61,80 +73,93 @@ export default function App() {
   useEffect(() => {
     if (session) return; // Don't manage hearts for logged-in users
 
-    const savedHearts = localStorage.getItem('userHearts');
+    const savedHearts = localStorage.getItem("userHearts");
     if (savedHearts !== null) {
       setHearts(parseInt(savedHearts, 10));
     } else {
       const initialHearts = 3;
       setHearts(initialHearts);
-      localStorage.setItem('userHearts', String(initialHearts));
+      localStorage.setItem("userHearts", String(initialHearts));
     }
   }, [session]);
 
   useEffect(() => {
     if (session) return;
-    localStorage.setItem('userHearts', String(hearts));
+    localStorage.setItem("userHearts", String(hearts));
   }, [hearts, session]);
 
   const handleCategorySelect = (category: Category) => {
     if (!session && hearts <= 0) {
-        setShowOutOfHeartsDialog(true);
-        return;
+      setShowOutOfHeartsDialog(true);
+      return;
     }
     setSelectedCategory(category);
-    setGameState('quiz');
+    setGameState("quiz");
   };
 
   const handleGameOver = async (score: number) => {
     setFinalScore(score);
     if (session && selectedCategory) {
-      await supabase.from('scores').insert([{
-        user_id: session.user.id,
-        score: score,
-        category: selectedCategory.id, // FIX: was category_id which is not a column
-      }]).select();
-    } else if (selectedCategory) {
-        localStorage.setItem('scoreToSave', JSON.stringify({
+      await supabase
+        .from("scores")
+        .insert([
+          {
+            user_id: session.user.id,
             score: score,
-            categoryId: selectedCategory.id
-        }));
-        // For anonymous users, reduce hearts
-        setHearts(prev => Math.max(0, prev - 1));
+            category: selectedCategory.id, // FIX: was category_id which is not a column
+          },
+        ])
+        .select();
+    } else if (selectedCategory) {
+      localStorage.setItem(
+        "scoreToSave",
+        JSON.stringify({
+          score: score,
+          categoryId: selectedCategory.id,
+        })
+      );
+      // For anonymous users, reduce hearts
+      setHearts((prev) => Math.max(0, prev - 1));
     }
-    setGameState('gameover');
+    setGameState("gameover");
   };
 
   const handlePlayAgain = () => {
     setSelectedCategory(null);
-    setGameState('category');
+    setQuizProgress({ current: 0, total: 0 });
+    setGameState("category");
+  };
+
+  const handleProgressUpdate = (current: number, total: number) => {
+    setQuizProgress({ current, total });
   };
 
   const handleViewLeaderboard = () => {
-    setGameState('leaderboard');
+    setGameState("leaderboard");
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-  }
-  
-  const isSubPage = gameState === 'leaderboard' || gameState === 'profile';
+  };
+
+  const isSubPage = gameState === "leaderboard" || gameState === "profile";
 
   const getHeaderTitle = () => {
     switch (gameState) {
-      case 'leaderboard':
-        return 'Leaderboard';
-      case 'profile':
-        return 'Profile';
+      case "leaderboard":
+        return "Leaderboard";
+      case "profile":
+        return "Profile";
       default:
-        return 'Vocabulary Test';
+        return "Vocabulary Test";
     }
   };
-  
-  const handleLogin = (redirectState: GameState = 'category') => {
+
+  const handleLogin = (redirectState: GameState = "category") => {
     setPostAuthGameState(redirectState);
     setShowAuth(true);
   };
-  
+
   const handleAuthSuccess = () => {
     setShowAuth(false);
     setGameState(postAuthGameState);
@@ -142,30 +167,39 @@ export default function App() {
 
   const renderContent = () => {
     switch (gameState) {
-      case 'quiz':
+      case "quiz":
         if (selectedCategory) {
-          return <Quiz category={selectedCategory} onGameOver={handleGameOver} onBackToCategories={handlePlayAgain} />;
+          return (
+            <Quiz
+              category={selectedCategory}
+              onGameOver={handleGameOver}
+              onBackToCategories={handlePlayAgain}
+              onProgressUpdate={handleProgressUpdate}
+            />
+          );
         }
         // Fallback to category selection if category is not set
-        setGameState('category');
+        setGameState("category");
         return null;
-      case 'gameover':
-        return <GameOver 
-            score={finalScore} 
-            onPlayAgain={handlePlayAgain} 
+      case "gameover":
+        return (
+          <GameOver
+            score={finalScore}
+            onPlayAgain={handlePlayAgain}
             onViewLeaderboard={handleViewLeaderboard}
             session={session}
-            onLoginToSave={() => handleLogin('leaderboard')}
-        />;
-      case 'leaderboard':
+            onLoginToSave={() => handleLogin("leaderboard")}
+          />
+        );
+      case "leaderboard":
         return <Leaderboard />;
-      case 'profile':
+      case "profile":
         if (session) {
           return <Profile />;
         }
-        setGameState('category');
+        setGameState("category");
         return null;
-      case 'category':
+      case "category":
       default:
         return <CategorySelector onSelectCategory={handleCategorySelect} />;
     }
@@ -177,23 +211,33 @@ export default function App() {
 
   return (
     <div className="min-h-screen w-full text-white font-sans flex flex-col items-center p-4 relative">
-        <Header
-            isSubPage={isSubPage}
-            onBack={handlePlayAgain}
-            title={getHeaderTitle()}
-            session={session}
-            hearts={hearts}
-            onShowHeartsInfo={() => setShowHeartsInfoDialog(true)}
-            isMenuVisible={!isSubPage}
-            onLogout={handleLogout}
-            onViewLeaderboard={handleViewLeaderboard}
-            onViewProfile={() => setGameState('profile')}
-            onLogin={() => {
-                localStorage.removeItem('scoreToSave');
-                handleLogin('category');
-            }}
-        />
-      <main className={`w-full flex-grow flex justify-center ${isSubPage ? 'items-start' : 'items-center'}`}>
+      <Header
+        isSubPage={isSubPage}
+        onBack={handlePlayAgain}
+        title={getHeaderTitle()}
+        session={session}
+        hearts={hearts}
+        onShowHeartsInfo={() => setShowHeartsInfoDialog(true)}
+        isMenuVisible={!isSubPage}
+        onLogout={handleLogout}
+        onViewLeaderboard={handleViewLeaderboard}
+        onViewProfile={() => setGameState("profile")}
+        onLogin={() => {
+          localStorage.removeItem("scoreToSave");
+          handleLogin("category");
+        }}
+      />
+
+      {/* Progress bar - only shown during quiz */}
+      {gameState === "quiz" && (
+        <ProgressBar current={quizProgress.current} total={quizProgress.total} />
+      )}
+
+      <main
+        className={`w-full flex-grow flex justify-center ${
+          isSubPage ? "items-start" : "items-center"
+        }`}
+      >
         {renderContent()}
       </main>
 
@@ -204,15 +248,14 @@ export default function App() {
 
       {/* Out of Hearts Dialog */}
       {showOutOfHeartsDialog && (
-        <OutOfHeartsDialog 
-          onClose={() => setShowOutOfHeartsDialog(false)} 
+        <OutOfHeartsDialog
+          onClose={() => setShowOutOfHeartsDialog(false)}
           onLogin={() => {
             setShowOutOfHeartsDialog(false);
-            handleLogin('category');
+            handleLogin("category");
           }}
         />
       )}
-
     </div>
   );
 }

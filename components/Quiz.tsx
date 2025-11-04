@@ -8,13 +8,14 @@ interface QuizProps {
   category: Category;
   onGameOver: (score: number) => void;
   onBackToCategories: () => void;
+  onProgressUpdate?: (current: number, total: number) => void;
 }
 
 const shuffleArray = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
-export default function Quiz({ category, onGameOver, onBackToCategories }: QuizProps) {
+export default function Quiz({ category, onGameOver, onBackToCategories, onProgressUpdate }: QuizProps) {
   const [words, setWords] = useState<Word[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -45,6 +46,13 @@ export default function Quiz({ category, onGameOver, onBackToCategories }: QuizP
 
     fetchWords();
   }, [category]);
+
+  // Update progress when words load or question changes
+  useEffect(() => {
+    if (words.length > 0 && onProgressUpdate) {
+      onProgressUpdate(currentQuestionIndex + 1, words.length);
+    }
+  }, [currentQuestionIndex, words.length, onProgressUpdate]);
 
   const allMeanings = useMemo(() => {
       if (!words.length) return [];
@@ -122,23 +130,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories }: QuizP
   const currentWord = words[currentQuestionIndex];
 
   return (
-    <div className="w-full max-w-2xl mx-auto relative p-0">
-      {/* Progress bar positioned in top right */}
-      <div className="absolute top-0 right-0 w-full mb-4">
-        <div className="flex justify-between items-center text-sm text-gray-400 mb-1">
-          <span>Progress</span>
-          <span>{currentQuestionIndex + 1} / {words.length}</span>
-        </div>
-        <div className="w-full bg-gray-700 rounded-full h-2">
-          <div 
-            className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-300"
-            style={{ width: `${((currentQuestionIndex + 1) / words.length) * 100}%` }}
-          />
-        </div>
-      </div>
-
-      <div className="mb-8 mt-16">
-      </div>
+    <div className="w-full max-w-2xl mx-auto p-4">
       <div className="mb-10 text-center">
         <p className="text-2xl md:text-3xl text-gray-300 mb-4">What is the meaning of</p>
         <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 break-words">
