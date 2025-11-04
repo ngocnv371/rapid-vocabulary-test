@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { supabase } from "./services/supabase";
 import type { Session } from "@supabase/supabase-js";
 import Auth from "./components/Auth";
@@ -130,9 +130,9 @@ export default function App() {
     setGameState("category");
   };
 
-  const handleProgressUpdate = (current: number, total: number) => {
+  const handleProgressUpdate = useCallback((current: number, total: number) => {
     setQuizProgress({ current, total });
-  };
+  }, []);
 
   const handleViewLeaderboard = () => {
     setGameState("leaderboard");
