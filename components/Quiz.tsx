@@ -122,28 +122,28 @@ export default function Quiz({ category, onGameOver, onBackToCategories }: QuizP
   const currentWord = words[currentQuestionIndex];
 
   return (
-    <div className="w-full max-w-3xl bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-2xl border border-purple-500/30 text-center">
-        <div className="mb-8 flex justify-between items-center text-lg">
-          <p className="font-bold text-purple-400">Score: {score}</p>
-          <p className="text-gray-400">Question: {currentQuestionIndex + 1} / {words.length}</p>
-        </div>
-        <div className="mb-12">
-          <p className="text-2xl md:text-3xl text-gray-300 mb-4">What is the meaning of</p>
-          <h2 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 break-words">
-            {currentWord.word}
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => handleAnswer(option)}
-              className="p-5 bg-gray-700 rounded-lg text-lg font-semibold text-white transform hover:scale-105 transition-transform duration-200 ease-in-out border border-gray-600 hover:bg-purple-600 hover:border-purple-500"
-            >
-              {option}
-            </button>
-          ))}
-        </div>
+    <div className="w-full max-w-2xl mx-auto p-4">
+      <div className="mb-8 flex justify-between items-center text-lg">
+        <p className="font-bold text-purple-400">Score: {score}</p>
+        <p className="text-gray-400">Question: {currentQuestionIndex + 1} / {words.length}</p>
+      </div>
+      <div className="mb-10 text-center">
+        <p className="text-2xl md:text-3xl text-gray-300 mb-4">What is the meaning of</p>
+        <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 break-words">
+          {currentWord.word}
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:gap-6">
+        {options.map((option, index) => (
+          <button
+            key={index}
+            onClick={() => handleAnswer(option)}
+            className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-purple-500/30 hover:bg-gray-700/50 hover:border-purple-500 text-lg font-semibold text-white"
+          >
+            {option}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

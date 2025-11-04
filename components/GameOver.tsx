@@ -12,28 +12,29 @@ interface GameOverProps {
 
 export default function GameOver({ score, onPlayAgain, onViewLeaderboard, session, onLoginToSave }: GameOverProps) {
   return (
-    <div className="flex flex-col items-center justify-center text-center bg-gray-800 p-10 rounded-2xl shadow-2xl border border-purple-500/30">
-      <h2 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-4">Nice Try!</h2>
-      <p className="text-2xl text-gray-300 mb-2">Your final score is</p>
-      <p className="text-7xl font-bold text-purple-300 mb-10">{score}</p>
-      <div className="flex flex-col sm:flex-row gap-4 items-center">
+    <div className="w-full max-w-2xl mx-auto p-4">
+      <div className="text-center mb-10">
+        <p className="text-2xl text-gray-300 mb-2">Your final score is</p>
+        <p className="text-6xl font-bold text-purple-300 mb-8">{score}</p>
+      </div>
+      <div className="flex flex-col gap-4 sm:gap-6">
         {!session && (
-            <button
-                onClick={onLoginToSave}
-                className="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg text-lg transition-colors"
-            >
-                Login to Save Score
-            </button>
+          <button
+            onClick={onLoginToSave}
+            className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-green-500/30 hover:bg-green-700/50 hover:border-green-500 text-lg font-semibold text-white bg-green-600"
+          >
+            Login to Save Score
+          </button>
         )}
         <button
           onClick={onPlayAgain}
-          className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-lg transition-colors"
+          className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-purple-500/30 hover:bg-gray-700/50 hover:border-purple-500 text-lg font-semibold text-white bg-purple-600"
         >
           Play Again
         </button>
         <button
           onClick={onViewLeaderboard}
-          className="px-8 py-4 bg-transparent border border-purple-500 text-purple-400 hover:bg-purple-500/20 rounded-lg text-lg transition-colors"
+          className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-purple-500/30 hover:bg-purple-600 hover:border-purple-500 text-lg font-semibold text-purple-400 hover:text-white"
         >
           View Leaderboard
         </button>
