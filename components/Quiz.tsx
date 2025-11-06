@@ -30,7 +30,6 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
       const { data, error } = await supabase
         .from('words')
         .select('*')
-        .eq('category', category.id)
         .limit(100);
 
       if (error) {
@@ -39,7 +38,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
       } else if (data && data.length > 3) {
         setWords(shuffleArray(data));
       } else {
-        setError(`Not enough words in the '${category.name}' category to start a quiz. (Need at least 4)`);
+        setError('Not enough words available to start a quiz. (Need at least 4)');
       }
       setLoading(false);
     };
@@ -117,7 +116,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
           onClick={onBackToCategories}
           className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-lg transition-colors"
         >
-          Choose a Different Category
+          Choose a Different Spirit Animal
         </button>
       </div>
     );

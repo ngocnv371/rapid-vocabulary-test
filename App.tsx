@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { supabase } from "./services/supabase";
 import type { Session } from "@supabase/supabase-js";
 import Auth from "./components/Auth";
-import CategorySelector from "./components/CategorySelector";
+import SpiritAnimalSelector from "./components/SpiritAnimalSelector";
 import Quiz from "./components/Quiz";
 import GameOver from "./components/GameOver";
 import Leaderboard from "./components/Leaderboard";
@@ -201,7 +201,7 @@ export default function App() {
         return null;
       case "category":
       default:
-        return <CategorySelector onSelectCategory={handleCategorySelect} />;
+        return <SpiritAnimalSelector onSelect={handleCategorySelect} />;
     }
   };
 
