@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import HeartsInfoDialog from './HeartsInfoDialog';
-import { useHearts } from '../contexts/HeartsContext';
+import React, { useState } from "react";
+import HeartsInfoDialog from "./HeartsInfoDialog";
+import { useHearts } from "../contexts/HeartsContext";
 
 export default function HeartsButton() {
   const { hearts } = useHearts();
@@ -8,14 +8,20 @@ export default function HeartsButton() {
 
   return (
     <>
-      <button
-        onClick={() => setShowHeartsInfoDialog(true)}
-        className="p-2 rounded-md hover:bg-purple-500/20 focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center gap-2 text-lg font-bold text-pink-400"
-        aria-label={`You have ${hearts} hearts left`}
-      >
-        <span>{hearts}</span>
-        <span role="img" aria-label="heart emoji">💖</span>
-      </button>
+      <div className="fixed bottom-6 right-6 z-50">
+        <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full p-3 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-purple-400/30">
+          <button
+            onClick={() => setShowHeartsInfoDialog(true)}
+            className="flex items-center gap-2 text-lg font-bold text-white focus:outline-none"
+            aria-label={`You have ${hearts} hearts left`}
+          >
+            <span>{hearts}</span>
+            <span role="img" aria-label="heart emoji">
+              💖
+            </span>
+          </button>
+        </div>
+      </div>
 
       {/* Hearts Info Dialog */}
       {showHeartsInfoDialog && (

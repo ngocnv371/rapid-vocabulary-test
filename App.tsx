@@ -188,7 +188,7 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen w-full text-white font-sans flex flex-col items-center p-4 relative">
+    <div className="min-h-screen w-full text-white font-sans flex flex-col relative">
       <Header
         isSubPage={isSubPage}
         onBack={handlePlayAgain}
@@ -206,13 +206,15 @@ function AppContent() {
 
       {/* Progress bar - only shown during quiz */}
       {gameState === "quiz" && (
-        <ProgressBar current={quizProgress.current} total={quizProgress.total} />
+        <div className="fixed top-16 left-0 right-0 z-40">
+          <ProgressBar current={quizProgress.current} total={quizProgress.total} />
+        </div>
       )}
 
       <main
-        className={`w-full flex-grow flex justify-center ${
-          isSubPage ? "items-start" : "items-center"
-        }`}
+        className={`w-full flex-grow flex justify-center px-4 ${
+          gameState === "quiz" ? "pt-24" : "pt-20"
+        } ${isSubPage ? "items-start pt-24" : "items-center"}`}
       >
         {renderContent()}
       </main>
