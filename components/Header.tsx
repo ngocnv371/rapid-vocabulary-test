@@ -2,6 +2,7 @@
 import React from 'react';
 import type { Session } from '@supabase/supabase-js';
 import HamburgerMenu from './HamburgerMenu';
+import HeartsButton from './HeartsButton';
 
 interface HeaderProps {
   isSubPage: boolean;
@@ -9,7 +10,6 @@ interface HeaderProps {
   title: string;
   session: Session | null;
   hearts: number;
-  onShowHeartsInfo: () => void;
   isMenuVisible: boolean;
   onLogout: () => void;
   onViewLeaderboard: () => void;
@@ -23,7 +23,6 @@ export default function Header({
     title, 
     session, 
     hearts, 
-    onShowHeartsInfo,
     isMenuVisible,
     onLogout,
     onViewLeaderboard,
@@ -31,7 +30,7 @@ export default function Header({
     onLogin
 }: HeaderProps) {
   return (
-    <header className="w-full max-w-6xl flex justify-between items-center p-4 pl-0 pr-8">
+    <header className="w-full max-w-6xl flex justify-between items-center p-4 pt-2 pl-0 pr-8">
       <div className="flex items-center gap-4">
         {isMenuVisible && (
           <HamburgerMenu 
@@ -59,14 +58,7 @@ export default function Header({
       </div>
       <div className="flex items-center gap-2 pr-8">
         {!session && !isSubPage && (
-          <button
-            onClick={onShowHeartsInfo}
-            className="p-2 rounded-md hover:bg-purple-500/20 focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center gap-2 text-lg font-bold text-pink-400"
-            aria-label={`You have ${hearts} hearts left`}
-          >
-            <span>{hearts}</span>
-            <span role="img" aria-label="heart emoji">💖</span>
-          </button>
+          <HeartsButton hearts={hearts} />
         )}
       </div>
     </header>

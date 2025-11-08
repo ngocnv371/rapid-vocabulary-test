@@ -8,7 +8,6 @@ import GameOver from "./components/GameOver";
 import Leaderboard from "./components/Leaderboard";
 import Profile from "./components/Profile";
 import type { Category } from "./types";
-import HeartsInfoDialog from "./components/HeartsInfoDialog";
 import OutOfHeartsDialog from "./components/OutOfHeartsDialog";
 import Header from "./components/Header";
 import ProgressBar from "./components/ProgressBar";
@@ -28,7 +27,6 @@ export default function App() {
 
   // New state for hearts system
   const [hearts, setHearts] = useState<number>(3);
-  const [showHeartsInfoDialog, setShowHeartsInfoDialog] = useState(false);
   const [showOutOfHeartsDialog, setShowOutOfHeartsDialog] = useState(false);
 
   // Progress tracking for quiz
@@ -217,7 +215,6 @@ export default function App() {
         title={getHeaderTitle()}
         session={session}
         hearts={hearts}
-        onShowHeartsInfo={() => setShowHeartsInfoDialog(true)}
         isMenuVisible={!isSubPage}
         onLogout={handleLogout}
         onViewLeaderboard={handleViewLeaderboard}
@@ -240,11 +237,6 @@ export default function App() {
       >
         {renderContent()}
       </main>
-
-      {/* Hearts Info Dialog */}
-      {showHeartsInfoDialog && (
-        <HeartsInfoDialog onClose={() => setShowHeartsInfoDialog(false)} />
-      )}
 
       {/* Out of Hearts Dialog */}
       {showOutOfHeartsDialog && (
