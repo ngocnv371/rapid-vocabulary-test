@@ -3,6 +3,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../services/supabase';
 import type { Category, Word } from '../types';
 import Spinner from './Spinner';
+import EmojiCelebration from './EmojiCelebration';
+import { useEmojiCelebration } from '../hooks/useEmojiCelebration';
 
 interface QuizProps {
   category: Category;
@@ -22,6 +24,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
+  const { emojiParticles, containerRef, triggerCelebration } = useEmojiCelebration();
 
   useEffect(() => {
     const fetchWords = async () => {
@@ -77,16 +80,23 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
     }
   }, [currentQuestionIndex, words, allMeanings]);
 
-  const handleAnswer = (selectedMeaning: string) => {
+  const handleAnswer = (selectedMeaning: string, event: React.MouseEvent<HTMLButtonElement>) => {
     const currentWord = words[currentQuestionIndex];
     if (selectedMeaning === currentWord.meaning) {
+      // Trigger emoji celebration
+      triggerCelebration(event);
+      
       setScore(prev => prev + 1);
-      if (currentQuestionIndex + 1 < words.length) {
-        setCurrentQuestionIndex(prev => prev + 1);
-      } else {
-        // Game won!
-        onGameOver(score + 1);
-      }
+      
+      // Delay progression to show animation
+      setTimeout(() => {
+        if (currentQuestionIndex + 1 < words.length) {
+          setCurrentQuestionIndex(prev => prev + 1);
+        } else {
+          // Game won!
+          onGameOver(score + 1);
+        }
+      }, 500);
     } else {
       // Game over
       onGameOver(score);
@@ -129,7 +139,9 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
   const currentWord = words[currentQuestionIndex];
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4">
+    <div ref={containerRef} className="w-full max-w-2xl mx-auto p-4 relative">
+      <EmojiCelebration particles={emojiParticles} />
+      
       <div className="mb-10 text-center">
         <p className="text-2xl md:text-3xl text-gray-300 mb-4">What is the meaning of</p>
         <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 break-words">
@@ -140,7 +152,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
         {options.map((option, index) => (
           <button
             key={index}
-            onClick={() => handleAnswer(option)}
+            onClick={(e) => handleAnswer(option, e)}
             className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-purple-500/30 hover:bg-gray-700/50 hover:border-purple-500 text-lg font-semibold text-white"
           >
             {option}
