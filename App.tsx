@@ -184,7 +184,7 @@ function AppContent() {
   };
 
   if (showAuth) {
-    return <Auth onSignInSuccess={handleAuthSuccess} />;
+    return <Auth onSignInSuccess={handleAuthSuccess} onBack={() => setShowAuth(false)} />;
   }
 
   return (
