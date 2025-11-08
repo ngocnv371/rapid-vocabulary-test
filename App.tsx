@@ -8,13 +8,14 @@ import GameOver from "./components/GameOver";
 import Leaderboard from "./components/Leaderboard";
 import Profile from "./components/Profile";
 import type { Category } from "./types";
-import OutOfHeartsDialog from "./components/OutOfHeartsDialog";
+import OutOfHeartsHandler from "./components/OutOfHeartsHandler";
 import Header from "./components/Header";
 import ProgressBar from "./components/ProgressBar";
+import { HeartsProvider, useHearts } from "./contexts/HeartsContext";
 
 type GameState = "category" | "quiz" | "gameover" | "leaderboard" | "profile";
 
-export default function App() {
+function AppContent() {
   const [session, setSession] = useState<Session | null>(null);
   const [gameState, setGameState] = useState<GameState>("category");
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
@@ -25,9 +26,8 @@ export default function App() {
   const [postAuthGameState, setPostAuthGameState] =
     useState<GameState>("category");
 
-  // New state for hearts system
-  const [hearts, setHearts] = useState<number>(3);
-  const [showOutOfHeartsDialog, setShowOutOfHeartsDialog] = useState(false);
+  // Hearts context
+  const { useHeart, handleGameAttempt } = useHearts();
 
   // Progress tracking for quiz
   const [quizProgress, setQuizProgress] = useState({ current: 0, total: 0 });
@@ -67,28 +67,8 @@ export default function App() {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Effect for managing hearts persistence for anonymous users
-  useEffect(() => {
-    if (session) return; // Don't manage hearts for logged-in users
-
-    const savedHearts = localStorage.getItem("userHearts");
-    if (savedHearts !== null) {
-      setHearts(parseInt(savedHearts, 10));
-    } else {
-      const initialHearts = 3;
-      setHearts(initialHearts);
-      localStorage.setItem("userHearts", String(initialHearts));
-    }
-  }, [session]);
-
-  useEffect(() => {
-    if (session) return;
-    localStorage.setItem("userHearts", String(hearts));
-  }, [hearts, session]);
-
   const handleCategorySelect = (category: Category) => {
-    if (!session && hearts <= 0) {
-      setShowOutOfHeartsDialog(true);
+    if (!handleGameAttempt(session)) {
       return;
     }
     setSelectedCategory(category);
@@ -117,7 +97,7 @@ export default function App() {
         })
       );
       // For anonymous users, reduce hearts
-      setHearts((prev) => Math.max(0, prev - 1));
+      useHeart();
     }
     setGameState("gameover");
   };
@@ -214,7 +194,6 @@ export default function App() {
         onBack={handlePlayAgain}
         title={getHeaderTitle()}
         session={session}
-        hearts={hearts}
         isMenuVisible={!isSubPage}
         onLogout={handleLogout}
         onViewLeaderboard={handleViewLeaderboard}
@@ -239,15 +218,31 @@ export default function App() {
       </main>
 
       {/* Out of Hearts Dialog */}
-      {showOutOfHeartsDialog && (
-        <OutOfHeartsDialog
-          onClose={() => setShowOutOfHeartsDialog(false)}
-          onLogin={() => {
-            setShowOutOfHeartsDialog(false);
-            handleLogin("category");
-          }}
-        />
-      )}
+      <OutOfHeartsHandler onLogin={() => handleLogin("category")} />
     </div>
+  );
+}
+
+export default function App() {
+  const [session, setSession] = useState<Session | null>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  return (
+    <HeartsProvider session={session}>
+      <AppContent />
+    </HeartsProvider>
   );
 }

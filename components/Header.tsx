@@ -9,7 +9,6 @@ interface HeaderProps {
   onBack: () => void;
   title: string;
   session: Session | null;
-  hearts: number;
   isMenuVisible: boolean;
   onLogout: () => void;
   onViewLeaderboard: () => void;
@@ -22,7 +21,6 @@ export default function Header({
     onBack, 
     title, 
     session, 
-    hearts, 
     isMenuVisible,
     onLogout,
     onViewLeaderboard,
@@ -58,7 +56,7 @@ export default function Header({
       </div>
       <div className="flex items-center gap-2 pr-8">
         {!session && !isSubPage && (
-          <HeartsButton hearts={hearts} />
+          <HeartsButton />
         )}
       </div>
     </header>
