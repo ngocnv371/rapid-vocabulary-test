@@ -26,7 +26,8 @@ const AnimalCard: React.FC<{ animal: Animal; onClick: () => void }> = ({
   return (
     <button
       onClick={onClick}
-      className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-purple-500/30 hover:bg-gray-700/50 hover:border-purple-500 flex flex-col items-center justify-center aspect-square"
+      className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-purple-500/30 hover:bg-gray-700/50 hover:border-purple-500 flex flex-col items-center justify-center"
+      style={{ aspectRatio: '1 / 1' }}
     >
       <span
         className="text-5xl sm:text-6xl mb-4"
