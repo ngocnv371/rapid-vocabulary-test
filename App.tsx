@@ -184,7 +184,12 @@ function AppContent() {
   };
 
   if (showAuth) {
-    return <Auth onSignInSuccess={handleAuthSuccess} onBack={() => setShowAuth(false)} />;
+    return (
+      <Auth
+        onSignInSuccess={handleAuthSuccess}
+        onBack={() => setShowAuth(false)}
+      />
+    );
   }
 
   return (
@@ -207,7 +212,10 @@ function AppContent() {
       {/* Progress bar - only shown during quiz */}
       {gameState === "quiz" && (
         <div className="fixed top-16 left-0 right-0 z-40">
-          <ProgressBar current={quizProgress.current} total={quizProgress.total} />
+          <ProgressBar
+            current={quizProgress.current}
+            total={quizProgress.total}
+          />
         </div>
       )}
 
