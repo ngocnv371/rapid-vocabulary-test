@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import type { Session } from '@supabase/supabase-js';
+import {nativeStorage} from 'zmp-sdk'
 
 interface HeartsContextType {
   hearts: number;
@@ -8,8 +9,8 @@ interface HeartsContextType {
   resetHearts: () => void;
   showOutOfHeartsDialog: boolean;
   setShowOutOfHeartsDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  canPlayGame: (session: any) => boolean;
-  handleGameAttempt: (session: any) => boolean;
+  canPlayGame: () => boolean;
+  handleGameAttempt: () => boolean;
 }
 
 const HeartsContext = createContext<HeartsContextType | undefined>(undefined);
@@ -27,39 +28,53 @@ export function HeartsProvider({ children, session }: HeartsProviderProps) {
   useEffect(() => {
     if (session) return; // Don't manage hearts for logged-in users
 
-    const savedHearts = localStorage.getItem("userHearts");
-    if (savedHearts !== null) {
-      setHearts(parseInt(savedHearts, 10));
-    } else {
-      const initialHearts = 3;
-      setHearts(initialHearts);
-      localStorage.setItem("userHearts", String(initialHearts));
+    try {
+      const savedHearts = nativeStorage.getItem("userHearts");
+      if (savedHearts !== null) {
+        setHearts(parseInt(savedHearts, 10));
+      } else {
+        const initialHearts = 3;
+        setHearts(initialHearts);
+        nativeStorage.setItem("userHearts", String(initialHearts));
+      }
+    } catch (error) {
+      console.error("Error accessing nativeStorage:", error);
+      setHearts(3); // Fallback to default value
     }
   }, [session]);
 
+  // Update nativeStorage whenever hearts change for anonymous users
   useEffect(() => {
     if (session) return;
-    localStorage.setItem("userHearts", String(hearts));
+    try {
+      nativeStorage.setItem("userHearts", String(hearts));
+    } catch (error) {
+      console.error("Error saving hearts to nativeStorage:", error);
+    }
   }, [hearts, session]);
 
-  const useHeart = () => {
+  const useHeart = useCallback(() => {
     setHearts((prev) => Math.max(0, prev - 1));
-  };
+  }, []);
 
-  const resetHearts = () => {
+  const resetHearts = useCallback(() => {
     const initialHearts = 3;
     setHearts(initialHearts);
     if (!session) {
-      localStorage.setItem("userHearts", String(initialHearts));
+      try {
+        nativeStorage.setItem("userHearts", String(initialHearts));
+      } catch (error) {
+        console.error("Error resetting hearts in nativeStorage:", error);
+      }
     }
+  }, [session]);
+
+  const canPlayGame = () => {
+    return !!session || hearts > 0;
   };
 
-  const canPlayGame = (userSession: any) => {
-    return userSession || hearts > 0;
-  };
-
-  const handleGameAttempt = (userSession: any) => {
-    if (!userSession && hearts <= 0) {
+  const handleGameAttempt = () => {
+    if (!session && hearts <= 0) {
       setShowOutOfHeartsDialog(true);
       return false;
     }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { Category } from "../types";
 import HeartsButton from "./HeartsButton";
+import OutOfHeartsHandler from "./OutOfHeartsHandler";
 
 type Animal = Category;
 interface SpiritAnimalSelectorProps {
@@ -65,6 +66,7 @@ export default function SpiritAnimalSelector({
         ))}
       </div>
       <HeartsButton />
+      <OutOfHeartsHandler />
     </div>
   );
 }

@@ -1,9 +1,11 @@
 import { Header, Page } from "zmp-ui";
+import Gameplay from "./Gameplay";
 
 export const HomePage: React.FC = () => {
   return (
-    <Page>
-      <Header title="Home" />
+    <Page hideScrollbar>
+      <Header title="Test" showBackIcon={false} />
+      <Gameplay />
     </Page>
   );
 };
