@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:css": "postcss css/tailwind.css -o css/styles.css"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -16,6 +17,14 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.21",
+    "postcss-aspect-ratio-polyfill": "^2.0.0",
+    "postcss-cli": "^8.3.1",
+    "postcss-preset-env": "^6.7.0",
+    "sass": "^1.58.3",
+    "tailwindcss": "^3.4.10",
     "typescript": "~5.8.2",
     "vite": "^5.1.4",
     "zmp-vite-plugin": "^1.1.4"
