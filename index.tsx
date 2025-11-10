@@ -2,17 +2,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import "zmp-ui/zaui.css";
 import "./css/tailwind.css";
 import "./css/app.scss";
 import App from './App';
 
 import appConfig from "./app-config.json";
 
-declare global {
-  interface Window {
-    APP_CONFIG: any;
-  }
-}
 if (!window.APP_CONFIG) {
   window.APP_CONFIG = appConfig;
 }

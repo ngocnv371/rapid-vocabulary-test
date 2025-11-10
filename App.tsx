@@ -12,6 +12,9 @@ import OutOfHeartsHandler from "./components/OutOfHeartsHandler";
 import Header from "./components/Header";
 import ProgressBar from "./components/ProgressBar";
 import { HeartsProvider, useHearts } from "./contexts/HeartsContext";
+import { App as ZApp, SnackbarProvider, ZMPRouter } from "zmp-ui";
+import { ConfigProvider } from "./components/config-provider";
+import { Layout } from "./components/layout";
 
 type GameState = "category" | "quiz" | "gameover" | "leaderboard" | "profile";
 
@@ -252,7 +255,19 @@ export default function App() {
 
   return (
     <HeartsProvider session={session}>
-      <AppContent />
+      <ConfigProvider
+        cssVariables={{
+          "--zmp-background-color": "#f4f5f6",
+        }}
+      >
+        <ZApp>
+          <SnackbarProvider>
+            <ZMPRouter>
+              <Layout />
+            </ZMPRouter>
+          </SnackbarProvider>
+        </ZApp>
+      </ConfigProvider>
     </HeartsProvider>
   );
 }

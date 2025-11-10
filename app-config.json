@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Rapid Vocabulary Test",
-    "textColor": "black",
+    "textColor": "white",
     "statusBar": "transparent",
     "actionBarHidden": true,
     "hideAndroidBottomNavigationBar": true,
@@ -9,9 +9,7 @@
   },
   "debug": false,
   "pages": [],
-  "listSyncJS": [
-    "assets/index.1.0.0.module.js"
-  ],
+  "listSyncJS": ["assets/index.1.0.0.module.js"],
   "listAsyncJS": [],
   "listCSS": [],
   "template": {

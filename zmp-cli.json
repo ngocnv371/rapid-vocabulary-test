@@ -8,7 +8,7 @@
   "template": "blank",
   "theming": {
     "color": "#007aff",
-    "darkTheme": false,
+    "darkTheme": true,
     "fillBars": false
   },
   "customBuild": false,

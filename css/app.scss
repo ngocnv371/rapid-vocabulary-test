@@ -19,6 +19,12 @@ body {
   height: auto;
   margin-bottom: 0;
   flex: none;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  color: white;
+  .zaui-header-back-btn {
+    color: white;
+  }
 
   &::after {
     display: none;
