@@ -1,11 +1,11 @@
 import { BottomNavigation, Box, Header, Icon, Page } from "zmp-ui";
-import Gameplay from "./Gameplay";
+import GameOver from "./GameOver";
 
-export const HomePage: React.FC = () => {
+export const GameOverPage: React.FC = () => {
   return (
     <Page hideScrollbar>
       <Header title="Rapid Vocabulary Test" showBackIcon={false} />
-      <Gameplay />
+      <GameOver score={0} session={null} />
       <Box p={4}></Box>
       <BottomNavigation fixed>
         <BottomNavigation.Item label="Home" icon={<Icon icon="zi-home" />} />

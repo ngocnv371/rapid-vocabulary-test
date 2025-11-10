@@ -4,10 +4,10 @@ import type { Session } from '@supabase/supabase-js';
 
 interface GameOverProps {
   score: number;
-  onPlayAgain: () => void;
-  onViewLeaderboard: () => void;
+  onPlayAgain?: () => void;
+  onViewLeaderboard?: () => void;
   session: Session | null;
-  onLoginToSave: () => void;
+  onLoginToSave?: () => void;
 }
 
 export default function GameOver({ score, onPlayAgain, onViewLeaderboard, session, onLoginToSave }: GameOverProps) {

@@ -14,6 +14,10 @@ body {
   min-height: unset;
 }
 
+.zaui-bottom-navigation .zaui-bottom-navigation-content {
+  background-color: rgba(20, 20, 40, 0.8);
+}
+
 .zaui-header {
   position: sticky;
   height: auto;

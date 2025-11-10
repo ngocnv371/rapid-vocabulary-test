@@ -7,9 +7,9 @@ import EmojiCelebration from './EmojiCelebration';
 import { useEmojiCelebration } from '../hooks/useEmojiCelebration';
 
 interface QuizProps {
-  category: Category;
-  onGameOver: (score: number) => void;
-  onBackToCategories: () => void;
+  category?: Category;
+  onGameOver?: (score: number) => void;
+  onBackToCategories?: () => void;
   onProgressUpdate?: (current: number, total: number) => void;
 }
 
