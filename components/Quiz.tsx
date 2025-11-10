@@ -142,18 +142,21 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
     <div ref={containerRef} className="w-full max-w-2xl mx-auto p-4 relative">
       <EmojiCelebration particles={emojiParticles} />
       
-      <div className="mb-10 text-center">
-        <p className="text-2xl md:text-3xl text-gray-300 mb-4">What is the meaning of</p>
+      {/* Question container */}
+      <div className="mb-8 text-center">
+        <p className="text-xl md:text-2xl text-gray-400 mb-4">What is the meaning of</p>
         <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 break-words">
           {currentWord.word}
         </h2>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:gap-6">
+      
+      {/* Options container */}
+      <div className="grid grid-cols-1 gap-3 sm:gap-4">
         {options.map((option, index) => (
           <button
             key={index}
             onClick={(e) => handleAnswer(option, e)}
-            className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-purple-500/30 hover:bg-gray-700/50 hover:border-purple-500 text-lg font-semibold text-white"
+            className="bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-200 ease-out border border-white/10 hover:bg-white/10 hover:border-purple-400/50 text-lg font-medium text-gray-200 hover:text-white"
           >
             {option}
           </button>
