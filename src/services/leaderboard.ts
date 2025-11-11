@@ -8,7 +8,7 @@ export function postScore(userId: string, score: number): void {
       {
         user_id: userId,
         score: score,
-        category: null,
+        category: '1000', // HACK: hardcoded for now
       },
     ])
     .select()
