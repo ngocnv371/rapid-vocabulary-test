@@ -8,9 +8,9 @@ export const HomePage: React.FC = () => {
       <Gameplay />
       <Box p={4}></Box>
       <BottomNavigation fixed>
-        <BottomNavigation.Item label="Home" icon={<Icon icon="zi-home" />} />
-        <BottomNavigation.Item label="Leaderboard" icon={<Icon icon="zi-list-1" />} />
-        <BottomNavigation.Item label="Profile" icon={<Icon icon="zi-user" />} />
+        <BottomNavigation.Item label="Home" icon={<Icon icon="zi-home" />} key='home' />
+        <BottomNavigation.Item label="Leaderboard" icon={<Icon icon="zi-list-1" />} key='leaderboard' />
+        <BottomNavigation.Item label="Profile" icon={<Icon icon="zi-user" />} key='profile' />
       </BottomNavigation>
     </Page>
   );
