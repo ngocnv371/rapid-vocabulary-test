@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../services/supabase';
 import type { User } from '@supabase/supabase-js';
 import Spinner from './Spinner';
+import { useHearts } from '@/contexts/HeartsContext';
 
 export default function Profile() {
+    const { session } = useHearts();
     const [loading, setLoading] = useState(true);
     const [updating, setUpdating] = useState(false);
     const [user, setUser] = useState<User | null>(null);
@@ -43,12 +45,15 @@ export default function Profile() {
             }
             setLoading(false);
         };
+        if (!session) {
+            return;
+        }
         fetchProfile();
-    }, []);
+    }, [session]);
 
     const isChanged = name !== initialName || email !== initialEmail;
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
         setUpdating(true);
         setError(null);
@@ -91,10 +96,14 @@ export default function Profile() {
             setUpdating(false);
             setTimeout(() => setMessage(null), 5000);
         }
-    };
+    }, [name, email, user, initialName, initialEmail]);
 
     const inputStyles = "w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-white";
     const buttonStyles = "w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800/50 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300";
+
+    if (!session) {
+        return null;
+    }
 
     if (loading) {
         return <div className="flex flex-col items-center justify-center gap-4"><Spinner /><p className="text-xl text-purple-300">Loading profile...</p></div>;
@@ -130,6 +139,7 @@ export default function Profile() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            readOnly
                             className={inputStyles}
                             placeholder="you@example.com"
                         />

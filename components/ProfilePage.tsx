@@ -1,9 +1,17 @@
-import { BottomNavigation, Header, Icon, Page } from "zmp-ui";
+import { useHearts } from "@/contexts/HeartsContext";
+import { BottomNavigation, Button, Header, Icon, Page } from "zmp-ui";
+import LoginButton from "./LoginButton";
+import Profile from "./Profile";
 
 export const ProfilePage: React.FC = () => {
+  const { session } = useHearts();
   return (
     <Page>
       <Header title="Profile" />
+      <div className="flex flex-col gap-4 sm:gap-6 p-4">
+        <LoginButton />
+      </div>
+      <Profile />
       <BottomNavigation fixed activeKey="profile">
         <BottomNavigation.Item
           label="Home"

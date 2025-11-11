@@ -1,11 +1,17 @@
-import { Header, Page } from "zmp-ui";
+import { Header, Page, useNavigate } from "zmp-ui";
 import Auth from "./Auth";
+import { useCallback } from "react";
 
 export const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+  const handleSignInSuccess = useCallback(() => {
+    navigate("/profile", { replace: true });
+  }, []);
+
   return (
     <Page hideScrollbar>
       <Header title="Login" />
-      <Auth />
+      <Auth onSignInSuccess={handleSignInSuccess} />
     </Page>
   );
 };

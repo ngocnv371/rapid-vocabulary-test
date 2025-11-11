@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { supabase } from '../services/supabase';
 import Spinner from './Spinner';
 
@@ -16,7 +16,7 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -44,7 +44,7 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
       }
     }
     setLoading(false);
-  };
+  }, [email, password, isSignUp, onSignInSuccess]);
   
   const inputStyles = "w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-white";
   const buttonStyles = "w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-900 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300";

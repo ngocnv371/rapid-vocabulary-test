@@ -4,6 +4,7 @@ import {nativeStorage} from 'zmp-sdk'
 
 interface HeartsContextType {
   hearts: number;
+  session: Session | null;
   setHearts: React.Dispatch<React.SetStateAction<number>>;
   useHeart: () => void;
   resetHearts: () => void;
@@ -83,6 +84,7 @@ export function HeartsProvider({ children, session }: HeartsProviderProps) {
 
   const value: HeartsContextType = {
     hearts,
+    session,
     setHearts,
     useHeart,
     resetHearts,

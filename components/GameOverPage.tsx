@@ -9,11 +9,6 @@ export const GameOverPage: React.FC = () => {
     navigate("/quiz", { replace: true });
   }, []);
 
-  const login = useCallback(() => {
-    console.log("Login clicked");
-    navigate("/login", { replace: true });
-  }, []);
-
   const viewLeaderboard = useCallback(() => {
     console.log("View Leaderboard clicked");
     navigate("/leaderboard", { replace: true });
@@ -24,9 +19,7 @@ export const GameOverPage: React.FC = () => {
       <Header title="Rapid Vocabulary Test" showBackIcon={false} />
       <GameOver
         score={0}
-        session={null}
         onPlayAgain={playAgain}
-        onLoginToSave={login}
         onViewLeaderboard={viewLeaderboard}
       />
       <Box p={4}></Box>
