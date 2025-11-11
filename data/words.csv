@@ -1,1001 +1,1001 @@
 ﻿id,word,meaning,category,language
-1,all,tất cả,adjective,adjective
-2,and,và,conjunction,conjunction
-3,boy,con trai,noun,noun
-4,car,xe hơi,noun,noun
-5,cat,con mèo,noun,noun
-6,day,ngày,noun,noun
-7,end,kết thúc,noun,noun
-8,family,gia đình,noun,noun
-9,home,Trang Chủ,noun,noun
-10,it,nó,pronoun,pronoun
-11,man,Đàn ông,noun,noun
-12,name,Tên,noun,noun
-13,one,một,adjective,adjective
-14,people,Mọi người,noun,noun
-15,read,đọc,verb,verb
-16,school,trường học,noun,noun
-17,speak,nói,verb,verb
-18,the,the,article,article
-19,this,điều này,pronoun,pronoun
-20,you,bạn,pronoun,pronoun
-21,ask,hỏi,verb,verb
-22,book,sách,noun,noun
-23,can,có thể,verb,verb
-24,dog,chó,noun,noun
-25,eye,con mắt,noun,noun
-26,first,Đầu tiên,adjective,adjective
-27,go,đi,verb,verb
-28,he,anh ta,pronoun,pronoun
-29,child,đứa trẻ,noun,noun
-30,in,trong,preposition,preposition
-31,learn,học hỏi,verb,verb
-32,morning,buổi sáng,noun,noun
-33,open,mở,verb,verb
-34,play,chơi,verb,verb
-35,question,câu hỏi,noun,noun
-36,room,phòng,noun,noun
-37,say,Nói,verb,verb
-38,start,khởi đầu,verb,verb
-39,today,hôm nay,adverb,adverb
-40,word,từ ngữ,noun,noun
-41,about,trong khoảng,preposition,preposition
-42,at,tại,preposition,preposition
-43,brother,Anh trai,noun,noun
-44,drink,uống,verb,verb
-45,easy,dễ dàng,adjective,adjective
-46,father,bố,noun,noun
-47,girl,con gái,noun,noun
-48,help,Cứu giúp,verb,verb
-49,chair,cái ghế,noun,noun
-50,know,biết rôi,verb,verb
-51,my,của tôi,pronoun,pronoun
-52,new,Mới,adjective,adjective
-53,paper,giấy,noun,noun
-54,please,xin vui lòng,interjection,interjection
-55,rich,giàu có,adjective,adjective
-56,she,bà ấy,pronoun,pronoun
-57,show,chỉ,verb,verb
-58,son,Con trai,noun,noun
-59,they,họ,pronoun,pronoun
-60,what,gì,pronoun,pronoun
-61,always,luôn luôn,adverb,adverb
-62,be,là,verb,verb
-63,body,thân hình,noun,noun
-64,careful,cẩn thận,adjective,adjective
-65,cry,khóc,verb,verb
-66,door,cửa,noun,noun
-67,everything,mọi điều,pronoun,pronoun
-68,face,khuôn mặt,noun,noun
-69,her,cô ấy,pronoun,pronoun
-70,if,nếu,conjunction,conjunction
-71,many,nhiều,adjective,adjective
-72,no,Không,adverb,adverb
-73,pen,cây bút,noun,noun
-74,place,địa điểm,noun,noun
-75,road,đường,noun,noun
-76,stop,dừng lại,verb,verb
-77,student,sinh viên,noun,noun
-78,two,hai,adjective,adjective
-79,want,muốn,verb,verb
-80,where,Ở đâu,adverb,adverb
-81,answer,câu trả lời,noun,noun
-82,between,giữa,preposition,preposition
-83,clear,thông thoáng,adjective,adjective
-84,country,Quốc gia,noun,noun
-85,dance,nhảy,verb,verb
-86,do,làm,verb,verb
-87,each,mỗi,adjective,adjective
-88,friend,bạn bè,noun,noun
-89,his,của anh ấy,pronoun,pronoun
-90,job,việc làm,noun,noun
-91,life,đời sống,noun,noun
-92,more,hơn,adverb,adverb
-93,park,công viên,noun,noun
-94,person,người,noun,noun
-95,ready,Sẵn sàng,adjective,adjective
-96,second,thứ hai,adjective,adjective
-97,soon,Sớm,adverb,adverb
-98,that,cái đó,pronoun,pronoun
-99,we,chúng tôi,pronoun,pronoun
-100,why,tại sao,adverb,adverb
-101,able,có thể,adjective,adjective
-102,before,trước,preposition,preposition
-103,but,nhưng,conjunction,conjunction
-104,clean,dọn dẹp,verb,verb
-105,close,đóng,verb,verb
-106,dream,mơ,verb,verb
-107,eight,tám,adjective,adjective
-108,for,cho,preposition,preposition
-109,hand,tay,noun,noun
-110,inside,phía trong,preposition,preposition
-111,now,hiện nay,adverb,adverb
-112,or,hoặc là,conjunction,conjunction
-113,picture,hình ảnh,noun,noun
-114,river,con sông,noun,noun
-115,ship,tàu,noun,noun
-116,shop,cửa tiệm,noun,noun
-117,sit,ngồi,verb,verb
-118,table,bàn,noun,noun
-119,very,rất,adverb,adverb
-120,write,viết,verb,verb
-121,air,không khí,noun,noun
-122,black,đen,adjective,adjective
-123,cinema,Rạp chiếu phim,noun,noun
-124,daughter,Con gái,noun,noun
-125,eat,ăn,verb,verb
-126,from,từ,preposition,preposition
-127,good,tốt,adjective,adjective
-128,head,cái đầu,noun,noun
-129,cheese,phô mai,noun,noun
-130,important,quan trọng,adjective,adjective
-131,land,đất đai,noun,noun
-132,money,tiền bạc,noun,noun
-133,pay,trả,verb,verb
-134,problem,vấn đề,noun,noun
-135,run,chạy,verb,verb
-136,same,tương tự,adjective,adjective
-137,see,xem,verb,verb
-138,send,gửi,verb,verb
-139,thing,Điều,noun,noun
-140,work,công việc,noun,noun
-141,any,bất kì,adjective,adjective
-142,as,như,preposition,preposition
-143,better,tốt hơn,adjective,adjective
-144,cold,lạnh,adjective,adjective
-145,come,đến,verb,verb
-146,doctor,Bác sĩ,noun,noun
-147,find,tìm thấy,verb,verb
-148,game,trò chơi,noun,noun
-149,idea,ý tưởng,noun,noun
-150,kind,Tốt bụng,adjective,adjective
-151,live (v),trực tiếp,verb,verb
-152,make,làm,verb,verb
-153,peace,Sự thanh bình,noun,noun
-154,popular,phổ biến,adjective,adjective
-155,right,đúng,adjective,adjective
-156,small,nhỏ,adjective,adjective
-157,so,vì thế,adverb,adverb
-158,some,một số,adjective,adjective
-159,there,ở đó,adverb,adverb
-160,wait,chờ đợi,verb,verb
-161,again,lần nữa,adverb,adverb
-162,back,trở lại,adverb,adverb
-163,could,có thể,verb,verb
-164,document,tài liệu,noun,noun
-165,egg,trứng,noun,noun
-166,fire,ngọn lửa,noun,noun
-167,give,đưa cho,verb,verb
-168,chance,cơ hội,noun,noun
-169,information,thông tin,noun,noun
-170,light,ánh sáng,noun,noun
-171,may,có thể,verb,verb
-172,often,thường xuyên,adverb,adverb
-173,prefer,thích hơn,verb,verb
-174,put,đặt,verb,verb
-175,red,đỏ,adjective,adjective
-176,stone,sỏi,noun,noun
-177,such,như là,adjective,adjective
-178,think,suy nghĩ,verb,verb
-179,understand,hiểu biết,verb,verb
-180,visit,chuyến thăm,verb,verb
-181,around,xung quanh,preposition,preposition
-182,best,tốt,adjective,adjective
-183,call,gọi,verb,verb
-184,cut,cắt,verb,verb
-185,dinner,bữa tối,noun,noun
-186,down,xuống,preposition,preposition
-187,explain,giải thích,verb,verb
-188,get,được,verb,verb
-189,interesting,hấp dẫn,adjective,adjective
-190,long,Dài,adjective,adjective
-191,move,di chuyển,verb,verb
-192,out,ngoài,preposition,preposition
-193,page,trang,noun,noun
-194,reach,chạm tới,verb,verb
-195,rest,nghỉ ngơi,verb,verb
-196,set,bộ,noun,noun
-197,should,Nên,verb,verb
-198,stand,đứng,verb,verb
-199,time,thời gian,noun,noun
-200,up,lên,preposition,preposition
-201,age,tuổi tác,noun,noun
-202,because,bởi vì,conjunction,conjunction
-203,big,to,adjective,adjective
-204,camera,Máy ảnh,noun,noun
-205,city,thành phố,noun,noun
-206,dress,trang phục,noun,noun
-207,evening,tối,noun,noun
-208,free,miễn phí,adjective,adjective
-209,have,có,verb,verb
-210,ill,tôi sẽ,adjective,adjective
-211,like,giống,verb,verb
-212,mother,mẹ,noun,noun
-213,old,cũ,adjective,adjective
-214,police,cảnh sát,noun,noun
-215,remember,nhớ lại,verb,verb
-216,street,đường phố,noun,noun
-217,study,học,verb,verb
-218,teacher,giáo viên,noun,noun
-219,voice,tiếng nói,noun,noun
-220,water,Nước,noun,noun
-221,also,cũng thế,noun,noun
-222,box,cái hộp,noun,noun
-223,class,lớp học,noun,noun
-224,difficult,khó khăn,adjective,adjective
-225,drive,lái xe,noun,noun
-226,food,món ăn,noun,noun
-227,great,tuyệt quá,adjective,adjective
-228,happy,vui mừng,adjective,adjective
-229,change,thay đổi,noun,noun
-230,juice,Nước ép,noun,noun
-231,meet,gặp,noun,noun
-232,need,nhu cầu,noun,noun
-233,pretty,đẹp,adjective,adjective
-234,quite,khá,adjective,adjective
-235,real,thực tế,adjective,adjective
-236,sad,buồn,adjective,adjective
-237,spring,mùa xuân,verb,verb
-238,star,ngôi sao,noun,noun
-239,take,lấy,noun,noun
-240,yes,Đúng,interjection,interjection
-241,action,hoạt động,noun,noun
-242,alone,một mình,adjective,adjective
-243,breakfast,bữa ăn sáng,noun,noun
-244,continue,tiếp tục,noun,noun
-245,dead,đã chết,adjective,adjective
-246,enjoy,thưởng thức,noun,noun
-247,full,đầy,adjective,adjective
-248,garden,vườn,noun,noun
-249,house,nhà ở,noun,noun
-250,journey,hành trình,noun,noun
-251,much,nhiều,noun,noun
-252,nothing,không có gì,pronoun,pronoun
-253,phone,điện thoại,noun,noun
-254,price,giá bán,noun,noun
-255,result,kết quả,noun,noun
-256,sister,em gái,noun,noun
-257,sun,mặt trời,noun,noun
-258,tell,nói,noun,noun
-259,view,lượt xem,noun,noun
-260,with,với,preposition,preposition
-261,against,chống lại,preposition,preposition
-262,bus,xe buýt,noun,noun
-263,company,Công ty,noun,noun
-264,desert (n),Sa mạc,noun,noun
-265,expensive,đắt,adjective,adjective
-266,flower,bông hoa,noun,noun
-267,green,màu xanh lá,adjective,adjective
-268,church,nhà thờ,noun,noun
-269,impossible,Không thể nào,adjective,adjective
-270,leave,rời khỏi,noun,noun
-271,month,tháng,noun,noun
-272,on,trên,preposition,preposition
-273,plan,kế hoạch,noun,noun
-274,possible,khả thi,adjective,adjective
-275,return,trở về,noun,noun
-276,save,tiết kiệm,noun,noun
-277,sea,biển,noun,noun
-278,something,cái gì đó,pronoun,pronoun
-279,together,cùng với nhau,adjective,adjective
-280,woman,đàn bà,noun,noun
-281,anything,bất cứ thứ gì,pronoun,pronoun
-282,army,quân đội,noun,noun
-283,bad,xấu,adjective,adjective
-284,cover,che,adjective,adjective
-285,culture,văn hóa,noun,noun
-286,decision,phán quyết,noun,noun
-287,example,thí dụ,noun,noun
-288,feel,cảm thấy,noun,noun
-289,how,làm sao,adverb,adverb
-290,island,Đảo,noun,noun
-291,member,thành viên,noun,noun
-292,next,kế tiếp,noun,noun
-293,position,Chức vụ,noun,noun
-294,present (adj),hiện tại,adjective,adjective
-295,record (n),ghi lại,noun,noun
-296,sleep,ngủ,noun,noun
-297,sweet,ngọt,adjective,adjective
-298,try,thử,noun,noun
-299,under,Dưới,preposition,preposition
-300,world,thế giới,noun,noun
-301,after,sau,preposition,preposition
-302,bed,Giường,noun,noun
-303,buy,mua,noun,noun
-304,catch,nắm lấy,noun,noun
-305,corner,góc,noun,noun
-306,distance,khoảng cách,noun,noun
-307,education,giáo dục,noun,noun
-308,fast,Nhanh,adjective,adjective
-309,here,đây,adverb,adverb
-310,interest,quan tâm,noun,noun
-311,letter,lá thư,noun,noun
-312,never,không bao giờ,adverb,adverb
-313,part,phần,noun,noun
-314,president,chủ tịch,noun,noun
-315,round,tròn,adjective,adjective
-316,several,một số,adjective,adjective
-317,sound,âm thanh,noun,noun
-318,story,câu chuyện,noun,noun
-319,talk,nói chuyện,noun,noun
-320,week,tuần,noun,noun
-321,almost,hầu hết,adverb,adverb
-322,bread,bánh mỳ,noun,noun
-323,control,điều khiển,noun,noun
-324,dear,kính thưa,adjective,adjective
-325,every,mỗi,adjective,adjective
-326,few,vài,adjective,adjective
-327,gold,vàng,noun,noun
-328,chief,trưởng phòng,noun,noun
-329,invite,mời gọi,noun,noun
-330,late,muộn,adjective,adjective
-331,most,phần lớn,adjective,adjective
-332,only,chỉ có,adjective,adjective
-333,product,sản phẩm,noun,noun
-334,public,công cộng,adjective,adjective
-335,receive,nhận được,noun,noun
-336,sorry,lấy làm tiếc,adjective,adjective
-337,strong,mạnh,adjective,adjective
-338,then,sau đó,adverb,adverb
-339,too,quá,adverb,adverb
-340,way,đường,noun,noun
-341,across,băng qua,preposition,preposition
-342,art,nghệ thuật,noun,noun
-343,bring,mang đến,verb,verb
-344,carry,mang,verb,verb
-345,confirm,xác nhận,verb,verb
-346,die,chết,verb,verb
-347,east,phía đông,noun,noun
-348,group,nhóm,noun,noun
-349,hope,mong,noun,noun
-350,industry,ngành công nghiệp,noun,noun
-351,look,nhìn,verb,verb
-352,must,phải,noun,noun
-353,own,sở hữu,noun,noun
-354,personal,cá nhân,adjective,adjective
-355,reason,lý do,noun,noun
-356,service,dịch vụ,noun,noun
-357,shall,sẽ,noun,noun
-358,stay,ở lại,verb,verb
-359,their,của chúng,pronoun,pronoun
-360,wife,người vợ,noun,noun
-361,away,xa,adverb,adverb
-362,beautiful,xinh đẹp,adjective,adjective
-363,care,quan tâm,noun,noun
-364,cost,Giá cả,noun,noun
-365,deep,sâu,adjective,adjective
-366,enough,đủ,adjective,adjective
-367,fight,Đánh nhau,noun,noun
-368,garage,nhà để xe,noun,noun
-369,into,thành,preposition,preposition
-370,keep,giữ,verb,verb
-371,miss,cô,verb,verb
-372,other,khác,adjective,adjective
-373,player,người chơi,noun,noun
-374,rather,hơn,adjective,adjective
-375,remain,còn lại,verb,verb
-376,side,bên,noun,noun
-377,south,miền Nam,noun,noun
-378,TRUE,sự thật,adjective,adjective
-379,use,sử dụng,verb,verb
-380,who,kẻ nào,pronoun,pronoun
-381,already,đã sẵn sàng,adverb,adverb
-382,become,trở nên,verb,verb
-383,cause,nguyên nhân,verb,verb
-384,certain,chắc chắn,adjective,adjective
-385,describe,diễn tả,verb,verb
-386,dry,khô,adjective,adjective
-387,expect,chờ đợi,verb,verb
-388,fact,thực tế,noun,noun
-389,hard,cứng,adjective,adjective
-390,include,bao gồm,verb,verb
-391,let,để cho,verb,verb
-392,moment,chốc lát,noun,noun
-393,power,quyền lực,noun,noun
-394,provide,cung cấp,verb,verb
-395,report,báo cáo,verb,verb
-396,seat,ghế,noun,noun
-397,single,Độc thân,adjective,adjective
-398,system,hệ thống,noun,noun
-399,through,xuyên qua,adverb,adverb
-400,which,cái nào,pronoun,pronoun
-401,apple,táo,noun,noun
-402,blue,màu xanh da trời,adjective,adjective
-403,clock,đồng hồ,noun,noun
-404,colour,màu sắc,noun,noun
-405,different,khác nhau,adjective,adjective
-406,earth,Trái đất,noun,noun
-407,film,phim ảnh,noun,noun
-408,glad,vui vẻ,adjective,adjective
-409,hour,giờ,noun,noun
-410,just,chỉ,adverb,adverb
-411,love,yêu và quý,verb,verb
-412,number,con số,noun,noun
-413,pencil,bút chì,noun,noun
-414,quick,nhanh chóng,adjective,adjective
-415,rain,mưa,noun,noun
-416,simple,đơn giản,adjective,adjective
-417,summer,mùa hè,noun,noun
-418,town,thị trấn,noun,noun
-419,tree,cây,noun,noun
-420,window,cửa sổ,noun,noun
-421,address,Địa chỉ,noun,noun
-422,building,xây dựng,noun,noun
-423,computer,máy vi tính,noun,noun
-424,cross,vượt qua,verb,verb
-425,desk,bàn,noun,noun
-426,ear,tai,noun,noun
-427,fish,cá,noun,noun
-428,glass,cốc thủy tinh,noun,noun
-429,ice,Nước đá,noun,noun
-430,key,Chìa khóa,noun,noun
-431,minute (n),phút,noun,noun
-432,office,văn phòng,noun,noun
-433,parent,cha mẹ,noun,noun
-434,post,bài đăng,verb,verb
-435,rock,đá,noun,noun
-436,search,Tìm kiếm,verb,verb
-437,sport,thể thao,noun,noun
-438,tea,trà,noun,noun
-439,valley,thung lũng,noun,noun
-440,walk,đi bộ,verb,verb
-441,airport,sân bay,noun,noun
-442,baby,đứa bé,noun,noun
-443,card,Thẻ,noun,noun
-444,central,Trung tâm,adjective,adjective
-445,direction,phương hướng,noun,noun
-446,dollar,đô la,noun,noun
-447,fruit,trái cây,noun,noun
-448,gift,quà tặng,noun,noun
-449,high,cao,adjective,adjective
-450,illness,ốm,noun,noun
-451,milk,Sữa,noun,noun
-452,not,không phải,noun,noun
-453,piece,cái,noun,noun
-454,protect,bảo vệ,verb,verb
-455,race,cuộc đua,noun,noun
-456,since,từ,conjunction,conjunction
-457,slow,chậm,adjective,adjective
-458,smile,nụ cười,verb,verb
-459,ticket,vé,noun,noun
-460,well,tốt,adjective,adjective
-461,accident,Tai nạn,noun,noun
-462,blood,máu,noun,noun
-463,business,kinh doanh,noun,noun
-464,during,suốt trong,preposition,preposition
-465,even,cũng,adjective,adjective
-466,floor,sàn nhà,noun,noun
-467,general,chung,adjective,adjective
-468,choose,chọn,verb,verb
-469,inform,thông báo,verb,verb
-470,little,ít,adjective,adjective
-471,meeting,gặp gỡ,noun,noun
-472,order,đặt hàng,verb,verb
-473,party,buổi tiệc,noun,noun
-474,pink,Hồng,adjective,adjective
-475,reply,Đáp lại,verb,verb
-476,snow,tuyết,noun,noun
-477,sugar,Đường,noun,noun
-478,travel,du lịch,verb,verb
-479,virus,vi-rút,noun,noun
-480,watch,đồng hồ đeo tay,verb,verb
-481,another,khác,pronoun,pronoun
-482,believe,tin,verb,verb
-483,both,cả hai,pronoun,pronoun
-484,crazy,khùng,adjective,adjective
-485,cup,cốc,noun,noun
-486,decide,quyết định,verb,verb
-487,ever,không bao giờ,adjective,adjective
-488,field,cánh đồng,noun,noun
-489,heart,tim,noun,noun
-490,imagine,tưởng tượng,verb,verb
-491,line,hàng,noun,noun
-492,meat,thịt,noun,noun
-493,over,kết thúc,preposition,preposition
-494,pull,kéo,verb,verb
-495,ring,nhẫn,verb,verb
-496,sell,bán,verb,verb
-497,similar,giống,adjective,adjective
-498,speed,tốc độ,noun,noun
-499,than,hơn,preposition,preposition
-500,your,của bạn,noun,noun
-501,above,ở trên,preposition,preposition
-502,begin,bắt đầu,verb,verb
-503,century,kỷ,noun,noun
-504,consider,xem xét,verb,verb
-505,dangerous,nguy hiểm,adjective,adjective
-506,dark,tối,adjective,adjective
-507,exchange,đổi,verb,verb
-508,government,chính quyền,noun,noun
-509,hear,Nghe,verb,verb
-510,jump,nhảy,verb,verb
-511,material,vật chất,noun,noun
-512,near,ở gần,adjective,adjective
-513,past,quá khứ,noun,noun
-514,produce,sản xuất,verb,verb
-515,remove,tẩy,verb,verb
-516,secret,bí mật,adjective,adjective
-517,song,bài hát,noun,noun
-518,television,Tivi,noun,noun
-519,value,giá trị,noun,noun
-520,when,khi nào,adverb,adverb
-521,arm,cánh tay,noun,noun
-522,behind,phía sau,preposition,preposition
-523,case,trường hợp,noun,noun
-524,collect,sưu tầm,verb,verb
-525,draw,vẽ tranh,verb,verb
-526,examine,xem xét,verb,verb
-527,fall,ngã,verb,verb
-528,grow,lớn lên,verb,verb
-529,immediately,ngay,adverb,adverb
-530,low,Thấp,noun,noun
-531,mind,lí trí,noun,noun
-532,off,tắt,preposition,preposition
-533,pass,vượt qua,verb,verb
-534,radio,Đài,noun,noun
-535,shoe,giày,noun,noun
-536,station,ga tàu,noun,noun
-537,sure,chắc chắn rồi,adjective,adjective
-538,test,kiểm tra,verb,verb
-539,usual,bình thường,adjective,adjective
-540,while,trong khi,conjunction,conjunction
-541,ago,trước đây,adverb,adverb
-542,along,dọc theo,adverb,adverb
-543,bear,chịu,verb,verb
-544,condition,tình trạng,noun,noun
-545,direct,thẳng thắn,noun,noun
-546,edge,cạnh,noun,noun
-547,fine,khỏe,adjective,adjective
-548,half,một nửa,noun,noun
-549,chicken,thịt gà,noun,noun
-550,increase,tăng,verb,verb
-551,magazine,tạp chí,noun,noun
-552,nature,Thiên nhiên,noun,noun
-553,plate,đĩa,noun,noun
-554,poor,nghèo,adjective,adjective
-555,respect,sự tôn trọng,noun,noun
-556,sharp,nhọn,adjective,adjective
-557,sometimes,đôi khi,adverb,adverb
-558,still,vẫn,adverb,adverb
-559,tall,cao,adjective,adjective
-560,would,sẽ,noun,noun
-561,add,thêm vào,verb,verb
-562,among,ở giữa,preposition,preposition
-563,built,được xây dựng,verb,verb
-564,common,chung,adjective,adjective
-565,depend,tùy theo,verb,verb
-566,early,sớm,adjective,adjective
-567,fly,bay,verb,verb
-568,happen,xảy ra,verb,verb
-569,check,kiểm tra,verb,verb
-570,introduce,giới thiệu,verb,verb
-571,less,ít hơn,adjective,adjective
-572,mark,dấu,noun,noun
-573,patient,kiên nhẫn,noun,noun
-574,perhaps,có lẽ,adjective,adjective
-575,rise,tăng lên,verb,verb
-576,sense,giác quan,noun,noun
-577,short,ngắn,adjective,adjective
-578,state,tiểu bang,verb,verb
-579,turn,xoay,verb,verb
-580,will,sẽ,verb,verb
-581,act,hành động,verb,verb
-582,appear,xuất hiện,verb,verb
-583,break,phá vỡ,verb,verb
-584,course,khóa học,verb,verb
-585,court,tòa án,noun,noun
-586,discuss,bàn luận,verb,verb
-587,effect,hiệu ứng,noun,noun
-588,form,hình thức,verb,verb
-589,hold,giữ,verb,verb
-590,insect,côn trùng,noun,noun
-591,mean,nghĩa là,verb,verb
-592,once,Một lần,verb,verb
-593,purpose,mục đích,noun,noun
-594,really,có thật không,adverb,adverb
-595,ride,dap xe,verb,verb
-596,situation,tình hình,noun,noun
-597,success,sự thành công,noun,noun
-598,though,Tuy nhiên,conjunction,conjunction
-599,upon,trên,preposition,preposition
-600,war,chiến tranh,noun,noun
-601,afternoon,buổi chiều,noun,noun
-602,busy,bận,adjective,adjective
-603,coffee,cà phê,noun,noun
-604,detail,chi tiết,noun,noun
-605,especially,đặc biệt,adjective,adjective
-606,finish,hoàn thành,verb,verb
-607,ground,đất,noun,noun
-608,holiday,ngày lễ,noun,noun
-609,choice,sự lựa chọn,noun,noun
-610,kitchen,phòng bếp,noun,noun
-611,lesson,bài học,noun,noun
-612,music,Âm nhạc,noun,noun
-613,orange,trái cam,noun,noun
-614,perfect (adj),hoàn hảo,adjective,adjective
-615,request,yêu cầu,verb,verb
-616,season,Mùa,noun,noun
-617,sick,đau ốm,adjective,adjective
-618,tomorrow,Ngày mai,noun,noun
-619,welcome,chào mừng,verb,verb
-620,yesterday,hôm qua,noun,noun
-621,agree,đồng ý,verb,verb
-622,bridge,cầu,noun,noun
-623,cake,bánh ngọt,noun,noun
-624,customer,khách hàng,noun,noun
-625,date,ngày,noun,noun
-626,enter,đi vào,verb,verb
-627,future,Tương lai,noun,noun
-628,gentleman,quý ông,noun,noun
-629,hair,tóc,noun,noun
-630,image,hình ảnh,noun,noun
-631,language,ngôn ngữ,noun,noun
-632,market,thị trường,noun,noun
-633,plane,máy bay,noun,noun
-634,private,riêng tư,adjective,adjective
-635,restaurant,nhà hàng,noun,noun
-636,size,kích thước,noun,noun
-637,sky,bầu trời,noun,noun
-638,smart,thông minh,adjective,adjective
-639,thank,cảm tạ,verb,verb
-640,weather,thời tiết,noun,noun
-641,actor,diễn viên,noun,noun
-642,bottle,chai,noun,noun
-643,cloth,vải,noun,noun
-644,coat,áo choàng ngoài,noun,noun
-645,destroy,hủy hoại,verb,verb
-646,everywhere,mọi nơi,adverb,adverb
-647,finger,ngón tay,noun,noun
-648,guide,hướng dẫn,verb,verb
-649,improve,cải tiến,verb,verb
-650,knife,dao,noun,noun
-651,large,lớn,noun,noun
-652,mistake,sai lầm,noun,noun
-653,ocean,đại dương,noun,noun
-654,plant,cây,verb,verb
-655,repeat,nói lại,verb,verb
-656,salt,Muối,noun,noun
-657,special,đặc biệt,adjective,adjective
-658,teach,dạy,verb,verb
-659,uncle,Chú,noun,noun
-660,winter,mùa đông,noun,noun
-661,angry,bực bội,noun,noun
-662,article,bài báo,noun,noun
-663,build,xây dựng,verb,verb
-664,dirty,dơ bẩn,adjective,adjective
-665,except,ngoại trừ,noun,noun
-666,famous,nổi danh,adjective,adjective
-667,gas,khí ga,noun,noun
-668,hotel,khách sạn,noun,noun
-669,cheap,rẻ,adjective,adjective
-670,interview,phỏng vấn,noun,noun
-671,moon,mặt trăng,noun,noun
-672,nice,đẹp,adjective,adjective
-673,prepare,chuẩn bị,verb,verb
-674,prison,nhà tù,noun,noun
-675,rice,cơm,noun,noun
-676,seem,hình như,verb,verb
-677,skirt,váy,noun,noun
-678,strange,lạ lùng,adjective,adjective
-679,train,xe lửa,noun,noun
-680,warm,ấm áp,adjective,adjective
-681,account,tài khoản,noun,noun
-682,bird,chim,noun,noun
-683,cloud,đám mây,noun,noun
-684,comfortable,Thoải mái,adjective,adjective
-685,damage,hư hại,noun,noun
-686,dust,bụi bặm,noun,noun
-687,exercise,tập thể dục,noun,noun
-688,favourite,yêu thích,adjective,adjective
-689,hospital,bệnh viện,noun,noun
-690,joke,trò đùa,noun,noun
-691,message,thông điệp,noun,noun
-692,night,đêm,noun,noun
-693,paint,Sơn,verb,verb
-694,pleasure,vui lòng,noun,noun
-695,relationship,mối quan hệ,noun,noun
-696,science,khoa học,noun,noun
-697,serious,nghiêm trọng,adjective,adjective
-698,spend,tiêu,verb,verb
-699,tired,mệt mỏi,adjective,adjective
-700,wrong,Sai lầm,adjective,adjective
-701,amount,lượng,noun,noun
-702,bank,ngân hàng,noun,noun
-703,brown,nâu,adjective,adjective
-704,crowd,bầy đàn,noun,noun
-705,deal,thỏa thuận,noun,noun
-706,engine,động cơ,noun,noun
-707,follow,theo,verb,verb
-708,chocolate,sô cô la,noun,noun
-709,individual,cá nhân,noun,noun
-710,left,trái,noun,noun
-711,meal,bữa ăn,noun,noun
-712,oil,dầu,noun,noun
-713,pain,đau đớn,noun,noun
-714,probably,có lẽ,adjective,adjective
-715,replace,thay thế,verb,verb
-716,society,xã hội,noun,noun
-717,square,Quảng trường,noun,noun
-718,step,bươc,noun,noun
-719,temperature,nhiệt độ,noun,noun
-720,university,trường đại học,noun,noun
-721,accept,Chấp nhận,verb,verb
-722,advance,nâng cao,noun,noun
-723,bag,túi,noun,noun
-724,captain,đội trưởng,noun,noun
-725,centre,trung tâm,noun,noun
-726,demand,nhu cầu,noun,noun
-727,enemy,kẻ thù,noun,noun
-728,factory,nhà máy,noun,noun
-729,hungry,đói bụng,noun,noun
-730,illegal,bất hợp pháp,noun,noun
-731,law,pháp luật,noun,noun
-732,nose,cái mũi,noun,noun
-733,petrol,xăng dầu,noun,noun
-734,proud,tự hào,noun,noun
-735,responsible,chịu trách nhiệm,noun,noun
-736,store,cửa hàng,noun,noun
-737,successful,thành công,adjective,adjective
-738,swim,bơi,verb,verb
-739,top,hàng đầu,noun,noun
-740,win,thắng lợi,verb,verb
-741,available,có sẵn,adjective,adjective
-742,boat,thuyền,noun,noun
-743,borrow,vay,verb,verb
-744,coast,bờ biển,noun,noun
-745,cream,kem,noun,noun
-746,design,thiết kế,verb,verb
-747,expression,biểu hiện,noun,noun
-748,farm,nông trại,noun,noun
-749,history,lịch sử,noun,noun
-750,injure,bị thương,verb,verb
-751,map,bản đồ,noun,noun
-752,obtain,đạt được,verb,verb
-753,peaceful,bình yên,adjective,adjective
-754,practise,thực hành,verb,verb
-755,recently,gần đây,adverb,adverb
-756,shape,hình dạng,noun,noun
-757,silver,bạc,noun,noun
-758,smoke,Khói,verb,verb
-759,touch,chạm,verb,verb
-760,wash,rửa,verb,verb
-761,advantage,lợi thế,noun,noun
-762,attack,tấn công,verb,verb
-763,butter,bơ,adjective,adjective
-764,club,câu lạc bộ,noun,noun
-765,college,trường đại học,noun,noun
-766,degree,trình độ,noun,noun
-767,escape,bỏ trốn,verb,verb
-768,gate,cánh cổng,noun,noun
-769,independent,độc lập,noun,noun
-770,listen,nghe,verb,verb
-771,marry,kết hôn,verb,verb
-772,object,vật,noun,noun
-773,path,con đường,noun,noun
-774,quiet,Yên tĩnh,adjective,adjective
-775,refuse,từ chối,verb,verb
-776,subject,môn học,noun,noun
-777,supply,cung cấp,verb,verb
-778,taste,nếm thử,verb,verb
-779,usually,thông thường,adverb,adverb
-780,vegetable,rau,noun,noun
-781,arrange,sắp xếp,verb,verb
-782,below,phía dưới,preposition,preposition
-783,cigarette,thuốc lá,noun,noun
-784,cottage,nhà tranh,noun,noun
-785,department,Phòng ban,noun,noun
-786,earn,kiếm,verb,verb
-787,front,trước mặt,noun,noun
-788,gentle,dịu dàng,adjective,adjective
-789,hat,mũ,noun,noun
-790,instrument,dụng cụ,noun,noun
-791,machine,máy móc,noun,noun
-792,newspaper,báo chí,noun,noun
-793,parcel,Bưu kiện,noun,noun
-794,religion,tôn giáo,noun,noun
-795,repair,sửa,verb,verb
-796,serve,giao banh,verb,verb
-797,shoulder,vai,noun,noun
-798,trip,chuyến đi,noun,noun
-799,village,làng,noun,noun
-800,wall,Tường,noun,noun
-801,arrive,đến,verb,verb
-802,born,sinh ra,noun,noun
-803,clothes,quần áo,noun,noun
-804,correct,chính xác,adjective,adjective
-805,double,gấp đôi,adjective,adjective
-806,English,Tiếng Anh,noun,noun
-807,forget,quên,verb,verb
-808,goal,mục tiêu,noun,noun
-809,hate,ghét,noun,noun
-810,kill,giết chết,verb,verb
-811,last,Cuối cùng,adjective,adjective
-812,main,chủ yếu,adjective,adjective
-813,pair,đôi,noun,noun
-814,promise,lời hứa,verb,verb
-815,regular,đều đặn,adjective,adjective
-816,somewhere,một vài nơi,noun,noun
-817,space,không gian,noun,noun
-818,these,những cái này,noun,noun
-819,useful,hữu ích,adjective,adjective
-820,without,không có,preposition,preposition
-821,animal,động vật,noun,noun
-822,beer,bia,noun,noun
-823,calm,điềm tĩnh,adjective,adjective
-824,copy,sao chép,noun,noun
-825,dish,món ăn,noun,noun
-826,express,bày tỏ,verb,verb
-827,foreign,ngoại quốc,adjective,adjective
-828,guess,phỏng đoán,verb,verb
-829,husband,người chồng,noun,noun
-830,lie,nói dối,verb,verb
-831,mine,của tôi,noun,noun
-832,opinion,ý kiến,noun,noun
-833,passenger,hành khách,noun,noun
-834,press,nhấn,verb,verb
-835,rule,qui định,noun,noun
-836,sign,ký tên,verb,verb
-837,support,ủng hộ,verb,verb
-838,those,những,noun,noun
-839,wonderful,Tuyệt vời,adjective,adjective
-840,year,năm,noun,noun
-841,afraid,sợ,adjective,adjective
-842,board,bảng,noun,noun
-843,circle,vòng tròn,noun,noun
-844,count,đếm,verb,verb
-845,death,tử vong,noun,noun
-846,discover,khám phá,verb,verb
-847,funny,buồn cười,adjective,adjective
-848,guest,khách mời,noun,noun
-849,horse,con ngựa,noun,noun
-850,lake,hồ nước,noun,noun
-851,modern,hiện đại,adjective,adjective
-852,necessary,cần thiết,adjective,adjective
-853,plenty,nhiều,noun,noun
-854,profit,lợi nhuận,noun,noun
-855,reduce,giảm,noun,noun
-856,share,chia sẻ,verb,verb
-857,steal,lấy trộm,verb,verb
-858,trust,Lòng tin,verb,verb
-859,wish,muốn,verb,verb
-860,young,trẻ,adjective,adjective
-861,admire,ngưỡng mộ,verb,verb
-862,allow,cho phép,verb,verb
-863,battle,trận chiến,noun,noun
-864,climb,leo,verb,verb
-865,complete,hoàn thành,verb,verb
-866,divide,chia,verb,verb
-867,effort,cố gắng,noun,noun
-868,fresh,tươi,noun,noun
-869,hole,hố,noun,noun
-870,indeed,thật,verb,verb
-871,marriage,kết hôn,noun,noun
-872,outside,ở ngoài,adverb,adverb
-873,pleasant,hài lòng,adjective,adjective
-874,point,điểm,noun,noun
-875,recent,gần đây,adjective,adjective
-876,secretary,Thư ký,noun,noun
-877,sing,hát,verb,verb
-878,soft,mềm mại,noun,noun
-879,third,ngày thứ ba,noun,noun
-880,various,đa dạng,adjective,adjective
-881,adventure,cuộc phiêu lưu,noun,noun
-882,although,Mặc du,conjunction,conjunction
-883,bottom,đáy,noun,noun
-884,coin,đồng tiền,noun,noun
-885,comfort,sự thoải mái,noun,noun
-886,drop,rơi vãi,noun,noun
-887,equal,công bằng,adjective,adjective
-888,gun,súng,noun,noun
-889,intelligent,thông minh,adjective,adjective
-890,join,tham gia,noun,noun
-891,laugh,cười,noun,noun
-892,middle,ở giữa,noun,noun
-893,perform,biểu diễn,noun,noun
-894,plain,trơn,adjective,adjective
-895,row,hàng,noun,noun
-896,soldier,lính,noun,noun
-897,surface,bề mặt,noun,noun
-898,thick,dày,adjective,adjective
-899,until,cho đến khi,conjunction,conjunction
-900,wild,hoang dã,adjective,adjective
-901,attempt,cố gắng,verb,verb
-902,bill,hóa đơn,noun,noun
-903,breathe,thở,verb,verb
-904,cook,nấu ăn,verb,verb
-905,defend,phòng thủ,verb,verb
-906,fat,mập,adjective,adjective
-907,grey,màu xám,adjective,adjective
-908,hot,nóng bức,adjective,adjective
-909,character,tính cách,noun,noun
-910,import,nhập khẩu,verb,verb
-911,lose,thua,verb,verb
-912,mountain,núi,noun,noun
-913,operation,hoạt động,noun,noun
-914,prize,giải thưởng,noun,noun
-915,risk,rủi ro,noun,noun
-916,safe,an toàn,adjective,adjective
-917,suddenly,đột ngột,adverb,adverb
-918,suit,bộ đồ,noun,noun
-919,type,kiểu,noun,noun
-920,wood,gỗ,noun,noun
-921,area,khu vực,noun,noun
-922,asleep,ngủ,adjective,adjective
-923,bath,bồn tắm,noun,noun
-924,careless,cẩu thả,adjective,adjective
-925,delay,sự chậm trễ,noun,noun
-926,event,biến cố,noun,noun
-927,foot,chân,noun,noun
-928,hide,ẩn giấu,verb,verb
-929,chain,chuỗi,noun,noun
-930,international,Quốc tế,adjective,adjective
-931,match,trận đấu,noun,noun
-932,nervous,lo lắng,adjective,adjective
-933,pity,điều đáng tiếc,noun,noun
-934,prove,chứng minh,noun,noun
-935,raise,nâng cao,noun,noun
-936,shut,đóng cửa,noun,noun
-937,smell,mùi,noun,noun
-938,straight,thẳng,adjective,adjective
-939,trade,buôn bán,noun,noun
-940,variety,đa dạng,noun,noun
-941,admit,thừa nhận,verb,verb
-942,attend,tham gia,verb,verb
-943,branch,chi nhánh,noun,noun
-944,coal,than đá,noun,noun
-945,consist,bao gồm,noun,noun
-946,declare,khai báo,verb,verb
-947,exact,chính xác,adjective,adjective
-948,farmer,nông phu,noun,noun
-949,instead,thay thế,noun,noun
-950,jacket,Áo khoác,noun,noun
-951,leg,Chân,noun,noun
-952,metal,kim loại,noun,noun
-953,opposite,đối diện,adjective,adjective
-954,pound,pao,noun,noun
-955,roll,cuộn,noun,noun
-956,score,ghi bàn,noun,noun
-957,shoot,bắn,verb,verb
-958,speech,phát biểu,noun,noun
-959,toilet,phòng vệ sinh,noun,noun
-960,whose,ai,pronoun,pronoun
-961,attitude,Thái độ,noun,noun
-962,brave,can đảm,adjective,adjective
-963,contain,Lưu trữ,verb,verb
-964,doubt,nghi ngờ,noun,noun
-965,experience,kinh nghiệm,noun,noun
-966,flat,bằng phẳng,adjective,adjective
-967,guard,bảo vệ,verb,verb
-968,heavy,nặng,adjective,adjective
-969,charge,sạc điện,noun,noun
-970,iron,bàn là,noun,noun
-971,medicine,thuốc,noun,noun
-972,noise,tiếng ồn,noun,noun
-973,politics,chính trị,noun,noun
-974,pour,đổ,verb,verb
-975,rush,gấp rút,verb,verb
-976,smooth,trơn tru,adjective,adjective
-977,spread,lây lan,verb,verb
-978,suggest,đề xuất,verb,verb
-979,trouble,rắc rối,noun,noun
-980,west,hướng Tây,adjective,adjective
-981,average,Trung bình cộng,noun,noun
-982,belong,thuộc về,verb,verb
-983,certainly,chắc chắn,adverb,adverb
-984,crime,tội ác,noun,noun
-985,duty,nhiệm vụ,noun,noun
-986,either,hoặc,pronoun,pronoun
-987,fail,Thất bại,verb,verb
-988,health,Sức khỏe,noun,noun
-989,influence,ảnh hưởng,noun,noun
-990,leader,lãnh đạo,noun,noun
-991,measure,đo lường,verb,verb
-992,offer,phục vụ,verb,verb
-993,pile,Đóng cọc,noun,noun
-994,regard,sự quan tâm,verb,verb
-995,rough,thô,adjective,adjective
-996,series,loạt,noun,noun
-997,spoil,làm hư hỏng,verb,verb
-998,spot,nơi,noun,noun
-999,thin,gầy,adjective,adjective
-1000,vote,bỏ phiếu,verb,verb
+1,all,tất cả,1000,vi
+2,and,và,1000,vi
+3,boy,con trai,1000,vi
+4,car,xe hơi,1000,vi
+5,cat,con mèo,1000,vi
+6,day,ngày,1000,vi
+7,end,kết thúc,1000,vi
+8,family,gia đình,1000,vi
+9,home,Trang Chủ,1000,vi
+10,it,nó,1000,vi
+11,man,Đàn ông,1000,vi
+12,name,Tên,1000,vi
+13,one,một,1000,vi
+14,people,Mọi người,1000,vi
+15,read,đọc,1000,vi
+16,school,trường học,1000,vi
+17,speak,nói,1000,vi
+18,the,the,1000,vi
+19,this,điều này,1000,vi
+20,you,bạn,1000,vi
+21,ask,hỏi,1000,vi
+22,book,sách,1000,vi
+23,can,có thể,1000,vi
+24,dog,chó,1000,vi
+25,eye,con mắt,1000,vi
+26,first,Đầu tiên,1000,vi
+27,go,đi,1000,vi
+28,he,anh ta,1000,vi
+29,child,đứa trẻ,1000,vi
+30,in,trong,1000,vi
+31,learn,học hỏi,1000,vi
+32,morning,buổi sáng,1000,vi
+33,open,mở,1000,vi
+34,play,chơi,1000,vi
+35,question,câu hỏi,1000,vi
+36,room,phòng,1000,vi
+37,say,Nói,1000,vi
+38,start,khởi đầu,1000,vi
+39,today,hôm nay,1000,vi
+40,word,từ ngữ,1000,vi
+41,about,trong khoảng,1000,vi
+42,at,tại,1000,vi
+43,brother,Anh trai,1000,vi
+44,drink,uống,1000,vi
+45,easy,dễ dàng,1000,vi
+46,father,bố,1000,vi
+47,girl,con gái,1000,vi
+48,help,Cứu giúp,1000,vi
+49,chair,cái ghế,1000,vi
+50,know,biết rôi,1000,vi
+51,my,của tôi,1000,vi
+52,new,Mới,1000,vi
+53,paper,giấy,1000,vi
+54,please,xin vui lòng,1000,vi
+55,rich,giàu có,1000,vi
+56,she,bà ấy,1000,vi
+57,show,chỉ,1000,vi
+58,son,Con trai,1000,vi
+59,they,họ,1000,vi
+60,what,gì,1000,vi
+61,always,luôn luôn,1000,vi
+62,be,là,1000,vi
+63,body,thân hình,1000,vi
+64,careful,cẩn thận,1000,vi
+65,cry,khóc,1000,vi
+66,door,cửa,1000,vi
+67,everything,mọi điều,1000,vi
+68,face,khuôn mặt,1000,vi
+69,her,cô ấy,1000,vi
+70,if,nếu,1000,vi
+71,many,nhiều,1000,vi
+72,no,Không,1000,vi
+73,pen,cây bút,1000,vi
+74,place,địa điểm,1000,vi
+75,road,đường,1000,vi
+76,stop,dừng lại,1000,vi
+77,student,sinh viên,1000,vi
+78,two,hai,1000,vi
+79,want,muốn,1000,vi
+80,where,Ở đâu,1000,vi
+81,answer,câu trả lời,1000,vi
+82,between,giữa,1000,vi
+83,clear,thông thoáng,1000,vi
+84,country,Quốc gia,1000,vi
+85,dance,nhảy,1000,vi
+86,do,làm,1000,vi
+87,each,mỗi,1000,vi
+88,friend,bạn bè,1000,vi
+89,his,của anh ấy,1000,vi
+90,job,việc làm,1000,vi
+91,life,đời sống,1000,vi
+92,more,hơn,1000,vi
+93,park,công viên,1000,vi
+94,person,người,1000,vi
+95,ready,Sẵn sàng,1000,vi
+96,second,thứ hai,1000,vi
+97,soon,Sớm,1000,vi
+98,that,cái đó,1000,vi
+99,we,chúng tôi,1000,vi
+100,why,tại sao,1000,vi
+101,able,có thể,1000,vi
+102,before,trước,1000,vi
+103,but,nhưng,1000,vi
+104,clean,dọn dẹp,1000,vi
+105,close,đóng,1000,vi
+106,dream,mơ,1000,vi
+107,eight,tám,1000,vi
+108,for,cho,1000,vi
+109,hand,tay,1000,vi
+110,inside,phía trong,1000,vi
+111,now,hiện nay,1000,vi
+112,or,hoặc là,1000,vi
+113,picture,hình ảnh,1000,vi
+114,river,con sông,1000,vi
+115,ship,tàu,1000,vi
+116,shop,cửa tiệm,1000,vi
+117,sit,ngồi,1000,vi
+118,table,bàn,1000,vi
+119,very,rất,1000,vi
+120,write,viết,1000,vi
+121,air,không khí,1000,vi
+122,black,đen,1000,vi
+123,cinema,Rạp chiếu phim,1000,vi
+124,daughter,Con gái,1000,vi
+125,eat,ăn,1000,vi
+126,from,từ,1000,vi
+127,good,tốt,1000,vi
+128,head,cái đầu,1000,vi
+129,cheese,phô mai,1000,vi
+130,important,quan trọng,1000,vi
+131,land,đất đai,1000,vi
+132,money,tiền bạc,1000,vi
+133,pay,trả,1000,vi
+134,problem,vấn đề,1000,vi
+135,run,chạy,1000,vi
+136,same,tương tự,1000,vi
+137,see,xem,1000,vi
+138,send,gửi,1000,vi
+139,thing,Điều,1000,vi
+140,work,công việc,1000,vi
+141,any,bất kì,1000,vi
+142,as,như,1000,vi
+143,better,tốt hơn,1000,vi
+144,cold,lạnh,1000,vi
+145,come,đến,1000,vi
+146,doctor,Bác sĩ,1000,vi
+147,find,tìm thấy,1000,vi
+148,game,trò chơi,1000,vi
+149,idea,ý tưởng,1000,vi
+150,kind,Tốt bụng,1000,vi
+151,live (v),trực tiếp,1000,vi
+152,make,làm,1000,vi
+153,peace,Sự thanh bình,1000,vi
+154,popular,phổ biến,1000,vi
+155,right,đúng,1000,vi
+156,small,nhỏ,1000,vi
+157,so,vì thế,1000,vi
+158,some,một số,1000,vi
+159,there,ở đó,1000,vi
+160,wait,chờ đợi,1000,vi
+161,again,lần nữa,1000,vi
+162,back,trở lại,1000,vi
+163,could,có thể,1000,vi
+164,document,tài liệu,1000,vi
+165,egg,trứng,1000,vi
+166,fire,ngọn lửa,1000,vi
+167,give,đưa cho,1000,vi
+168,chance,cơ hội,1000,vi
+169,information,thông tin,1000,vi
+170,light,ánh sáng,1000,vi
+171,may,có thể,1000,vi
+172,often,thường xuyên,1000,vi
+173,prefer,thích hơn,1000,vi
+174,put,đặt,1000,vi
+175,red,đỏ,1000,vi
+176,stone,sỏi,1000,vi
+177,such,như là,1000,vi
+178,think,suy nghĩ,1000,vi
+179,understand,hiểu biết,1000,vi
+180,visit,chuyến thăm,1000,vi
+181,around,xung quanh,1000,vi
+182,best,tốt,1000,vi
+183,call,gọi,1000,vi
+184,cut,cắt,1000,vi
+185,dinner,bữa tối,1000,vi
+186,down,xuống,1000,vi
+187,explain,giải thích,1000,vi
+188,get,được,1000,vi
+189,interesting,hấp dẫn,1000,vi
+190,long,Dài,1000,vi
+191,move,di chuyển,1000,vi
+192,out,ngoài,1000,vi
+193,page,trang,1000,vi
+194,reach,chạm tới,1000,vi
+195,rest,nghỉ ngơi,1000,vi
+196,set,bộ,1000,vi
+197,should,Nên,1000,vi
+198,stand,đứng,1000,vi
+199,time,thời gian,1000,vi
+200,up,lên,1000,vi
+201,age,tuổi tác,1000,vi
+202,because,bởi vì,1000,vi
+203,big,to,1000,vi
+204,camera,Máy ảnh,1000,vi
+205,city,thành phố,1000,vi
+206,dress,trang phục,1000,vi
+207,evening,tối,1000,vi
+208,free,miễn phí,1000,vi
+209,have,có,1000,vi
+210,ill,tôi sẽ,1000,vi
+211,like,giống,1000,vi
+212,mother,mẹ,1000,vi
+213,old,cũ,1000,vi
+214,police,cảnh sát,1000,vi
+215,remember,nhớ lại,1000,vi
+216,street,đường phố,1000,vi
+217,study,học,1000,vi
+218,teacher,giáo viên,1000,vi
+219,voice,tiếng nói,1000,vi
+220,water,Nước,1000,vi
+221,also,cũng thế,1000,vi
+222,box,cái hộp,1000,vi
+223,class,lớp học,1000,vi
+224,difficult,khó khăn,1000,vi
+225,drive,lái xe,1000,vi
+226,food,món ăn,1000,vi
+227,great,tuyệt quá,1000,vi
+228,happy,vui mừng,1000,vi
+229,change,thay đổi,1000,vi
+230,juice,Nước ép,1000,vi
+231,meet,gặp,1000,vi
+232,need,nhu cầu,1000,vi
+233,pretty,đẹp,1000,vi
+234,quite,khá,1000,vi
+235,real,thực tế,1000,vi
+236,sad,buồn,1000,vi
+237,spring,mùa xuân,1000,vi
+238,star,ngôi sao,1000,vi
+239,take,lấy,1000,vi
+240,yes,Đúng,1000,vi
+241,action,hoạt động,1000,vi
+242,alone,một mình,1000,vi
+243,breakfast,bữa ăn sáng,1000,vi
+244,continue,tiếp tục,1000,vi
+245,dead,đã chết,1000,vi
+246,enjoy,thưởng thức,1000,vi
+247,full,đầy,1000,vi
+248,garden,vườn,1000,vi
+249,house,nhà ở,1000,vi
+250,journey,hành trình,1000,vi
+251,much,nhiều,1000,vi
+252,nothing,không có gì,1000,vi
+253,phone,điện thoại,1000,vi
+254,price,giá bán,1000,vi
+255,result,kết quả,1000,vi
+256,sister,em gái,1000,vi
+257,sun,mặt trời,1000,vi
+258,tell,nói,1000,vi
+259,view,lượt xem,1000,vi
+260,with,với,1000,vi
+261,against,chống lại,1000,vi
+262,bus,xe buýt,1000,vi
+263,company,Công ty,1000,vi
+264,desert (n),Sa mạc,1000,vi
+265,expensive,đắt,1000,vi
+266,flower,bông hoa,1000,vi
+267,green,màu xanh lá,1000,vi
+268,church,nhà thờ,1000,vi
+269,impossible,Không thể nào,1000,vi
+270,leave,rời khỏi,1000,vi
+271,month,tháng,1000,vi
+272,on,trên,1000,vi
+273,plan,kế hoạch,1000,vi
+274,possible,khả thi,1000,vi
+275,return,trở về,1000,vi
+276,save,tiết kiệm,1000,vi
+277,sea,biển,1000,vi
+278,something,cái gì đó,1000,vi
+279,together,cùng với nhau,1000,vi
+280,woman,đàn bà,1000,vi
+281,anything,bất cứ thứ gì,1000,vi
+282,army,quân đội,1000,vi
+283,bad,xấu,1000,vi
+284,cover,che,1000,vi
+285,culture,văn hóa,1000,vi
+286,decision,phán quyết,1000,vi
+287,example,thí dụ,1000,vi
+288,feel,cảm thấy,1000,vi
+289,how,làm sao,1000,vi
+290,island,Đảo,1000,vi
+291,member,thành viên,1000,vi
+292,next,kế tiếp,1000,vi
+293,position,Chức vụ,1000,vi
+294,present (adj),hiện tại,1000,vi
+295,record (n),ghi lại,1000,vi
+296,sleep,ngủ,1000,vi
+297,sweet,ngọt,1000,vi
+298,try,thử,1000,vi
+299,under,Dưới,1000,vi
+300,world,thế giới,1000,vi
+301,after,sau,1000,vi
+302,bed,Giường,1000,vi
+303,buy,mua,1000,vi
+304,catch,nắm lấy,1000,vi
+305,corner,góc,1000,vi
+306,distance,khoảng cách,1000,vi
+307,education,giáo dục,1000,vi
+308,fast,Nhanh,1000,vi
+309,here,đây,1000,vi
+310,interest,quan tâm,1000,vi
+311,letter,lá thư,1000,vi
+312,never,không bao giờ,1000,vi
+313,part,phần,1000,vi
+314,president,chủ tịch,1000,vi
+315,round,tròn,1000,vi
+316,several,một số,1000,vi
+317,sound,âm thanh,1000,vi
+318,story,câu chuyện,1000,vi
+319,talk,nói chuyện,1000,vi
+320,week,tuần,1000,vi
+321,almost,hầu hết,1000,vi
+322,bread,bánh mỳ,1000,vi
+323,control,điều khiển,1000,vi
+324,dear,kính thưa,1000,vi
+325,every,mỗi,1000,vi
+326,few,vài,1000,vi
+327,gold,vàng,1000,vi
+328,chief,trưởng phòng,1000,vi
+329,invite,mời gọi,1000,vi
+330,late,muộn,1000,vi
+331,most,phần lớn,1000,vi
+332,only,chỉ có,1000,vi
+333,product,sản phẩm,1000,vi
+334,public,công cộng,1000,vi
+335,receive,nhận được,1000,vi
+336,sorry,lấy làm tiếc,1000,vi
+337,strong,mạnh,1000,vi
+338,then,sau đó,1000,vi
+339,too,quá,1000,vi
+340,way,đường,1000,vi
+341,across,băng qua,1000,vi
+342,art,nghệ thuật,1000,vi
+343,bring,mang đến,1000,vi
+344,carry,mang,1000,vi
+345,confirm,xác nhận,1000,vi
+346,die,chết,1000,vi
+347,east,phía đông,1000,vi
+348,group,nhóm,1000,vi
+349,hope,mong,1000,vi
+350,industry,ngành công nghiệp,1000,vi
+351,look,nhìn,1000,vi
+352,must,phải,1000,vi
+353,own,sở hữu,1000,vi
+354,personal,cá nhân,1000,vi
+355,reason,lý do,1000,vi
+356,service,dịch vụ,1000,vi
+357,shall,sẽ,1000,vi
+358,stay,ở lại,1000,vi
+359,their,của chúng,1000,vi
+360,wife,người vợ,1000,vi
+361,away,xa,1000,vi
+362,beautiful,xinh đẹp,1000,vi
+363,care,quan tâm,1000,vi
+364,cost,Giá cả,1000,vi
+365,deep,sâu,1000,vi
+366,enough,đủ,1000,vi
+367,fight,Đánh nhau,1000,vi
+368,garage,nhà để xe,1000,vi
+369,into,thành,1000,vi
+370,keep,giữ,1000,vi
+371,miss,cô,1000,vi
+372,other,khác,1000,vi
+373,player,người chơi,1000,vi
+374,rather,hơn,1000,vi
+375,remain,còn lại,1000,vi
+376,side,bên,1000,vi
+377,south,miền Nam,1000,vi
+378,TRUE,sự thật,1000,vi
+379,use,sử dụng,1000,vi
+380,who,kẻ nào,1000,vi
+381,already,đã sẵn sàng,1000,vi
+382,become,trở nên,1000,vi
+383,cause,nguyên nhân,1000,vi
+384,certain,chắc chắn,1000,vi
+385,describe,diễn tả,1000,vi
+386,dry,khô,1000,vi
+387,expect,chờ đợi,1000,vi
+388,fact,thực tế,1000,vi
+389,hard,cứng,1000,vi
+390,include,bao gồm,1000,vi
+391,let,để cho,1000,vi
+392,moment,chốc lát,1000,vi
+393,power,quyền lực,1000,vi
+394,provide,cung cấp,1000,vi
+395,report,báo cáo,1000,vi
+396,seat,ghế,1000,vi
+397,single,Độc thân,1000,vi
+398,system,hệ thống,1000,vi
+399,through,xuyên qua,1000,vi
+400,which,cái nào,1000,vi
+401,apple,táo,1000,vi
+402,blue,màu xanh da trời,1000,vi
+403,clock,đồng hồ,1000,vi
+404,colour,màu sắc,1000,vi
+405,different,khác nhau,1000,vi
+406,earth,Trái đất,1000,vi
+407,film,phim ảnh,1000,vi
+408,glad,vui vẻ,1000,vi
+409,hour,giờ,1000,vi
+410,just,chỉ,1000,vi
+411,love,yêu và quý,1000,vi
+412,number,con số,1000,vi
+413,pencil,bút chì,1000,vi
+414,quick,nhanh chóng,1000,vi
+415,rain,mưa,1000,vi
+416,simple,đơn giản,1000,vi
+417,summer,mùa hè,1000,vi
+418,town,thị trấn,1000,vi
+419,tree,cây,1000,vi
+420,window,cửa sổ,1000,vi
+421,address,Địa chỉ,1000,vi
+422,building,xây dựng,1000,vi
+423,computer,máy vi tính,1000,vi
+424,cross,vượt qua,1000,vi
+425,desk,bàn,1000,vi
+426,ear,tai,1000,vi
+427,fish,cá,1000,vi
+428,glass,cốc thủy tinh,1000,vi
+429,ice,Nước đá,1000,vi
+430,key,Chìa khóa,1000,vi
+431,minute (n),phút,1000,vi
+432,office,văn phòng,1000,vi
+433,parent,cha mẹ,1000,vi
+434,post,bài đăng,1000,vi
+435,rock,đá,1000,vi
+436,search,Tìm kiếm,1000,vi
+437,sport,thể thao,1000,vi
+438,tea,trà,1000,vi
+439,valley,thung lũng,1000,vi
+440,walk,đi bộ,1000,vi
+441,airport,sân bay,1000,vi
+442,baby,đứa bé,1000,vi
+443,card,Thẻ,1000,vi
+444,central,Trung tâm,1000,vi
+445,direction,phương hướng,1000,vi
+446,dollar,đô la,1000,vi
+447,fruit,trái cây,1000,vi
+448,gift,quà tặng,1000,vi
+449,high,cao,1000,vi
+450,illness,ốm,1000,vi
+451,milk,Sữa,1000,vi
+452,not,không phải,1000,vi
+453,piece,cái,1000,vi
+454,protect,bảo vệ,1000,vi
+455,race,cuộc đua,1000,vi
+456,since,từ,1000,vi
+457,slow,chậm,1000,vi
+458,smile,nụ cười,1000,vi
+459,ticket,vé,1000,vi
+460,well,tốt,1000,vi
+461,accident,Tai nạn,1000,vi
+462,blood,máu,1000,vi
+463,business,kinh doanh,1000,vi
+464,during,suốt trong,1000,vi
+465,even,cũng,1000,vi
+466,floor,sàn nhà,1000,vi
+467,general,chung,1000,vi
+468,choose,chọn,1000,vi
+469,inform,thông báo,1000,vi
+470,little,ít,1000,vi
+471,meeting,gặp gỡ,1000,vi
+472,order,đặt hàng,1000,vi
+473,party,buổi tiệc,1000,vi
+474,pink,Hồng,1000,vi
+475,reply,Đáp lại,1000,vi
+476,snow,tuyết,1000,vi
+477,sugar,Đường,1000,vi
+478,travel,du lịch,1000,vi
+479,virus,vi-rút,1000,vi
+480,watch,đồng hồ đeo tay,1000,vi
+481,another,khác,1000,vi
+482,believe,tin,1000,vi
+483,both,cả hai,1000,vi
+484,crazy,khùng,1000,vi
+485,cup,cốc,1000,vi
+486,decide,quyết định,1000,vi
+487,ever,không bao giờ,1000,vi
+488,field,cánh đồng,1000,vi
+489,heart,tim,1000,vi
+490,imagine,tưởng tượng,1000,vi
+491,line,hàng,1000,vi
+492,meat,thịt,1000,vi
+493,over,kết thúc,1000,vi
+494,pull,kéo,1000,vi
+495,ring,nhẫn,1000,vi
+496,sell,bán,1000,vi
+497,similar,giống,1000,vi
+498,speed,tốc độ,1000,vi
+499,than,hơn,1000,vi
+500,your,của bạn,1000,vi
+501,above,ở trên,1000,vi
+502,begin,bắt đầu,1000,vi
+503,century,kỷ,1000,vi
+504,consider,xem xét,1000,vi
+505,dangerous,nguy hiểm,1000,vi
+506,dark,tối,1000,vi
+507,exchange,đổi,1000,vi
+508,government,chính quyền,1000,vi
+509,hear,Nghe,1000,vi
+510,jump,nhảy,1000,vi
+511,material,vật chất,1000,vi
+512,near,ở gần,1000,vi
+513,past,quá khứ,1000,vi
+514,produce,sản xuất,1000,vi
+515,remove,tẩy,1000,vi
+516,secret,bí mật,1000,vi
+517,song,bài hát,1000,vi
+518,television,Tivi,1000,vi
+519,value,giá trị,1000,vi
+520,when,khi nào,1000,vi
+521,arm,cánh tay,1000,vi
+522,behind,phía sau,1000,vi
+523,case,trường hợp,1000,vi
+524,collect,sưu tầm,1000,vi
+525,draw,vẽ tranh,1000,vi
+526,examine,xem xét,1000,vi
+527,fall,ngã,1000,vi
+528,grow,lớn lên,1000,vi
+529,immediately,ngay,1000,vi
+530,low,Thấp,1000,vi
+531,mind,lí trí,1000,vi
+532,off,tắt,1000,vi
+533,pass,vượt qua,1000,vi
+534,radio,Đài,1000,vi
+535,shoe,giày,1000,vi
+536,station,ga tàu,1000,vi
+537,sure,chắc chắn rồi,1000,vi
+538,test,kiểm tra,1000,vi
+539,usual,bình thường,1000,vi
+540,while,trong khi,1000,vi
+541,ago,trước đây,1000,vi
+542,along,dọc theo,1000,vi
+543,bear,chịu,1000,vi
+544,condition,tình trạng,1000,vi
+545,direct,thẳng thắn,1000,vi
+546,edge,cạnh,1000,vi
+547,fine,khỏe,1000,vi
+548,half,một nửa,1000,vi
+549,chicken,thịt gà,1000,vi
+550,increase,tăng,1000,vi
+551,magazine,tạp chí,1000,vi
+552,nature,Thiên nhiên,1000,vi
+553,plate,đĩa,1000,vi
+554,poor,nghèo,1000,vi
+555,respect,sự tôn trọng,1000,vi
+556,sharp,nhọn,1000,vi
+557,sometimes,đôi khi,1000,vi
+558,still,vẫn,1000,vi
+559,tall,cao,1000,vi
+560,would,sẽ,1000,vi
+561,add,thêm vào,1000,vi
+562,among,ở giữa,1000,vi
+563,built,được xây dựng,1000,vi
+564,common,chung,1000,vi
+565,depend,tùy theo,1000,vi
+566,early,sớm,1000,vi
+567,fly,bay,1000,vi
+568,happen,xảy ra,1000,vi
+569,check,kiểm tra,1000,vi
+570,introduce,giới thiệu,1000,vi
+571,less,ít hơn,1000,vi
+572,mark,dấu,1000,vi
+573,patient,kiên nhẫn,1000,vi
+574,perhaps,có lẽ,1000,vi
+575,rise,tăng lên,1000,vi
+576,sense,giác quan,1000,vi
+577,short,ngắn,1000,vi
+578,state,tiểu bang,1000,vi
+579,turn,xoay,1000,vi
+580,will,sẽ,1000,vi
+581,act,hành động,1000,vi
+582,appear,xuất hiện,1000,vi
+583,break,phá vỡ,1000,vi
+584,course,khóa học,1000,vi
+585,court,tòa án,1000,vi
+586,discuss,bàn luận,1000,vi
+587,effect,hiệu ứng,1000,vi
+588,form,hình thức,1000,vi
+589,hold,giữ,1000,vi
+590,insect,côn trùng,1000,vi
+591,mean,nghĩa là,1000,vi
+592,once,Một lần,1000,vi
+593,purpose,mục đích,1000,vi
+594,really,có thật không,1000,vi
+595,ride,dap xe,1000,vi
+596,situation,tình hình,1000,vi
+597,success,sự thành công,1000,vi
+598,though,Tuy nhiên,1000,vi
+599,upon,trên,1000,vi
+600,war,chiến tranh,1000,vi
+601,afternoon,buổi chiều,1000,vi
+602,busy,bận,1000,vi
+603,coffee,cà phê,1000,vi
+604,detail,chi tiết,1000,vi
+605,especially,đặc biệt,1000,vi
+606,finish,hoàn thành,1000,vi
+607,ground,đất,1000,vi
+608,holiday,ngày lễ,1000,vi
+609,choice,sự lựa chọn,1000,vi
+610,kitchen,phòng bếp,1000,vi
+611,lesson,bài học,1000,vi
+612,music,Âm nhạc,1000,vi
+613,orange,trái cam,1000,vi
+614,perfect (adj),hoàn hảo,1000,vi
+615,request,yêu cầu,1000,vi
+616,season,Mùa,1000,vi
+617,sick,đau ốm,1000,vi
+618,tomorrow,Ngày mai,1000,vi
+619,welcome,chào mừng,1000,vi
+620,yesterday,hôm qua,1000,vi
+621,agree,đồng ý,1000,vi
+622,bridge,cầu,1000,vi
+623,cake,bánh ngọt,1000,vi
+624,customer,khách hàng,1000,vi
+625,date,ngày,1000,vi
+626,enter,đi vào,1000,vi
+627,future,Tương lai,1000,vi
+628,gentleman,quý ông,1000,vi
+629,hair,tóc,1000,vi
+630,image,hình ảnh,1000,vi
+631,language,ngôn ngữ,1000,vi
+632,market,thị trường,1000,vi
+633,plane,máy bay,1000,vi
+634,private,riêng tư,1000,vi
+635,restaurant,nhà hàng,1000,vi
+636,size,kích thước,1000,vi
+637,sky,bầu trời,1000,vi
+638,smart,thông minh,1000,vi
+639,thank,cảm tạ,1000,vi
+640,weather,thời tiết,1000,vi
+641,actor,diễn viên,1000,vi
+642,bottle,chai,1000,vi
+643,cloth,vải,1000,vi
+644,coat,áo choàng ngoài,1000,vi
+645,destroy,hủy hoại,1000,vi
+646,everywhere,mọi nơi,1000,vi
+647,finger,ngón tay,1000,vi
+648,guide,hướng dẫn,1000,vi
+649,improve,cải tiến,1000,vi
+650,knife,dao,1000,vi
+651,large,lớn,1000,vi
+652,mistake,sai lầm,1000,vi
+653,ocean,đại dương,1000,vi
+654,plant,cây,1000,vi
+655,repeat,nói lại,1000,vi
+656,salt,Muối,1000,vi
+657,special,đặc biệt,1000,vi
+658,teach,dạy,1000,vi
+659,uncle,Chú,1000,vi
+660,winter,mùa đông,1000,vi
+661,angry,bực bội,1000,vi
+662,article,bài báo,1000,vi
+663,build,xây dựng,1000,vi
+664,dirty,dơ bẩn,1000,vi
+665,except,ngoại trừ,1000,vi
+666,famous,nổi danh,1000,vi
+667,gas,khí ga,1000,vi
+668,hotel,khách sạn,1000,vi
+669,cheap,rẻ,1000,vi
+670,interview,phỏng vấn,1000,vi
+671,moon,mặt trăng,1000,vi
+672,nice,đẹp,1000,vi
+673,prepare,chuẩn bị,1000,vi
+674,prison,nhà tù,1000,vi
+675,rice,cơm,1000,vi
+676,seem,hình như,1000,vi
+677,skirt,váy,1000,vi
+678,strange,lạ lùng,1000,vi
+679,train,xe lửa,1000,vi
+680,warm,ấm áp,1000,vi
+681,account,tài khoản,1000,vi
+682,bird,chim,1000,vi
+683,cloud,đám mây,1000,vi
+684,comfortable,Thoải mái,1000,vi
+685,damage,hư hại,1000,vi
+686,dust,bụi bặm,1000,vi
+687,exercise,tập thể dục,1000,vi
+688,favourite,yêu thích,1000,vi
+689,hospital,bệnh viện,1000,vi
+690,joke,trò đùa,1000,vi
+691,message,thông điệp,1000,vi
+692,night,đêm,1000,vi
+693,paint,Sơn,1000,vi
+694,pleasure,vui lòng,1000,vi
+695,relationship,mối quan hệ,1000,vi
+696,science,khoa học,1000,vi
+697,serious,nghiêm trọng,1000,vi
+698,spend,tiêu,1000,vi
+699,tired,mệt mỏi,1000,vi
+700,wrong,Sai lầm,1000,vi
+701,amount,lượng,1000,vi
+702,bank,ngân hàng,1000,vi
+703,brown,nâu,1000,vi
+704,crowd,bầy đàn,1000,vi
+705,deal,thỏa thuận,1000,vi
+706,engine,động cơ,1000,vi
+707,follow,theo,1000,vi
+708,chocolate,sô cô la,1000,vi
+709,individual,cá nhân,1000,vi
+710,left,trái,1000,vi
+711,meal,bữa ăn,1000,vi
+712,oil,dầu,1000,vi
+713,pain,đau đớn,1000,vi
+714,probably,có lẽ,1000,vi
+715,replace,thay thế,1000,vi
+716,society,xã hội,1000,vi
+717,square,Quảng trường,1000,vi
+718,step,bươc,1000,vi
+719,temperature,nhiệt độ,1000,vi
+720,university,trường đại học,1000,vi
+721,accept,Chấp nhận,1000,vi
+722,advance,nâng cao,1000,vi
+723,bag,túi,1000,vi
+724,captain,đội trưởng,1000,vi
+725,centre,trung tâm,1000,vi
+726,demand,nhu cầu,1000,vi
+727,enemy,kẻ thù,1000,vi
+728,factory,nhà máy,1000,vi
+729,hungry,đói bụng,1000,vi
+730,illegal,bất hợp pháp,1000,vi
+731,law,pháp luật,1000,vi
+732,nose,cái mũi,1000,vi
+733,petrol,xăng dầu,1000,vi
+734,proud,tự hào,1000,vi
+735,responsible,chịu trách nhiệm,1000,vi
+736,store,cửa hàng,1000,vi
+737,successful,thành công,1000,vi
+738,swim,bơi,1000,vi
+739,top,hàng đầu,1000,vi
+740,win,thắng lợi,1000,vi
+741,available,có sẵn,1000,vi
+742,boat,thuyền,1000,vi
+743,borrow,vay,1000,vi
+744,coast,bờ biển,1000,vi
+745,cream,kem,1000,vi
+746,design,thiết kế,1000,vi
+747,expression,biểu hiện,1000,vi
+748,farm,nông trại,1000,vi
+749,history,lịch sử,1000,vi
+750,injure,bị thương,1000,vi
+751,map,bản đồ,1000,vi
+752,obtain,đạt được,1000,vi
+753,peaceful,bình yên,1000,vi
+754,practise,thực hành,1000,vi
+755,recently,gần đây,1000,vi
+756,shape,hình dạng,1000,vi
+757,silver,bạc,1000,vi
+758,smoke,Khói,1000,vi
+759,touch,chạm,1000,vi
+760,wash,rửa,1000,vi
+761,advantage,lợi thế,1000,vi
+762,attack,tấn công,1000,vi
+763,butter,bơ,1000,vi
+764,club,câu lạc bộ,1000,vi
+765,college,trường đại học,1000,vi
+766,degree,trình độ,1000,vi
+767,escape,bỏ trốn,1000,vi
+768,gate,cánh cổng,1000,vi
+769,independent,độc lập,1000,vi
+770,listen,nghe,1000,vi
+771,marry,kết hôn,1000,vi
+772,object,vật,1000,vi
+773,path,con đường,1000,vi
+774,quiet,Yên tĩnh,1000,vi
+775,refuse,từ chối,1000,vi
+776,subject,môn học,1000,vi
+777,supply,cung cấp,1000,vi
+778,taste,nếm thử,1000,vi
+779,usually,thông thường,1000,vi
+780,vegetable,rau,1000,vi
+781,arrange,sắp xếp,1000,vi
+782,below,phía dưới,1000,vi
+783,cigarette,thuốc lá,1000,vi
+784,cottage,nhà tranh,1000,vi
+785,department,Phòng ban,1000,vi
+786,earn,kiếm,1000,vi
+787,front,trước mặt,1000,vi
+788,gentle,dịu dàng,1000,vi
+789,hat,mũ,1000,vi
+790,instrument,dụng cụ,1000,vi
+791,machine,máy móc,1000,vi
+792,newspaper,báo chí,1000,vi
+793,parcel,Bưu kiện,1000,vi
+794,religion,tôn giáo,1000,vi
+795,repair,sửa,1000,vi
+796,serve,giao banh,1000,vi
+797,shoulder,vai,1000,vi
+798,trip,chuyến đi,1000,vi
+799,village,làng,1000,vi
+800,wall,Tường,1000,vi
+801,arrive,đến,1000,vi
+802,born,sinh ra,1000,vi
+803,clothes,quần áo,1000,vi
+804,correct,chính xác,1000,vi
+805,double,gấp đôi,1000,vi
+806,English,Tiếng Anh,1000,vi
+807,forget,quên,1000,vi
+808,goal,mục tiêu,1000,vi
+809,hate,ghét,1000,vi
+810,kill,giết chết,1000,vi
+811,last,Cuối cùng,1000,vi
+812,main,chủ yếu,1000,vi
+813,pair,đôi,1000,vi
+814,promise,lời hứa,1000,vi
+815,regular,đều đặn,1000,vi
+816,somewhere,một vài nơi,1000,vi
+817,space,không gian,1000,vi
+818,these,những cái này,1000,vi
+819,useful,hữu ích,1000,vi
+820,without,không có,1000,vi
+821,animal,động vật,1000,vi
+822,beer,bia,1000,vi
+823,calm,điềm tĩnh,1000,vi
+824,copy,sao chép,1000,vi
+825,dish,món ăn,1000,vi
+826,express,bày tỏ,1000,vi
+827,foreign,ngoại quốc,1000,vi
+828,guess,phỏng đoán,1000,vi
+829,husband,người chồng,1000,vi
+830,lie,nói dối,1000,vi
+831,mine,của tôi,1000,vi
+832,opinion,ý kiến,1000,vi
+833,passenger,hành khách,1000,vi
+834,press,nhấn,1000,vi
+835,rule,qui định,1000,vi
+836,sign,ký tên,1000,vi
+837,support,ủng hộ,1000,vi
+838,those,những,1000,vi
+839,wonderful,Tuyệt vời,1000,vi
+840,year,năm,1000,vi
+841,afraid,sợ,1000,vi
+842,board,bảng,1000,vi
+843,circle,vòng tròn,1000,vi
+844,count,đếm,1000,vi
+845,death,tử vong,1000,vi
+846,discover,khám phá,1000,vi
+847,funny,buồn cười,1000,vi
+848,guest,khách mời,1000,vi
+849,horse,con ngựa,1000,vi
+850,lake,hồ nước,1000,vi
+851,modern,hiện đại,1000,vi
+852,necessary,cần thiết,1000,vi
+853,plenty,nhiều,1000,vi
+854,profit,lợi nhuận,1000,vi
+855,reduce,giảm,1000,vi
+856,share,chia sẻ,1000,vi
+857,steal,lấy trộm,1000,vi
+858,trust,Lòng tin,1000,vi
+859,wish,muốn,1000,vi
+860,young,trẻ,1000,vi
+861,admire,ngưỡng mộ,1000,vi
+862,allow,cho phép,1000,vi
+863,battle,trận chiến,1000,vi
+864,climb,leo,1000,vi
+865,complete,hoàn thành,1000,vi
+866,divide,chia,1000,vi
+867,effort,cố gắng,1000,vi
+868,fresh,tươi,1000,vi
+869,hole,hố,1000,vi
+870,indeed,thật,1000,vi
+871,marriage,kết hôn,1000,vi
+872,outside,ở ngoài,1000,vi
+873,pleasant,hài lòng,1000,vi
+874,point,điểm,1000,vi
+875,recent,gần đây,1000,vi
+876,secretary,Thư ký,1000,vi
+877,sing,hát,1000,vi
+878,soft,mềm mại,1000,vi
+879,third,ngày thứ ba,1000,vi
+880,various,đa dạng,1000,vi
+881,adventure,cuộc phiêu lưu,1000,vi
+882,although,Mặc du,1000,vi
+883,bottom,đáy,1000,vi
+884,coin,đồng tiền,1000,vi
+885,comfort,sự thoải mái,1000,vi
+886,drop,rơi vãi,1000,vi
+887,equal,công bằng,1000,vi
+888,gun,súng,1000,vi
+889,intelligent,thông minh,1000,vi
+890,join,tham gia,1000,vi
+891,laugh,cười,1000,vi
+892,middle,ở giữa,1000,vi
+893,perform,biểu diễn,1000,vi
+894,plain,trơn,1000,vi
+895,row,hàng,1000,vi
+896,soldier,lính,1000,vi
+897,surface,bề mặt,1000,vi
+898,thick,dày,1000,vi
+899,until,cho đến khi,1000,vi
+900,wild,hoang dã,1000,vi
+901,attempt,cố gắng,1000,vi
+902,bill,hóa đơn,1000,vi
+903,breathe,thở,1000,vi
+904,cook,nấu ăn,1000,vi
+905,defend,phòng thủ,1000,vi
+906,fat,mập,1000,vi
+907,grey,màu xám,1000,vi
+908,hot,nóng bức,1000,vi
+909,character,tính cách,1000,vi
+910,import,nhập khẩu,1000,vi
+911,lose,thua,1000,vi
+912,mountain,núi,1000,vi
+913,operation,hoạt động,1000,vi
+914,prize,giải thưởng,1000,vi
+915,risk,rủi ro,1000,vi
+916,safe,an toàn,1000,vi
+917,suddenly,đột ngột,1000,vi
+918,suit,bộ đồ,1000,vi
+919,type,kiểu,1000,vi
+920,wood,gỗ,1000,vi
+921,area,khu vực,1000,vi
+922,asleep,ngủ,1000,vi
+923,bath,bồn tắm,1000,vi
+924,careless,cẩu thả,1000,vi
+925,delay,sự chậm trễ,1000,vi
+926,event,biến cố,1000,vi
+927,foot,chân,1000,vi
+928,hide,ẩn giấu,1000,vi
+929,chain,chuỗi,1000,vi
+930,international,Quốc tế,1000,vi
+931,match,trận đấu,1000,vi
+932,nervous,lo lắng,1000,vi
+933,pity,điều đáng tiếc,1000,vi
+934,prove,chứng minh,1000,vi
+935,raise,nâng cao,1000,vi
+936,shut,đóng cửa,1000,vi
+937,smell,mùi,1000,vi
+938,straight,thẳng,1000,vi
+939,trade,buôn bán,1000,vi
+940,variety,đa dạng,1000,vi
+941,admit,thừa nhận,1000,vi
+942,attend,tham gia,1000,vi
+943,branch,chi nhánh,1000,vi
+944,coal,than đá,1000,vi
+945,consist,bao gồm,1000,vi
+946,declare,khai báo,1000,vi
+947,exact,chính xác,1000,vi
+948,farmer,nông phu,1000,vi
+949,instead,thay thế,1000,vi
+950,jacket,Áo khoác,1000,vi
+951,leg,Chân,1000,vi
+952,metal,kim loại,1000,vi
+953,opposite,đối diện,1000,vi
+954,pound,pao,1000,vi
+955,roll,cuộn,1000,vi
+956,score,ghi bàn,1000,vi
+957,shoot,bắn,1000,vi
+958,speech,phát biểu,1000,vi
+959,toilet,phòng vệ sinh,1000,vi
+960,whose,ai,1000,vi
+961,attitude,Thái độ,1000,vi
+962,brave,can đảm,1000,vi
+963,contain,Lưu trữ,1000,vi
+964,doubt,nghi ngờ,1000,vi
+965,experience,kinh nghiệm,1000,vi
+966,flat,bằng phẳng,1000,vi
+967,guard,bảo vệ,1000,vi
+968,heavy,nặng,1000,vi
+969,charge,sạc điện,1000,vi
+970,iron,bàn là,1000,vi
+971,medicine,thuốc,1000,vi
+972,noise,tiếng ồn,1000,vi
+973,politics,chính trị,1000,vi
+974,pour,đổ,1000,vi
+975,rush,gấp rút,1000,vi
+976,smooth,trơn tru,1000,vi
+977,spread,lây lan,1000,vi
+978,suggest,đề xuất,1000,vi
+979,trouble,rắc rối,1000,vi
+980,west,hướng Tây,1000,vi
+981,average,Trung bình cộng,1000,vi
+982,belong,thuộc về,1000,vi
+983,certainly,chắc chắn,1000,vi
+984,crime,tội ác,1000,vi
+985,duty,nhiệm vụ,1000,vi
+986,either,hoặc,1000,vi
+987,fail,Thất bại,1000,vi
+988,health,Sức khỏe,1000,vi
+989,influence,ảnh hưởng,1000,vi
+990,leader,lãnh đạo,1000,vi
+991,measure,đo lường,1000,vi
+992,offer,phục vụ,1000,vi
+993,pile,Đóng cọc,1000,vi
+994,regard,sự quan tâm,1000,vi
+995,rough,thô,1000,vi
+996,series,loạt,1000,vi
+997,spoil,làm hư hỏng,1000,vi
+998,spot,nơi,1000,vi
+999,thin,gầy,1000,vi
+1000,vote,bỏ phiếu,1000,vi
