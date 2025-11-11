@@ -2,8 +2,8 @@ import { Header, Page, useNavigate } from "zmp-ui";
 import Quiz from "./Quiz";
 import ProgressBar from "./ProgressBar";
 import React, { useCallback } from "react";
-import { useHearts } from "@/contexts/HeartsContext";
-import { supabase } from "@/services/supabase";
+import { useHearts } from "@/src/contexts/HeartsContext";
+import { supabase } from "@/src/services/supabase";
 import { nativeStorage } from "zmp-sdk";
 
 export const QuizPage: React.FC = () => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../services/supabase';
 import type { User } from '@supabase/supabase-js';
 import Spinner from './Spinner';
-import { useHearts } from '@/contexts/HeartsContext';
+import { useHearts } from '@/src/contexts/HeartsContext';
 
 export default function Profile() {
     const { session } = useHearts();

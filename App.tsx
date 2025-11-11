@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { supabase } from "./services/supabase";
+import { supabase } from "./src/services/supabase";
 import type { Session } from "@supabase/supabase-js";
-import { HeartsProvider } from "./contexts/HeartsContext";
+import { HeartsProvider } from "./src/contexts/HeartsContext";
 import { App as ZApp, SnackbarProvider, ZMPRouter } from "zmp-ui";
-import { ConfigProvider } from "./components/config-provider";
-import { Layout } from "./components/layout";
+import { ConfigProvider } from "./src/components/config-provider";
+import { Layout } from "./src/components/layout";
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);

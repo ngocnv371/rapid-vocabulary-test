@@ -1,4 +1,4 @@
-import { useHearts } from "@/contexts/HeartsContext";
+import { useHearts } from "@/src/contexts/HeartsContext";
 import { useCallback } from "react";
 import { useNavigate } from "zmp-ui";
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../services/supabase";
-import type { ScoreWithProfile, Category } from "../types";
+import type { ScoreWithProfile, Category } from "../../types";
 import Spinner from "./Spinner";
 
 const formatPlayerName = (

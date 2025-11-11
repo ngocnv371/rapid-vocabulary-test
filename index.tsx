@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import "zmp-ui/zaui.css";
-import "./css/tailwind.css";
-import "./css/app.scss";
+import "./src/css/tailwind.css";
+import "./src/css/app.scss";
 import App from './App';
 
 import appConfig from "./app-config.json";

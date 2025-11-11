@@ -1,6 +1,6 @@
 
 import { createClient } from '@supabase/supabase-js';
-import { type Word, type Category, type Score, type Profile } from '../types';
+import { type Word, type Category, type Score, type Profile } from '../../types';
 
 interface Database {
   public: {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Category } from "../types";
+import type { Category } from "../../types";
 import HeartsButton from "./HeartsButton";
 import OutOfHeartsHandler from "./OutOfHeartsHandler";
 

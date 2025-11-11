@@ -1,4 +1,4 @@
-import { useHearts } from "@/contexts/HeartsContext";
+import { useHearts } from "@/src/contexts/HeartsContext";
 import { BottomNavigation, Button, Header, Icon, Page } from "zmp-ui";
 import LoginButton from "./LoginButton";
 import Profile from "./Profile";
