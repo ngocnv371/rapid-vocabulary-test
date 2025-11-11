@@ -71,7 +71,7 @@ export default function Leaderboard() {
   }, [filterCategory]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto p-4">
       <div className="space-y-4">
         {loading ? (
           <div className="flex flex-col items-center justify-center gap-4 py-12">
