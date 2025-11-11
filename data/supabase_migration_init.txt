@@ -15,7 +15,7 @@ SECURITY DEFINER
 AS $$
 BEGIN
   INSERT INTO public.profiles (id, name, avatar_url, email)
-  VALUES (NEW.id, NULL, NULL)
+  VALUES (NEW.id, NULL, NULL, NEW.email)
   ON CONFLICT (id) DO NOTHING;
 
   RETURN NEW;
