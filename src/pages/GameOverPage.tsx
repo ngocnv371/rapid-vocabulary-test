@@ -1,7 +1,7 @@
 import { BottomNavigation, Box, Header, Icon, Page, useNavigate } from "zmp-ui";
 import GameOver from "../components/GameOver";
 import React, { useCallback, useEffect } from "react";
-import { nativeStorage } from "zmp-sdk";
+import { getItem } from "../services/storage";
 
 export const GameOverPage: React.FC = () => {
   const [score, setScore] = React.useState(0);
@@ -19,7 +19,7 @@ export const GameOverPage: React.FC = () => {
   // load last_score
   useEffect(() => {
     try {
-      const lastScore = nativeStorage.getItem("last_score");
+      const lastScore = getItem("last_score");
       if (lastScore) {
         const { score } = JSON.parse(lastScore);
         console.log("Last score loaded:", score);

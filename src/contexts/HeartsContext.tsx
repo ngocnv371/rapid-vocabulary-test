@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import type { Session } from '@supabase/supabase-js';
-import {nativeStorage} from 'zmp-sdk'
+import { getItem, setItem } from '../services/storage';
 
 interface HeartsContextType {
   hearts: number;
@@ -30,13 +30,13 @@ export function HeartsProvider({ children, session }: HeartsProviderProps) {
     if (session) return; // Don't manage hearts for logged-in users
 
     try {
-      const savedHearts = nativeStorage.getItem("userHearts");
+      const savedHearts = getItem("userHearts");
       if (savedHearts !== null) {
         setHearts(parseInt(savedHearts, 10));
       } else {
         const initialHearts = 3;
         setHearts(initialHearts);
-        nativeStorage.setItem("userHearts", String(initialHearts));
+        setItem("userHearts", String(initialHearts));
       }
     } catch (error) {
       console.error("Error accessing nativeStorage:", error);
@@ -48,7 +48,7 @@ export function HeartsProvider({ children, session }: HeartsProviderProps) {
   useEffect(() => {
     if (session) return;
     try {
-      nativeStorage.setItem("userHearts", String(hearts));
+      setItem("userHearts", String(hearts));
     } catch (error) {
       console.error("Error saving hearts to nativeStorage:", error);
     }
@@ -63,7 +63,7 @@ export function HeartsProvider({ children, session }: HeartsProviderProps) {
     setHearts(initialHearts);
     if (!session) {
       try {
-        nativeStorage.setItem("userHearts", String(initialHearts));
+        setItem("userHearts", String(initialHearts));
       } catch (error) {
         console.error("Error resetting hearts in nativeStorage:", error);
       }

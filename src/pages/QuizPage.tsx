@@ -4,7 +4,7 @@ import ProgressBar from "../components/ProgressBar";
 import React, { useCallback } from "react";
 import { useHearts } from "@/src/contexts/HeartsContext";
 import { supabase } from "@/src/services/supabase";
-import { nativeStorage } from "zmp-sdk";
+import { setItem } from "../services/storage";
 
 export const QuizPage: React.FC = () => {
   const { session } = useHearts();
@@ -15,7 +15,7 @@ export const QuizPage: React.FC = () => {
     console.log(`Progress: ${current} out of ${total}`);
     setProgress({ current, total });
     try {
-      nativeStorage.setItem(
+      setItem(
         "last_score",
         JSON.stringify({ score: current, category: null })
       );
