@@ -1,6 +1,6 @@
 import { Header, Page, useNavigate } from "zmp-ui";
-import Quiz from "./Quiz";
-import ProgressBar from "./ProgressBar";
+import Quiz from "../components/Quiz";
+import ProgressBar from "../components/ProgressBar";
 import React, { useCallback } from "react";
 import { useHearts } from "@/src/contexts/HeartsContext";
 import { supabase } from "@/src/services/supabase";

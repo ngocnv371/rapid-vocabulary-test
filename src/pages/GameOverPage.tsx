@@ -1,5 +1,5 @@
 import { BottomNavigation, Box, Header, Icon, Page, useNavigate } from "zmp-ui";
-import GameOver from "./GameOver";
+import GameOver from "../components/GameOver";
 import React, { useCallback, useEffect } from "react";
 import { nativeStorage } from "zmp-sdk";
 

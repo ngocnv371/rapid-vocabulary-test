@@ -1,5 +1,5 @@
 import { Header, Page, useNavigate } from "zmp-ui";
-import Auth from "./Auth";
+import Auth from "../components/Auth";
 import { useCallback } from "react";
 
 export const LoginPage: React.FC = () => {

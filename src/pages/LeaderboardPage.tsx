@@ -1,18 +1,12 @@
-import { useHearts } from "@/src/contexts/HeartsContext";
-import { BottomNavigation, Button, Header, Icon, Page } from "zmp-ui";
-import LoginButton from "./LoginButton";
-import Profile from "./Profile";
+import { BottomNavigation, Header, Icon, Page } from "zmp-ui";
+import Leaderboard from "../components/Leaderboard";
 
-export const ProfilePage: React.FC = () => {
-  const { session } = useHearts();
+export const LeaderboardPage: React.FC = () => {
   return (
     <Page>
-      <Header title="Profile" />
-      <div className="flex flex-col gap-4 sm:gap-6 p-4">
-        <LoginButton />
-      </div>
-      <Profile />
-      <BottomNavigation fixed activeKey="profile">
+      <Header title="Leaderboard" />
+      <Leaderboard />
+      <BottomNavigation fixed activeKey="leaderboard">
         <BottomNavigation.Item
           label="Home"
           linkTo="/"

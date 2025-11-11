@@ -1,5 +1,5 @@
 import { BottomNavigation, Box, Header, Icon, Page } from "zmp-ui";
-import Gameplay from "./Gameplay";
+import Gameplay from "../components/Gameplay";
 
 export const HomePage: React.FC = () => {
   return (

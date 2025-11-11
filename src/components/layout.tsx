@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import { Route, Routes } from "react-router";
 import { Box, AnimationRoutes } from "zmp-ui";
 import { getSystemInfo } from "zmp-sdk";
-import { HomePage } from "./HomePage";
-import { LeaderboardPage } from "./LeaderboardPage";
-import { ProfilePage } from "./ProfilePage";
-import { QuizPage } from "./QuizPage";
-import { LoginPage } from "./LoginPage";
-import { GameOverPage } from "./GameOverPage";
+import { HomePage } from "../pages/HomePage";
+import { LeaderboardPage } from "../pages/LeaderboardPage";
+import { ProfilePage } from "../pages/ProfilePage";
+import { QuizPage } from "../pages/QuizPage";
+import { LoginPage } from "../pages/LoginPage";
+import { GameOverPage } from "../pages/GameOverPage";
 
 if (import.meta.env.DEV) {
   document.body.style.setProperty("--zaui-safe-area-inset-top", "24px");
