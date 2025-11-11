@@ -46,6 +46,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
       setLoading(false);
     };
 
+    onProgressUpdate(0, 0);
     fetchWords();
   }, [category]);
 
@@ -114,7 +115,8 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
 
   if (error) {
     return (
-      <div className="w-full max-w-lg bg-gray-800 p-8 rounded-2xl shadow-2xl border border-purple-500/30 text-center flex flex-col items-center">
+      <div className='w-full max-w-lg p-4'>
+        <div className="bg-gray-800 p-4 rounded-2xl shadow-2xl border border-purple-500/30 text-center flex flex-col items-center">
         <div className="w-16 h-16 mb-4 rounded-full bg-purple-500/20 flex items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -128,6 +130,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
         >
           Choose a Different Spirit Animal
         </button>
+      </div>
       </div>
     );
   }

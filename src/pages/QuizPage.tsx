@@ -28,13 +28,18 @@ export const QuizPage: React.FC = () => {
     [session]
   );
 
+  const handleBackToCategories = useCallback(() => {
+    navigate("/", { replace: true });
+  }, [navigate]);
+
   return (
     <Page>
       <Header title="Quiz" />
-      <ProgressBar current={progress.current} total={progress.total} />
+      {progress.total > 0 && <ProgressBar current={progress.current} total={progress.total} />}
       <Quiz
         onGameOver={handleGameOver}
         onProgressUpdate={handleProgressUpdate}
+        onBackToCategories={handleBackToCategories}
       />
     </Page>
   );
