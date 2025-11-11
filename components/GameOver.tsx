@@ -1,4 +1,3 @@
-import { useHearts } from "@/contexts/HeartsContext";
 import LoginButton from "./LoginButton";
 
 interface GameOverProps {
@@ -12,7 +11,6 @@ export default function GameOver({
   onPlayAgain,
   onViewLeaderboard,
 }: GameOverProps) {
-  const { session } = useHearts();
   return (
     <div className="w-full max-w-2xl mx-auto p-4">
       <div className="text-center mb-10">
