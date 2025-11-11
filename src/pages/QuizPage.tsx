@@ -4,7 +4,8 @@ import ProgressBar from "../components/ProgressBar";
 import React, { useCallback } from "react";
 import { useHearts } from "@/src/contexts/HeartsContext";
 import { supabase } from "@/src/services/supabase";
-import { setItem } from "../services/storage";
+import { setItem, setLastScore } from "../services/storage";
+import { postScore } from "../services/leaderboard";
 
 export const QuizPage: React.FC = () => {
   const { session } = useHearts();
@@ -14,29 +15,13 @@ export const QuizPage: React.FC = () => {
   const handleProgressUpdate = useCallback((current: number, total: number) => {
     console.log(`Progress: ${current} out of ${total}`);
     setProgress({ current, total });
-    try {
-      setItem(
-        "last_score",
-        JSON.stringify({ score: current, category: null })
-      );
-    } catch (error) {
-      console.error("Error saving last score:", error);
-    }
+    setLastScore(current);
   }, []);
 
   const handleGameOver = useCallback(
     async (score: number) => {
       if (session) {
-        await supabase
-          .from("scores")
-          .insert([
-            {
-              user_id: session.user.id,
-              score: score,
-              category: null,
-            },
-          ])
-          .select();
+        postScore(session.user.id, score);
       }
       navigate("/game-over");
     },
