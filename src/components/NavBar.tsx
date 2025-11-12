@@ -1,6 +1,8 @@
 import { BottomNavigation, Icon } from "zmp-ui";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function NavBar({ activeKey }: { activeKey: string }) {
+  const { spiritAnimal } = useAppContext();
   return (
     <BottomNavigation fixed activeKey={activeKey}>
       <BottomNavigation.Item
@@ -16,9 +18,9 @@ export default function NavBar({ activeKey }: { activeKey: string }) {
         key="leaderboard"
       />
       <BottomNavigation.Item
-        label="Profile"
+        label=""
         linkTo="/profile"
-        icon={<Icon icon="zi-user" />}
+        icon={spiritAnimal || <Icon icon="zi-user" />}
         key="profile"
       />
     </BottomNavigation>

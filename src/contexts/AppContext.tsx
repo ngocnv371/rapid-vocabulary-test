@@ -5,6 +5,8 @@ import { type UserInfo } from 'zmp-sdk';
 interface AppContextType {
   hearts: number;
   user: UserInfo | null;
+  spiritAnimal: string;
+  setSpiritAnimal: React.Dispatch<React.SetStateAction<string>>;
   profileId?: number | null;
   setHearts: React.Dispatch<React.SetStateAction<number>>;
   useHeart: () => void;
@@ -25,6 +27,7 @@ interface AppProviderProps {
 
 export function AppProvider({ children, user, profileId }: AppProviderProps) {
   const [hearts, setHearts] = useState<number>(3);
+  const [spiritAnimal, setSpiritAnimal] = useState<string>('');
   const [showOutOfHeartsDialog, setShowOutOfHeartsDialog] = useState(false);
 
   // Effect for managing hearts persistence for anonymous users
@@ -94,6 +97,8 @@ export function AppProvider({ children, user, profileId }: AppProviderProps) {
     showOutOfHeartsDialog,
     setShowOutOfHeartsDialog,
     canPlayGame,
+    spiritAnimal,
+    setSpiritAnimal,
     handleGameAttempt,
   };
 
