@@ -24,6 +24,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const { emojiParticles, containerRef, triggerCelebration } = useEmojiCelebration();
 
   useEffect(() => {
@@ -64,20 +65,27 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
 
   useEffect(() => {
     if (words.length > 0 && currentQuestionIndex < words.length) {
-      const currentWord = words[currentQuestionIndex];
-      const correctAnswer = currentWord.meaning;
+      // Trigger exit animation
+      setIsTransitioning(true);
       
-      const incorrectAnswers = allMeanings
-        .filter(meaning => meaning !== correctAnswer);
+      // Wait for exit animation, then update content and trigger enter animation
+      setTimeout(() => {
+        const currentWord = words[currentQuestionIndex];
+        const correctAnswer = currentWord.meaning;
+        
+        const incorrectAnswers = allMeanings
+          .filter(meaning => meaning !== correctAnswer);
 
-      const shuffledIncorrect = shuffleArray(incorrectAnswers);
-      
-      const choiceOptions = shuffleArray([
-        correctAnswer,
-        ...shuffledIncorrect.slice(0, 3)
-      ]);
-      
-      setOptions(choiceOptions);
+        const shuffledIncorrect = shuffleArray(incorrectAnswers);
+        
+        const choiceOptions = shuffleArray([
+          correctAnswer,
+          ...shuffledIncorrect.slice(0, 3)
+        ]);
+        
+        setOptions(choiceOptions);
+        setIsTransitioning(false);
+      }, 300);
     }
   }, [currentQuestionIndex, words, allMeanings]);
 
@@ -88,6 +96,9 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
       triggerCelebration(event);
       
       setScore(prev => prev + 1);
+      
+      // Start transition animation immediately
+      setIsTransitioning(true);
       
       // Delay progression to show animation
       setTimeout(() => {
@@ -146,7 +157,13 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
       <EmojiCelebration particles={emojiParticles} />
       
       {/* Question container */}
-      <div className="mb-8 text-center">
+      <div 
+        className={`mb-8 text-center transition-all duration-500 ease-in-out ${
+          isTransitioning 
+            ? 'opacity-0 translate-y-[-20px]' 
+            : 'opacity-100 translate-y-0'
+        }`}
+      >
         <p className="text-xl md:text-2xl text-gray-400 mb-4">What is the meaning of</p>
         <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 break-words">
           {currentWord.word}
@@ -159,7 +176,15 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
           <button
             key={index}
             onClick={(e) => handleAnswer(option, e)}
-            className="bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-200 ease-out border border-white/10 hover:bg-white/10 hover:border-purple-400/50 text-lg font-medium text-gray-200 hover:text-white"
+            className={`bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-200 ease-out border border-white/10 hover:bg-white/10 hover:border-purple-400/50 text-lg font-medium text-gray-200 hover:text-white ${
+              isTransitioning 
+                ? 'opacity-0 translate-x-[-20px]' 
+                : 'opacity-100 translate-x-0'
+            }`}
+            style={{
+              transitionDelay: isTransitioning ? '0ms' : `${index * 50}ms`,
+              transitionDuration: '500ms'
+            }}
           >
             {option}
           </button>
