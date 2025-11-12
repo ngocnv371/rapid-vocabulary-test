@@ -2,13 +2,13 @@ import { Header, Page, useNavigate } from "zmp-ui";
 import Quiz from "../components/Quiz";
 import ProgressBar from "../components/ProgressBar";
 import React, { useCallback } from "react";
-import { useHearts } from "@/src/contexts/HeartsContext";
+import { useAppContext } from "@/src/contexts/AppContext";
 import { supabase } from "@/src/services/supabase";
 import { setItem, setLastScore } from "../services/storage";
 import { postScore } from "../services/leaderboard";
 
 export const QuizPage: React.FC = () => {
-  const { session } = useHearts();
+  const { profileId } = useAppContext();
   const [progress, setProgress] = React.useState({ current: 0, total: 0 });
   const navigate = useNavigate();
 
@@ -20,12 +20,12 @@ export const QuizPage: React.FC = () => {
 
   const handleGameOver = useCallback(
     async (score: number) => {
-      if (session) {
-        postScore(session.user.id, score);
+      if (profileId) {
+        postScore(profileId, score);
       }
       navigate("/game-over");
     },
-    [session]
+    [profileId]
   );
 
   const handleBackToCategories = useCallback(() => {

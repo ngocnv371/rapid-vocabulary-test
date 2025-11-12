@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHearts } from '../contexts/HeartsContext';
+import { useAppContext } from '../contexts/AppContext';
 import OutOfHeartsDialog from './OutOfHeartsDialog';
 import { useNavigate } from 'zmp-ui';
 
@@ -8,7 +8,7 @@ interface OutOfHeartsHandlerProps {
 }
 
 export default function OutOfHeartsHandler({ onLogin }: OutOfHeartsHandlerProps) {
-  const { showOutOfHeartsDialog, setShowOutOfHeartsDialog } = useHearts();
+  const { showOutOfHeartsDialog, setShowOutOfHeartsDialog } = useAppContext();
   const navigate = useNavigate();
 
   if (!showOutOfHeartsDialog) {

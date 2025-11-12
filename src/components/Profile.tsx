@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../services/supabase';
 import type { User } from '@supabase/supabase-js';
 import Spinner from './Spinner';
-import { useHearts } from '@/src/contexts/HeartsContext';
+import { useAppContext } from '@/src/contexts/AppContext';
 
 export default function Profile() {
-    const { session } = useHearts();
+    const { user: session } = useAppContext();
     const [loading, setLoading] = useState(true);
     const [updating, setUpdating] = useState(false);
     const [user, setUser] = useState<User | null>(null);

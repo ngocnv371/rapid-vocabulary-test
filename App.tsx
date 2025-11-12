@@ -1,30 +1,14 @@
 import { useState, useEffect } from "react";
-import { supabase } from "./src/services/supabase";
-import type { Session } from "@supabase/supabase-js";
-import { HeartsProvider } from "./src/contexts/HeartsContext";
+import { AppProvider } from "./src/contexts/AppContext";
 import { App as ZApp, SnackbarProvider, ZMPRouter } from "zmp-ui";
 import { ConfigProvider } from "./src/components/config-provider";
 import { Layout } from "./src/components/layout";
+import { useUserInfoLoader } from "./src/hooks/useUserInfoLoader";
 
 export default function App() {
-  const [session, setSession] = useState<Session | null>(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
+  const { user, profileId } = useUserInfoLoader();
   return (
-    <HeartsProvider session={session}>
+    <AppProvider user={user} profileId={profileId}>
       <ConfigProvider
         cssVariables={{
           "--zmp-background-color": "#f4f5f6",
@@ -38,6 +22,6 @@ export default function App() {
           </SnackbarProvider>
         </ZApp>
       </ConfigProvider>
-    </HeartsProvider>
+    </AppProvider>
   );
 }

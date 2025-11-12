@@ -1,15 +1,15 @@
-import { useHearts } from "@/src/contexts/HeartsContext";
+import { useAppContext } from "@/src/contexts/AppContext";
 import { useCallback } from "react";
 import { useNavigate } from "zmp-ui";
 
 export default function LoginButton() {
   const navigate = useNavigate();
-  const { session } = useHearts();
+  const { user } = useAppContext();
   const onLoginToSave = useCallback(() => {
     navigate("/login");
   }, []);
 
-  if (session) {
+  if (user) {
     return null;
   }
 

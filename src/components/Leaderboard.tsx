@@ -3,15 +3,6 @@ import { supabase } from "../services/supabase";
 import type { ScoreWithProfile, Category } from "../../types";
 import Spinner from "./Spinner";
 
-const formatPlayerName = (
-  name: string | null | undefined,
-  email: string | null | undefined
-) => {
-  if (name && name.trim() !== "") return name;
-  if (!email) return "Anonymous";
-  return email.split("@")[0];
-};
-
 const RankDisplay: React.FC<{ rank: number }> = ({ rank }) => {
   const medals: { [key: number]: string } = { 1: "🥇", 2: "🥈", 3: "🥉" };
   const medal = medals[rank];
@@ -52,7 +43,7 @@ export default function Leaderboard() {
 
       let query = supabase
         .from("scores")
-        .select("*, profiles(id, name, email)")
+        .select("*, profiles(id, name, avatar_url)")
         .order("score", { ascending: false })
         .limit(20);
 
@@ -123,7 +114,7 @@ export default function Leaderboard() {
                       className="text-white font-semibold text-lg truncate"
                       title={s.profiles?.name ?? s.profiles?.email ?? ""}
                     >
-                      {formatPlayerName(s.profiles?.name, s.profiles?.email)}
+                      {s.profiles?.name}
                     </p>
                     <div className="flex flex-col sm:flex-row sm:gap-4 text-sm text-gray-400">
                       <span className="hidden sm:inline">•</span>

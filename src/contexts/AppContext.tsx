@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import type { Session } from '@supabase/supabase-js';
 import { getItem, setItem } from '../services/storage';
+import { type UserInfo } from 'zmp-sdk';
 
-interface HeartsContextType {
+interface AppContextType {
   hearts: number;
-  session: Session | null;
+  user: UserInfo | null;
+  profileId?: number | null;
   setHearts: React.Dispatch<React.SetStateAction<number>>;
   useHeart: () => void;
   resetHearts: () => void;
@@ -14,20 +15,21 @@ interface HeartsContextType {
   handleGameAttempt: () => boolean;
 }
 
-const HeartsContext = createContext<HeartsContextType | undefined>(undefined);
+const AppContext = createContext<AppContextType | undefined>(undefined);
 
-interface HeartsProviderProps {
+interface AppProviderProps {
   children: React.ReactNode;
-  session: Session | null;
+  user: UserInfo | null;
+  profileId?: number | null;
 }
 
-export function HeartsProvider({ children, session }: HeartsProviderProps) {
+export function AppProvider({ children, user, profileId }: AppProviderProps) {
   const [hearts, setHearts] = useState<number>(3);
   const [showOutOfHeartsDialog, setShowOutOfHeartsDialog] = useState(false);
 
   // Effect for managing hearts persistence for anonymous users
   useEffect(() => {
-    if (session) return; // Don't manage hearts for logged-in users
+    if (user) return; // Don't manage hearts for logged-in users
 
     try {
       const savedHearts = getItem("userHearts");
@@ -42,17 +44,17 @@ export function HeartsProvider({ children, session }: HeartsProviderProps) {
       console.error("Error accessing nativeStorage:", error);
       setHearts(3); // Fallback to default value
     }
-  }, [session]);
+  }, [user]);
 
   // Update nativeStorage whenever hearts change for anonymous users
   useEffect(() => {
-    if (session) return;
+    if (user) return;
     try {
       setItem("userHearts", String(hearts));
     } catch (error) {
       console.error("Error saving hearts to nativeStorage:", error);
     }
-  }, [hearts, session]);
+  }, [hearts, user]);
 
   const useHeart = useCallback(() => {
     setHearts((prev) => Math.max(0, prev - 1));
@@ -61,30 +63,31 @@ export function HeartsProvider({ children, session }: HeartsProviderProps) {
   const resetHearts = useCallback(() => {
     const initialHearts = 3;
     setHearts(initialHearts);
-    if (!session) {
+    if (!user) {
       try {
         setItem("userHearts", String(initialHearts));
       } catch (error) {
         console.error("Error resetting hearts in nativeStorage:", error);
       }
     }
-  }, [session]);
+  }, [user]);
 
   const canPlayGame = () => {
-    return !!session || hearts > 0;
+    return !!user || hearts > 0;
   };
 
   const handleGameAttempt = () => {
-    if (!session && hearts <= 0) {
+    if (!user && hearts <= 0) {
       setShowOutOfHeartsDialog(true);
       return false;
     }
     return true;
   };
 
-  const value: HeartsContextType = {
+  const value: AppContextType = {
     hearts,
-    session,
+    user,
+    profileId,
     setHearts,
     useHeart,
     resetHearts,
@@ -95,16 +98,16 @@ export function HeartsProvider({ children, session }: HeartsProviderProps) {
   };
 
   return (
-    <HeartsContext.Provider value={value}>
+    <AppContext.Provider value={value}>
       {children}
-    </HeartsContext.Provider>
+    </AppContext.Provider>
   );
 }
 
-export function useHearts() {
-  const context = useContext(HeartsContext);
+export function useAppContext() {
+  const context = useContext(AppContext);
   if (context === undefined) {
-    throw new Error('useHearts must be used within a HeartsProvider');
+    throw new Error('useAppContext must be used within an AppProvider');
   }
   return context;
 }

@@ -1,10 +1,9 @@
-import { useHearts } from "@/src/contexts/HeartsContext";
+import { useAppContext } from "@/src/contexts/AppContext";
 import { BottomNavigation, Button, Header, Icon, Page } from "zmp-ui";
 import LoginButton from "../components/LoginButton";
 import Profile from "../components/Profile";
 
 export const ProfilePage: React.FC = () => {
-  const { session } = useHearts();
   return (
     <Page>
       <Header title="Profile" />
