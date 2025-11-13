@@ -8,6 +8,7 @@ import { ProfilePage } from "../pages/ProfilePage";
 import { QuizPage } from "../pages/QuizPage";
 import { LoginPage } from "../pages/LoginPage";
 import { GameOverPage } from "../pages/GameOverPage";
+import { SpiritPage } from "../pages/SpiritPage";
 
 if (import.meta.env.DEV) {
   document.body.style.setProperty("--zaui-safe-area-inset-top", "24px");
@@ -33,6 +34,7 @@ export const Layout: FC = () => {
           <Route path="/quiz" element={<QuizPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/game-over" element={<GameOverPage />}></Route>
+          <Route path="/spirit-animal" element={<SpiritPage />}></Route>
         </AnimationRoutes>
       </Box>
     </Box>
