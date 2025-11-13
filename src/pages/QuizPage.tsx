@@ -33,7 +33,7 @@ export const QuizPage: React.FC = () => {
   }, [navigate]);
 
   return (
-    <Page>
+    <Page hideScrollbar>
       <Header title="Quiz" />
       {progress.total > 0 && <ProgressBar current={progress.current} total={progress.total} />}
       <Quiz

@@ -4,7 +4,7 @@ import { supabase } from '../services/supabase';
 import type { Category, Word } from '../../types';
 import Spinner from './Spinner';
 import EmojiCelebration from './EmojiCelebration';
-import { useEmojiCelebration } from '../hooks/useEmojiCelebration';
+import { useEmojiCelebration, type CelebrationType } from '../hooks/useEmojiCelebration';
 
 interface QuizProps {
   category?: Category;
@@ -25,7 +25,10 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
   const [score, setScore] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const { emojiParticles, containerRef, triggerCelebration } = useEmojiCelebration();
+  
+  // Change this to try different effects:
+  // 'burst-pop', 'spinning-star', 'confetti-rain', 'ripple-wave', 'firework', or 'random'
+  const { emojiParticles, containerRef, triggerCelebration } = useEmojiCelebration('random');
 
   useEffect(() => {
     const fetchWords = async () => {
