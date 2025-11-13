@@ -52,6 +52,7 @@ Establish our brand. Make our own website.
 ## Branding & Marketing
 - [ ] landing page
 - [ ] domain name
+  - [ ] find a good one [https://www.matbao.net/ten-mien/ket-qua-kiem-tra-ten-mien.html?tenmien=voka.vn#top_search]
 - [ ] business license
 - [ ] marketing materials
 - [ ] social media presence
