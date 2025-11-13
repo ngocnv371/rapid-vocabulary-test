@@ -2,7 +2,7 @@ import { BottomNavigation, Header, Icon, Page } from "zmp-ui";
 import Leaderboard from "../components/Leaderboard";
 import NavBar from "../components/NavBar";
 
-export const LeaderboardPage: React.FC = () => {
+const LeaderboardPage: React.FC = () => {
   return (
     <Page hideScrollbar>
       <Header title="Leaderboard" />
@@ -11,3 +11,5 @@ export const LeaderboardPage: React.FC = () => {
     </Page>
   );
 };
+
+export default LeaderboardPage;

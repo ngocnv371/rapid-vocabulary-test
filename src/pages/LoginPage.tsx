@@ -2,7 +2,7 @@ import { Header, Page, useNavigate } from "zmp-ui";
 import Auth from "../components/Auth";
 import { useCallback } from "react";
 
-export const LoginPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const handleSignInSuccess = useCallback(() => {
     navigate("/profile", { replace: true });
@@ -15,3 +15,5 @@ export const LoginPage: React.FC = () => {
     </Page>
   );
 };
+
+export default LoginPage;

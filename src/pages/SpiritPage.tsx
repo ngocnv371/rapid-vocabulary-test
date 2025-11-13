@@ -2,7 +2,7 @@ import { BottomNavigation, Box, Header, Icon, Page } from "zmp-ui";
 import Gameplay from "../components/Gameplay";
 import NavBar from "../components/NavBar";
 
-export const SpiritPage: React.FC = () => {
+const SpiritPage: React.FC = () => {
   return (
     <Page hideScrollbar>
       <Header title="Rapid Vocabulary Test" />
@@ -12,3 +12,5 @@ export const SpiritPage: React.FC = () => {
     </Page>
   );
 };
+
+export default SpiritPage;

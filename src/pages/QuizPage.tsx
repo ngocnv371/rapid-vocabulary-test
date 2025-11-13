@@ -7,7 +7,7 @@ import { supabase } from "@/src/services/supabase";
 import { setItem, setLastScore } from "../services/storage";
 import { postScore } from "../services/leaderboard";
 
-export const QuizPage: React.FC = () => {
+const QuizPage: React.FC = () => {
   const { profileId } = useAppContext();
   const [progress, setProgress] = React.useState({ current: 0, total: 0 });
   const navigate = useNavigate();
@@ -44,3 +44,5 @@ export const QuizPage: React.FC = () => {
     </Page>
   );
 };
+
+export default QuizPage;

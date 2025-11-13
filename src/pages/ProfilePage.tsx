@@ -3,7 +3,7 @@ import { BottomNavigation, Button, Header, Icon, Page } from "zmp-ui";
 import Profile from "../components/Profile";
 import NavBar from "../components/NavBar";
 
-export const ProfilePage: React.FC = () => {
+const ProfilePage: React.FC = () => {
   return (
     <Page hideScrollbar>
       <Header title="Profile" />
@@ -12,3 +12,5 @@ export const ProfilePage: React.FC = () => {
     </Page>
   );
 };
+
+export default ProfilePage;

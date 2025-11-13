@@ -4,7 +4,7 @@ import React, { useCallback, useEffect } from "react";
 import { getItem, getLastScore } from "../services/storage";
 import NavBar from "../components/NavBar";
 
-export const GameOverPage: React.FC = () => {
+const GameOverPage: React.FC = () => {
   const [score, setScore] = React.useState(0);
   const navigate = useNavigate();
   const playAgain = useCallback(() => {
@@ -36,3 +36,5 @@ export const GameOverPage: React.FC = () => {
     </Page>
   );
 };
+
+export default GameOverPage;

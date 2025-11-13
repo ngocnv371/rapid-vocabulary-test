@@ -30,7 +30,7 @@ function SmallCard({
 }
 
 // TODO: refactor home page to use tailwind 
-export const HomePage: React.FC = () => {
+const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { spiritAnimal } = useAppContext();
   const handleStartQuiz = useCallback(() => {
@@ -126,3 +126,5 @@ export const HomePage: React.FC = () => {
     </Page>
   );
 };
+
+export default HomePage;
