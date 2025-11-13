@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 
 export const LeaderboardPage: React.FC = () => {
   return (
-    <Page>
+    <Page hideScrollbar>
       <Header title="Leaderboard" />
       <Leaderboard />
       <NavBar activeKey="leaderboard" />

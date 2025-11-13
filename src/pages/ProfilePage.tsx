@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 
 export const ProfilePage: React.FC = () => {
   return (
-    <Page>
+    <Page hideScrollbar>
       <Header title="Profile" />
       <Profile />
       <NavBar activeKey="profile" />
