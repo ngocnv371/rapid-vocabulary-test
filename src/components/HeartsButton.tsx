@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import HeartsInfoDialog from "./HeartsInfoDialog";
-import { useAppContext } from "../contexts/AppContext";
+import { useHeartsContext } from "../contexts/HeartsContext";
 
 export default function HeartsButton() {
-  const { hearts } = useAppContext();
+  const { hearts } = useHeartsContext();
   const [showHeartsInfoDialog, setShowHeartsInfoDialog] = useState(false);
 
   return (
