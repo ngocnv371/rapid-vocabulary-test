@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Route, Routes } from "react-router";
+import { Route } from "react-router";
 import { Box, AnimationRoutes } from "zmp-ui";
 import { getSystemInfo } from "zmp-sdk";
 import  HomePage from "../pages/HomePage";
@@ -9,6 +9,9 @@ import  QuizPage from "../pages/QuizPage";
 import  LoginPage from "../pages/LoginPage";
 import  GameOverPage from "../pages/GameOverPage";
 import SpiritPage from "../pages/SpiritPage";
+
+import HeartsButton from "./HeartsButton";
+import OutOfHeartsHandler from "./OutOfHeartsHandler";
 
 if (import.meta.env.DEV) {
   document.body.style.setProperty("--zaui-safe-area-inset-top", "24px");
@@ -37,6 +40,8 @@ export const Layout: FC = () => {
           <Route path="/spirit-animal" element={<SpiritPage />}></Route>
         </AnimationRoutes>
       </Box>
+      <HeartsButton />
+      <OutOfHeartsHandler />
     </Box>
   );
 };

@@ -8,8 +8,8 @@ export default function HeartsButton() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
-        <div className="bg-gradient-to-r from-purple-800 to-indigo-700 rounded-full p-3 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-purple-500/30">
+      <div className="fixed bottom-12 right-4 z-50 relative">
+        <div className="absolute right-0 bottom-4 bg-gradient-to-r from-purple-800 to-indigo-700 rounded-full p-3 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-purple-500/30">
           <button
             onClick={() => setShowHeartsInfoDialog(true)}
             className="flex items-center gap-2 text-lg font-bold text-white focus:outline-none"

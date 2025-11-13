@@ -18,7 +18,7 @@ interface AppContextType {
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
-
+const defaultHearts = 5;
 interface AppProviderProps {
   children: React.ReactNode;
   user: UserInfo | null;
@@ -64,7 +64,7 @@ export function AppProvider({ children, user, profileId }: AppProviderProps) {
   }, []);
 
   const resetHearts = useCallback(() => {
-    const initialHearts = 3;
+    const initialHearts = defaultHearts;
     setHearts(initialHearts);
     if (!user) {
       try {
