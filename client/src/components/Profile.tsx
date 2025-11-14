@@ -6,7 +6,7 @@ import { useAppContext } from '@/src/contexts/AppContext';
 import { Avatar } from 'zmp-ui';
 
 export default function Profile() {
-    const { user, profileId } = useAppContext();
+    const { user, profileId, spiritAnimal } = useAppContext();
     const [loading, setLoading] = useState<boolean>(true);
     const [highestScore, setHighestScore] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
@@ -69,7 +69,7 @@ export default function Profile() {
                     {/* Glow ring around avatar */}
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 blur-xl opacity-75 animate-pulse"></div>
                     <div className="relative ring-4 ring-purple-400/50 rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                        <Avatar src={user?.avatar} size={96} />
+                        {user?.followedOA ? <Avatar src={user?.avatar} size={96} />: <div className='text-7xl w-[96px] h-[96px]'>{spiritAnimal}</div>}
                     </div>
                     {/* Trophy badge */}
                     <div className="absolute -bottom-2 -right-2 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full p-2 shadow-lg border-2 border-white/20 transform hover:rotate-12 transition-transform duration-300">

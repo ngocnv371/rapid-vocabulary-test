@@ -2,9 +2,11 @@ import { useAppContext } from "@/src/contexts/AppContext";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import SpiritAnimalSelector from "./SpiritAnimalSelector";
+import { useHeartsContext } from "../contexts/HeartsContext";
 
 export default function Gameplay() {
-  const { hearts, useHeart, handleGameAttempt, setSpiritAnimal } = useAppContext();
+  const { setSpiritAnimal } = useAppContext();
+  const { hearts, useHeart, handleGameAttempt } = useHeartsContext();
   const navigate = useNavigate();
 
   const handleSpiritSelect = useCallback((animal) => {

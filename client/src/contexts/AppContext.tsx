@@ -16,8 +16,7 @@ interface AppProviderProps {
 }
 
 export function AppProvider({ children, user, profileId }: AppProviderProps) {
-  const [spiritAnimal, setSpiritAnimal] = useState<string>("");
-  const [showOutOfHeartsDialog, setShowOutOfHeartsDialog] = useState(false);
+  const [spiritAnimal, setSpiritAnimal] = useState<string>("🐔");
 
   const value: AppContextType = {
     user,
