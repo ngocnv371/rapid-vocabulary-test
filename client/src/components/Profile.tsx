@@ -3,7 +3,8 @@ import { supabase } from '../services/supabase';
 import type { User } from '@supabase/supabase-js';
 import Spinner from './Spinner';
 import { useAppContext } from '@/src/contexts/AppContext';
-import { Avatar } from 'zmp-ui';
+import { Avatar, Box } from 'zmp-ui';
+import AskForProfilePermission from './AskForProfilePermission';
 
 export default function Profile() {
     const { user, profileId, spiritAnimal } = useAppContext();
@@ -69,7 +70,7 @@ export default function Profile() {
                     {/* Glow ring around avatar */}
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 blur-xl opacity-75 animate-pulse"></div>
                     <div className="relative ring-4 ring-purple-400/50 rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                        {user?.followedOA ? <Avatar src={user?.avatar} size={96} />: <div className='text-7xl w-[96px] h-[96px]'>{spiritAnimal}</div>}
+                        {user?.avatar ? <Avatar src={user?.avatar} size={96} />: <div className='text-7xl w-[96px] h-[96px]'>{spiritAnimal}</div>}
                     </div>
                     {/* Trophy badge */}
                     <div className="absolute -bottom-2 -right-2 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full p-2 shadow-lg border-2 border-white/20 transform hover:rotate-12 transition-transform duration-300">
@@ -128,9 +129,11 @@ export default function Profile() {
                     <div className="text-xl font-bold text-white mt-1">-</div>
                 </div>
             </div>
+            <AskForProfilePermission />
 
             {error && <p className="mt-6 text-center text-red-300 bg-red-900/50 p-4 rounded-xl border border-red-500/30 backdrop-blur-sm animate-shake">{error}</p>}
             {message && <p className="mt-6 text-center text-green-300 bg-green-900/50 p-4 rounded-xl border border-green-500/30 backdrop-blur-sm">{message}</p>}
+            <Box className='my-12'></Box>
         </div>
     );
 }

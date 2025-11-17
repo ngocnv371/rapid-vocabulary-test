@@ -1,14 +1,12 @@
-import { AppProvider } from "./src/contexts/AppContext";
+import { AppProvider } from "./contexts/AppContext";
 import { App as ZApp, SnackbarProvider, ZMPRouter } from "zmp-ui";
-import { ConfigProvider } from "./src/components/config-provider";
-import { Layout } from "./src/components/layout";
-import { useUserInfoLoader } from "./src/hooks/useUserInfoLoader";
-import { HeartsProvider } from "./src/contexts/HeartsContext";
+import { ConfigProvider } from "./components/config-provider";
+import { Layout } from "./components/layout";
+import { HeartsProvider } from "./contexts/HeartsContext";
 
 export default function App() {
-  const { user, profileId } = useUserInfoLoader();
   return (
-    <AppProvider user={user} profileId={profileId}>
+    <AppProvider>
       <HeartsProvider>
         <ConfigProvider
           cssVariables={{

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { type UserInfo } from "zmp-sdk";
+import { useUserInfoLoader } from "../hooks/useUserInfoLoader";
 
 interface AppContextType {
   user: UserInfo | null;
@@ -11,11 +12,10 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 interface AppProviderProps {
   children: React.ReactNode;
-  user: UserInfo | null;
-  profileId?: number | null;
 }
 
-export function AppProvider({ children, user, profileId }: AppProviderProps) {
+export function AppProvider({ children }: AppProviderProps) {
+  const { user, profileId } = useUserInfoLoader();
   const [spiritAnimal, setSpiritAnimal] = useState<string>("🐔");
 
   const value: AppContextType = {

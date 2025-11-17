@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client';
 import "zmp-ui/zaui.css";
 import "./src/css/tailwind.css";
 import "./src/css/app.scss";
-import App from './App';
+import App from './src/App';
 
 import appConfig from "./app-config.json";
 
