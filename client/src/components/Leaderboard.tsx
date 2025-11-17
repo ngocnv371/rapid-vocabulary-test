@@ -16,9 +16,8 @@ const RankDisplay: React.FC<{ rank: number; isTopThree?: boolean }> = ({ rank, i
 
   if (isTopThree && medal) {
     return (
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center">
         <span className={`${rankClass} animate-float`}>{medal}</span>
-        <span className="text-xs text-gray-400 font-semibold">#{rank}</span>
       </div>
     );
   }
@@ -153,15 +152,15 @@ export default function Leaderboard() {
               <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
                 🏆 Top Champions 🏆
               </h2>
-              <div className="flex items-end justify-center gap-4 mb-8">
+              <div className="flex items-end justify-center gap-2 mb-8 px-2">
                 {/* 2nd Place */}
                 {topThree[1] && (
                   <div 
-                    className="flex-1 max-w-[140px] animate-fade-in-up"
+                    className="flex-1 max-w-[115px] animate-fade-in-up"
                     style={{ animationDelay: '0.1s', animationFillMode: 'both' }}
                   >
-                    <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl p-4 border-2 border-gray-400 shadow-xl hover:shadow-gray-400/50 transition-all duration-300 hover:scale-105">
-                      <div className="flex flex-col items-center gap-3">
+                    <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl p-3 border-2 border-gray-400 shadow-xl hover:shadow-gray-400/50 transition-all duration-300 hover:scale-105">
+                      <div className="flex flex-col items-center gap-2">
                         <RankDisplay rank={2} isTopThree />
                         <PlayerAvatar 
                           name={topThree[1].profiles?.name || "Player"} 
@@ -169,10 +168,10 @@ export default function Leaderboard() {
                           rank={2}
                         />
                         <div className="text-center w-full">
-                          <p className="text-white font-bold text-sm truncate" title={topThree[1].profiles?.name}>
+                          <p className="text-white font-bold text-xs leading-tight line-clamp-2 px-1" title={topThree[1].profiles?.name}>
                             {topThree[1].profiles?.name}
                           </p>
-                          <div className="mt-2 bg-gradient-to-r from-gray-400 to-gray-500 text-white px-3 py-1 rounded-full text-lg font-bold">
+                          <div className="mt-1.5 bg-gradient-to-r from-gray-400 to-gray-500 text-white px-2.5 py-1 rounded-full text-base font-bold">
                             {topThree[1].score}
                           </div>
                         </div>
@@ -184,14 +183,14 @@ export default function Leaderboard() {
                 {/* 1st Place */}
                 {topThree[0] && (
                   <div 
-                    className="flex-1 max-w-[160px] animate-fade-in-up"
+                    className="flex-1 max-w-[130px] animate-fade-in-up"
                     style={{ animationFillMode: 'both' }}
                   >
-                    <div className="relative bg-gradient-to-br from-yellow-500/20 to-amber-600/20 rounded-2xl p-6 border-2 border-yellow-400 shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300 hover:scale-105 animate-glow-pulse">
-                      <div className="absolute -top-3 -right-3 bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    <div className="relative bg-gradient-to-br from-yellow-500/20 to-amber-600/20 rounded-2xl p-4 border-2 border-yellow-400 shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300 hover:scale-105 animate-glow-pulse">
+                      <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-2 py-0.5 rounded-full text-[10px] font-bold shadow-lg">
                         CHAMPION
                       </div>
-                      <div className="flex flex-col items-center gap-3">
+                      <div className="flex flex-col items-center gap-2">
                         <RankDisplay rank={1} isTopThree />
                         <PlayerAvatar 
                           name={topThree[0].profiles?.name || "Player"} 
@@ -199,10 +198,10 @@ export default function Leaderboard() {
                           rank={1}
                         />
                         <div className="text-center w-full">
-                          <p className="text-white font-bold text-base truncate" title={topThree[0].profiles?.name}>
+                          <p className="text-white font-bold text-xs leading-tight line-clamp-2 px-1" title={topThree[0].profiles?.name}>
                             {topThree[0].profiles?.name}
                           </p>
-                          <div className="mt-2 bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 px-4 py-2 rounded-full text-xl font-bold shadow-lg">
+                          <div className="mt-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 px-3 py-1.5 rounded-full text-lg font-bold shadow-lg">
                             {topThree[0].score}
                           </div>
                         </div>
@@ -214,11 +213,11 @@ export default function Leaderboard() {
                 {/* 3rd Place */}
                 {topThree[2] && (
                   <div 
-                    className="flex-1 max-w-[140px] animate-fade-in-up"
+                    className="flex-1 max-w-[115px] animate-fade-in-up"
                     style={{ animationDelay: '0.2s', animationFillMode: 'both' }}
                   >
-                    <div className="bg-gradient-to-br from-orange-700 to-amber-800 rounded-2xl p-4 border-2 border-amber-600 shadow-xl hover:shadow-amber-600/50 transition-all duration-300 hover:scale-105">
-                      <div className="flex flex-col items-center gap-3">
+                    <div className="bg-gradient-to-br from-orange-700 to-amber-800 rounded-2xl p-3 border-2 border-amber-600 shadow-xl hover:shadow-amber-600/50 transition-all duration-300 hover:scale-105">
+                      <div className="flex flex-col items-center gap-2">
                         <RankDisplay rank={3} isTopThree />
                         <PlayerAvatar 
                           name={topThree[2].profiles?.name || "Player"} 
@@ -226,10 +225,10 @@ export default function Leaderboard() {
                           rank={3}
                         />
                         <div className="text-center w-full">
-                          <p className="text-white font-bold text-sm truncate" title={topThree[2].profiles?.name}>
+                          <p className="text-white font-bold text-xs leading-tight line-clamp-2 px-1" title={topThree[2].profiles?.name}>
                             {topThree[2].profiles?.name}
                           </p>
-                          <div className="mt-2 bg-gradient-to-r from-amber-600 to-orange-700 text-white px-3 py-1 rounded-full text-lg font-bold">
+                          <div className="mt-1.5 bg-gradient-to-r from-amber-600 to-orange-700 text-white px-2.5 py-1 rounded-full text-base font-bold">
                             {topThree[2].score}
                           </div>
                         </div>
