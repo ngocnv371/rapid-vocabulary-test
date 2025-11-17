@@ -7,7 +7,7 @@ export function upsertProfile(
     zaloId: string;
     avatarUrl: string;
   },
-  success?: (id: number) => void
+  then?: (id: number) => void
 ): void {
   console.log(`Upserting profile`, payload);
   // find existing profile by zaloId
@@ -19,6 +19,7 @@ export function upsertProfile(
     .then((response) => {
       if (response.error) {
         console.error("Error fetching profile:", response);
+        then?.(0);
       } else if (response.data) {
         const existingProfile = response.data as Profile;
         console.log("Profile found", existingProfile);
@@ -35,8 +36,8 @@ export function upsertProfile(
               console.error("Error updating profile:", f2.error);
             } else {
               console.log("Profile updated successfully", f2.data);
-              success?.(existingProfile.id);
             }
+            then?.(existingProfile.id);
           });
       } else {
         console.log("No profile found, creating new one");
@@ -54,8 +55,8 @@ export function upsertProfile(
               console.error("Error upserting profile:", response.error);
             } else {
               console.log("Profile upserted successfully", response.data);
-              success?.(response?.data?.id);
             }
+            then?.(response?.data?.id);
           });
       }
     });
