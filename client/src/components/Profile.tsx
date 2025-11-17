@@ -62,7 +62,7 @@ export default function Profile() {
         <div className="w-full max-w-2xl mx-auto p-4 relative">
             {/* Animated background orbs */}
             <div className="absolute top-0 left-1/4 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute z-[-10] bottom-0 right-1/4 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
             
             {/* Profile Avatar Section - Centered */}
             <div className='relative flex justify-center mb-6'>

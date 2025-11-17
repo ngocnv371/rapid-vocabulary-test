@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../services/supabase";
-import type { ScoreWithProfile, Category } from "../../types";
+import type { ScoreWithProfile, Category } from "../types";
 import Spinner from "./Spinner";
 
 const RankDisplay: React.FC<{ rank: number; isTopThree?: boolean }> = ({ rank, isTopThree }) => {
@@ -110,7 +110,7 @@ export default function Leaderboard() {
   const rest = scores.slice(3);
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-4">
+    <div className="w-full max-w-2xl mx-auto p-4 relative">
       {loading ? (
         <div className="flex flex-col items-center justify-center gap-4 py-12">
           <Spinner />

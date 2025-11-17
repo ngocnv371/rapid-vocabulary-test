@@ -1,3 +1,4 @@
+import { Profile } from "@/src/types";
 import { supabase } from "./supabase";
 
 export function upsertProfile(
@@ -19,8 +20,24 @@ export function upsertProfile(
       if (response.error) {
         console.error("Error fetching profile:", response);
       } else if (response.data) {
-        console.log("Profile found", response.data);
-        success?.(response?.data?.id);
+        const existingProfile = response.data as Profile;
+        console.log("Profile found", existingProfile);
+        supabase
+          .from("profiles")
+          .upsert([{
+            id: existingProfile.id,
+            name: payload.name,
+            zalo_id: payload.zaloId,
+            avatar_url: payload.avatarUrl,
+          }])
+          .then((f2) => {
+            if (f2.error) {
+              console.error("Error updating profile:", f2.error);
+            } else {
+              console.log("Profile updated successfully", f2.data);
+              success?.(existingProfile.id);
+            }
+          });
       } else {
         console.log("No profile found, creating new one");
         supabase

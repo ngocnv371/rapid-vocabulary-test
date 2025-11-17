@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useAppContext } from "../contexts/AppContext";
 import { getItem, setItem } from "../services/storage";
 import { authorize } from "zmp-sdk";
+import { upsertProfile } from "../services/leaderboard";
 
 const USER_DENIAL_KEY = "user_denial";
 function getUserDenial() {
@@ -13,15 +14,26 @@ function setUserDenial(denied: boolean) {
 }
 
 export default function AskForProfilePermission() {
-  const { user } = useAppContext();
+  const { user, reloadUser } = useAppContext();
 
   const reauthorize = useCallback(() => {
+    console.log("Requesting profile permission from user...");
     authorize({
       scopes: ["scope.userInfo"],
     }).then(
       (result) => {
         console.log("User granted profile permission:", result);
         setUserDenial(false);
+        upsertProfile(
+          {
+            zaloId: user?.id,
+            name: user?.name,
+            avatarUrl: user?.avatar,
+          },
+          () => {
+            reloadUser();
+          }
+        );
       },
       (reason) => {
         console.log("User denied profile permission:", reason);

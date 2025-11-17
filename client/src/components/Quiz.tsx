@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../services/supabase';
-import type { Category, Word } from '../../types';
+import type { Category, Word } from '../types';
 import Spinner from './Spinner';
 import EmojiCelebration from './EmojiCelebration';
 import { useEmojiCelebration, type CelebrationType } from '../hooks/useEmojiCelebration';

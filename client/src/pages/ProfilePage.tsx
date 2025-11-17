@@ -1,5 +1,4 @@
-import { useAppContext } from "@/src/contexts/AppContext";
-import { BottomNavigation, Button, Header, Icon, Page } from "zmp-ui";
+import { Header, Page } from "zmp-ui";
 import Profile from "../components/Profile";
 import NavBar from "../components/NavBar";
 

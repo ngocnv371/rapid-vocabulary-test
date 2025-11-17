@@ -1,5 +1,5 @@
 import React from "react";
-import type { Category } from "../../types";
+import type { Category } from "../types";
 
 type Animal = Category;
 interface SpiritAnimalSelectorProps {

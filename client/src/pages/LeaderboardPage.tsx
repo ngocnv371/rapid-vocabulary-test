@@ -1,10 +1,14 @@
-import { BottomNavigation, Header, Icon, Page } from "zmp-ui";
+import { Header, Page } from "zmp-ui";
 import Leaderboard from "../components/Leaderboard";
 import NavBar from "../components/NavBar";
 
 const LeaderboardPage: React.FC = () => {
   return (
-    <Page hideScrollbar>
+    <Page hideScrollbar style={{ 
+      overscrollBehavior: 'none',
+      WebkitOverflowScrolling: 'touch',
+      touchAction: 'pan-y'
+    }}>
       <Header title="Leaderboard" />
       <Leaderboard />
       <NavBar activeKey="leaderboard" />

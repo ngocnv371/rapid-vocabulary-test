@@ -1,6 +1,6 @@
 
 import { createClient } from '@supabase/supabase-js';
-import { type Word, type Category, type Score, type Profile } from '../../types';
+import { type Word, type Category, type Score, type Profile } from '../types';
 
 interface Database {
   public: {
@@ -22,14 +22,13 @@ interface Database {
       };
       profiles: {
         Row: Profile;
-        Insert: Profile;
+        Insert: Omit<Profile, 'id'>;
         Update: Partial<Omit<Profile, 'id'>>;
       };
     };
   };
 }
-// IMPORTANT: Replace these with your actual Supabase project URL and anon key.
-// It's recommended to store these in environment variables.
+
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 

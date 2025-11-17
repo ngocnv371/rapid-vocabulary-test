@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getUserInfo, type UserInfo } from "zmp-sdk";
 import { upsertProfile } from "../services/leaderboard";
 
 export function useUserInfoLoader() {
   const [user, setUser] = useState<UserInfo | null>(null);
   const [profileId, setProfileId] = useState<number | null>(null);
-  useEffect(() => {
+  const reload = useCallback(() => {
     console.log("Fetching user info from Zalo...");
     getUserInfo().then(
       (user) => {
@@ -17,6 +17,11 @@ export function useUserInfoLoader() {
       }
     );
   }, []);
+
+  // initial load
+  useEffect(() => {
+    reload();
+  }, [reload]);
 
   // when user changes, upsert profile
   useEffect(() => {
@@ -36,5 +41,5 @@ export function useUserInfoLoader() {
       }
     );
   }, [user?.id, user?.name, user?.avatar]);
-  return { user, profileId };
+  return { user, profileId, reload };
 }
