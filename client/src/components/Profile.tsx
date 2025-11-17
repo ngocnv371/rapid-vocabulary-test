@@ -1,15 +1,18 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '../services/supabase';
 import type { User } from '@supabase/supabase-js';
+import type { Score } from '../types';
 import Spinner from './Spinner';
 import { useAppContext } from '@/src/contexts/AppContext';
 import { Avatar, Box } from 'zmp-ui';
 import AskForProfilePermission from './AskForProfilePermission';
+import { calculateStreak } from '../utils/streakCalculator';
 
 export default function Profile() {
     const { user, profileId, spiritAnimal } = useAppContext();
     const [loading, setLoading] = useState<boolean>(true);
     const [highestScore, setHighestScore] = useState<number | null>(null);
+    const [weeklyScores, setWeeklyScores] = useState<Score[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
 
@@ -18,21 +21,28 @@ export default function Profile() {
             setLoading(true);
             setError(null);
             if (profileId) {
-                // Fetch the user's highest score
+                // Calculate date one week ago
+                const oneWeekAgo = new Date();
+                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+                const oneWeekAgoISO = oneWeekAgo.toISOString();
+
+                // Fetch the user's scores from the past week
                 const { data, error: scoresError } = await supabase
                     .from('scores')
                     .select('*')
                     .eq('profile_id', profileId)
-                    .order('score', { ascending: false })
-                    .limit(1)
-                    .maybeSingle();
+                    .gte('created_at', oneWeekAgoISO)
+                    .order('score', { ascending: false });
 
                 if (scoresError) {
                     console.error('Error fetching scores:', scoresError);
-                    setError('Could not fetch your highest score.');
-                } else if (data) {
-                    setHighestScore(data.score || 0);
+                    setError('Could not fetch your scores.');
+                } else if (data && data.length > 0) {
+                    const scores = data as Score[];
+                    setWeeklyScores(scores);
+                    setHighestScore(scores[0].score || 0);
                 } else {
+                    setWeeklyScores([]);
                     setHighestScore(0); // No scores yet
                 }
             } else {
@@ -45,6 +55,23 @@ export default function Profile() {
         }
         fetchProfile();
     }, [profileId]);
+
+    // Memoized stats calculations
+    const stats = useMemo(() => {
+        const gamesPlayed = weeklyScores.length;
+        
+        const avgScore = gamesPlayed > 0
+            ? Math.round(weeklyScores.reduce((sum, s) => sum + s.score, 0) / gamesPlayed)
+            : 0;
+
+        const streak = calculateStreak(weeklyScores);
+
+        return {
+            gamesPlayed,
+            avgScore,
+            streak
+        };
+    }, [weeklyScores]);
 
     if (!user) {
         return null;
@@ -99,7 +126,7 @@ export default function Profile() {
                     {/* Score card */}
                     <div className="relative bg-gradient-to-br from-purple-600 via-pink-600 to-purple-700 p-10 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-300 border border-white/20">
                         <div className="absolute top-2 right-2 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-                        <p className="text-sm text-purple-100 mb-3 uppercase tracking-widest font-bold">🎯 Highest Score 🎯</p>
+                        <p className="text-sm text-purple-100 mb-3 uppercase tracking-widest font-bold">🎯 Best This Week 🎯</p>
                         <p className="text-7xl font-black text-white drop-shadow-2xl tracking-tight">
                             {highestScore ?? 0}
                         </p>
@@ -115,18 +142,22 @@ export default function Profile() {
             <div className="grid grid-cols-3 gap-4 mt-8">
                 <div className="bg-gradient-to-br text-center from-indigo-600/50 to-purple-600/50 p-4 rounded-xl border border-indigo-400/30 backdrop-blur-sm hover:border-indigo-400 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="text-2xl mb-1">🎮</div>
-                    <div className="text-xs text-indigo-200 uppercase tracking-wide">Games Played</div>
-                    <div className="text-xl font-bold text-white mt-1">-</div>
+                    <div className="text-xs text-indigo-200 uppercase tracking-wide">Games This Week</div>
+                    <div className="text-xl font-bold text-white mt-1">{stats.gamesPlayed}</div>
                 </div>
                 <div className="bg-gradient-to-br text-center from-pink-600/50 to-rose-600/50 p-4 rounded-xl border border-pink-400/30 backdrop-blur-sm hover:border-pink-400 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="text-2xl mb-1">⚡</div>
                     <div className="text-xs text-pink-200 uppercase tracking-wide">Avg Score</div>
-                    <div className="text-xl font-bold text-white mt-1">-</div>
+                    <div className="text-xl font-bold text-white mt-1">
+                        {stats.avgScore || '-'}
+                    </div>
                 </div>
                 <div className="bg-gradient-to-br text-center from-violet-600/50 to-fuchsia-600/50 p-4 rounded-xl border border-violet-400/30 backdrop-blur-sm hover:border-violet-400 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="text-2xl mb-1">🔥</div>
                     <div className="text-xs text-violet-200 uppercase tracking-wide">Streak</div>
-                    <div className="text-xl font-bold text-white mt-1">-</div>
+                    <div className="text-xl font-bold text-white mt-1">
+                        {stats.streak > 0 ? `${stats.streak} ${stats.streak === 1 ? 'day' : 'days'}` : '-'}
+                    </div>
                 </div>
             </div>
             <AskForProfilePermission />
