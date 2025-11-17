@@ -7,6 +7,7 @@ import { useAppContext } from '@/src/contexts/AppContext';
 import { Avatar, Box } from 'zmp-ui';
 import AskForProfilePermission from './AskForProfilePermission';
 import { calculateStreak } from '../utils/streakCalculator';
+import WeeklyProgressChart from './WeeklyProgressChart';
 
 export default function Profile() {
     const { user, profileId, spiritAnimal } = useAppContext();
@@ -160,6 +161,10 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
+
+            {/* Weekly Progress Chart */}
+            <WeeklyProgressChart scores={weeklyScores} />
+
             <AskForProfilePermission />
 
             {error && <p className="mt-6 text-center text-red-300 bg-red-900/50 p-4 rounded-xl border border-red-500/30 backdrop-blur-sm animate-shake">{error}</p>}
