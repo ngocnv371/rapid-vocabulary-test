@@ -4,6 +4,10 @@ import { ConfigProvider } from "./components/config-provider";
 import { Layout } from "./components/layout";
 import { HeartsProvider } from "./contexts/HeartsContext";
 
+import "zmp-ui/zaui.css";
+import "./css/tailwind.css";
+import "./css/app.scss";
+
 export default function App() {
   return (
     <AppProvider>
