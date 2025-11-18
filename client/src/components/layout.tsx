@@ -10,9 +10,6 @@ import  LoginPage from "../pages/LoginPage";
 import  GameOverPage from "../pages/GameOverPage";
 import SpiritPage from "../pages/SpiritPage";
 
-import HeartsButton from "./HeartsButton";
-import OutOfHeartsHandler from "./OutOfHeartsHandler";
-
 if (import.meta.env.DEV) {
   document.body.style.setProperty("--zaui-safe-area-inset-top", "24px");
 } else if (getSystemInfo().platform === "android") {
@@ -40,8 +37,6 @@ export const Layout: FC = () => {
           <Route path="/spirit-animal" element={<SpiritPage />}></Route>
         </AnimationRoutes>
       </Box>
-      <HeartsButton />
-      <OutOfHeartsHandler />
     </Box>
   );
 };
