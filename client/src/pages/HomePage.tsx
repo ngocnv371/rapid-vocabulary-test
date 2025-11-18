@@ -1,4 +1,5 @@
 import {
+  Avatar,
   BottomNavigation,
   Box,
   Button,
@@ -10,6 +11,7 @@ import {
 import NavBar from "../components/NavBar";
 import { useCallback } from "react";
 import { useAppContext } from "../contexts/AppContext";
+import UserAvatar from "../components/UserAvatar";
 
 function SmallCard({
   icon,
@@ -30,9 +32,7 @@ function SmallCard({
         <h3 className="text-lg font-bold text-white mb-2 drop-shadow-md">
           {title}
         </h3>
-        <p className="text-sm text-white/80 drop-shadow-sm">
-          {desc}
-        </p>
+        <p className="text-sm text-white/80 drop-shadow-sm">{desc}</p>
       </div>
     </div>
   );
@@ -40,7 +40,7 @@ function SmallCard({
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const { spiritAnimal } = useAppContext();
+  const { spiritAnimal, user } = useAppContext();
   const handleStartQuiz = useCallback(() => {
     if (!spiritAnimal) {
       navigate("/spirit-animal");
@@ -51,23 +51,23 @@ const HomePage: React.FC = () => {
   }, [spiritAnimal]);
 
   return (
-    <Page hideScrollbar className="relative min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+    <Page
+      hideScrollbar
+      className="relative min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"
+    >
       <Header title="Rapid Vocabulary Test" showBackIcon={false} />
 
       <div className="px-4 pb-20">
         {/* Hero Section */}
-        <div className="text-center mt-8 mb-10">
-          <div className="inline-block mb-6 animate-bounce">
-            <div className="text-8xl drop-shadow-2xl filter hover:scale-110 transition-transform duration-300 cursor-pointer">
-              📚
-            </div>
+        <div className="text-center mb-8 animate-fade-in-up">
+          <div className="relative mb-4 animate-float">
+            <UserAvatar />
           </div>
-          <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-pink-400 via-fuchsia-300 to-orange-400 bg-clip-text text-transparent leading-tight drop-shadow-lg">
-            Master Your Vocabulary
+          <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">
+            Welcome{user?.name ? `, ${user.name.split(" ")[0]}` : ""}!
           </h1>
-          <p className="text-lg text-white/90 max-w-md mx-auto font-medium drop-shadow-md">
-            Challenge yourself with rapid-fire word tests and climb the
-            leaderboard! 🚀
+          <p className="text-purple-200 text-lg">
+            Ready to level up your vocabulary?
           </p>
         </div>
 
@@ -75,12 +75,15 @@ const HomePage: React.FC = () => {
         <div className="mb-10">
           <button
             onClick={handleStartQuiz}
-            className="w-full relative overflow-hidden rounded-2xl bg-gradient-to-r from-pink-500 via-fuchsia-500 to-orange-500 py-5 px-6 group hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50"
+            className="w-full relative overflow-hidden rounded-2xl bg-gradient-to-r from-pink-500 via-fuchsia-500 to-orange-500 py-6 px-8 group hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50 animate-pulse hover:animate-none"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
             <div className="relative flex items-center justify-center gap-3">
-              <Icon icon="zi-play" className="text-2xl text-white drop-shadow-lg" />
-              <span className="text-xl font-bold text-white drop-shadow-lg">
+              <Icon
+                icon="zi-play"
+                className="text-3xl text-white drop-shadow-lg"
+              />
+              <span className="text-2xl font-bold text-white drop-shadow-lg">
                 Let's Go! 🎯
               </span>
             </div>

@@ -8,6 +8,7 @@ import { Avatar, Box } from 'zmp-ui';
 import AskForProfilePermission from './AskForProfilePermission';
 import { calculateStreak } from '../utils/streakCalculator';
 import WeeklyProgressChart from './WeeklyProgressChart';
+import UserAvatar from './UserAvatar';
 
 export default function Profile() {
     const { user, profileId, spiritAnimal } = useAppContext();
@@ -97,9 +98,7 @@ export default function Profile() {
                 <div className="relative inline-block">
                     {/* Glow ring around avatar */}
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 blur-xl opacity-75 animate-pulse"></div>
-                    <div className="relative ring-4 ring-purple-400/50 rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                        {user?.avatar ? <Avatar src={user?.avatar} size={96} />: <div className='text-7xl w-[96px] h-[96px]'>{spiritAnimal}</div>}
-                    </div>
+                    <UserAvatar />
                     {/* Trophy badge */}
                     <div className="absolute -bottom-2 -right-2 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full p-2 shadow-lg border-2 border-white/20 transform hover:rotate-12 transition-transform duration-300">
                         <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
