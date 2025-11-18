@@ -21,15 +21,23 @@ function SmallCard({
   desc: string;
 }) {
   return (
-    <Box className="feature-card">
-      <div className="feature-icon">{icon}</div>
-      <h3 className="feature-title">{title}</h3>
-      <p className="feature-desc">{desc}</p>
-    </Box>
+    <div className="group text-center relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md p-6 border border-white/20 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/30 hover:bg-white/20">
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="relative z-10">
+        <div className="text-5xl mb-3 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 drop-shadow-lg">
+          {icon}
+        </div>
+        <h3 className="text-lg font-bold text-white mb-2 drop-shadow-md">
+          {title}
+        </h3>
+        <p className="text-sm text-white/80 drop-shadow-sm">
+          {desc}
+        </p>
+      </div>
+    </div>
   );
 }
 
-// TODO: refactor home page to use tailwind 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { spiritAnimal } = useAppContext();
@@ -43,48 +51,44 @@ const HomePage: React.FC = () => {
   }, [spiritAnimal]);
 
   return (
-    <Page hideScrollbar className="home-page">
+    <Page hideScrollbar className="relative min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
       <Header title="Rapid Vocabulary Test" showBackIcon={false} />
 
-      <Box className="home-container" p={4}>
+      <div className="px-4 pb-20">
         {/* Hero Section */}
-        <Box className="hero-section" mt={6} mb={8}>
-          <div className="hero-icon animate-float">
-            <span style={{ fontSize: "64px" }}>📚</span>
+        <div className="text-center mt-8 mb-10">
+          <div className="inline-block mb-6 animate-bounce">
+            <div className="text-8xl drop-shadow-2xl filter hover:scale-110 transition-transform duration-300 cursor-pointer">
+              📚
+            </div>
           </div>
-          <h1 className="hero-title">Master Your Vocabulary</h1>
-          <p className="hero-subtitle">
+          <h1 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-pink-400 via-fuchsia-300 to-orange-400 bg-clip-text text-transparent leading-tight drop-shadow-lg">
+            Master Your Vocabulary
+          </h1>
+          <p className="text-lg text-white/90 max-w-md mx-auto font-medium drop-shadow-md">
             Challenge yourself with rapid-fire word tests and climb the
-            leaderboard!
+            leaderboard! 🚀
           </p>
-        </Box>
+        </div>
 
         {/* Start Quiz CTA */}
-        <Box mb={6}>
-          <Button
-            variant="primary"
-            size="large"
-            fullWidth
-            className="start-quiz-btn animate-glow-pulse"
+        <div className="mb-10">
+          <button
             onClick={handleStartQuiz}
+            className="w-full relative overflow-hidden rounded-2xl bg-gradient-to-r from-pink-500 via-fuchsia-500 to-orange-500 py-5 px-6 group hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50"
           >
-            <Box
-              flex
-              flexDirection="row"
-              alignItems="center"
-              justifyContent="center"
-              style={{ gap: "8px" }}
-            >
-              <Icon icon="zi-play" style={{ fontSize: "20px" }} />
-              <span style={{ fontSize: "18px", fontWeight: "600" }}>
-                Let's go!
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-fuchsia-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+            <div className="relative flex items-center justify-center gap-3">
+              <Icon icon="zi-play" className="text-2xl text-white drop-shadow-lg" />
+              <span className="text-xl font-bold text-white drop-shadow-lg">
+                Let's Go! 🎯
               </span>
-            </Box>
-          </Button>
-        </Box>
+            </div>
+          </button>
+        </div>
 
         {/* Features Grid */}
-        <Box className="features-grid" mb={8}>
+        <div className="grid grid-cols-2 gap-4 mb-10">
           <SmallCard
             icon="⚡"
             title="Quick Tests"
@@ -96,31 +100,29 @@ const HomePage: React.FC = () => {
             desc="Rise through the leaderboard"
           />
           <SmallCard
-            icon="🏆"
-            title="Compete"
-            desc="Rise through the leaderboard"
-          />
-          <SmallCard
             icon="🎯"
             title="Track Progress"
             desc="Monitor your improvement"
           />
-
           <SmallCard
             icon={spiritAnimal || "🦄"}
             title="Your Spirit"
             desc="Unique animal avatar"
           />
-        </Box>
+        </div>
 
-        {/* Quick Stats */}
-        <Box className="stats-section" mb={4}>
-          <h2 className="stats-title">Ready to Test Your Skills?</h2>
-          <p className="stats-desc">
+        {/* Call to Action Section */}
+        <div className="text-center bg-white/10 backdrop-blur-md rounded-3xl p-8 border-2 border-white/20 shadow-xl">
+          <div className="text-4xl mb-4">🌟</div>
+          <h2 className="text-2xl font-bold text-white mb-3 drop-shadow-md">
+            Ready to Test Your Skills?
+          </h2>
+          <p className="text-base text-white/90 font-medium drop-shadow-sm">
             Join thousands of learners improving their vocabulary daily
           </p>
-        </Box>
-      </Box>
+        </div>
+      </div>
+      <div className="py-12"></div>
 
       <NavBar activeKey="home" />
     </Page>
