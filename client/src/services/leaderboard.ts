@@ -1,6 +1,16 @@
 import { Profile } from "@/src/types";
 import { supabase } from "./supabase";
 
+// Score posting buffer - tracks last post time and pending scores per profile
+interface BufferEntry {
+  lastPostTime: number;
+  pendingScore: number | null;
+  timeoutId: NodeJS.Timeout | null;
+}
+
+const scorePostBuffer = new Map<number, BufferEntry>();
+const POST_COOLDOWN_MS = 60000; // 1 minute
+
 export function upsertProfile(
   payload: {
     name: string;
@@ -62,8 +72,7 @@ export function upsertProfile(
     });
 }
 
-export function postScore(profileId: number, score: number): void {
-  console.log(`Posting score ${score} for profile ${profileId}`);
+function actuallyPostScore(profileId: number, score: number): void {
   supabase
     .from("scores")
     .insert([
@@ -78,8 +87,76 @@ export function postScore(profileId: number, score: number): void {
     .then((response) => {
       if (response.error) {
         console.error("Error posting score:", response.error);
+        // Remove the buffer entry on error so they can retry
+        const entry = scorePostBuffer.get(profileId);
+        if (entry) {
+          entry.lastPostTime = 0; // Reset to allow immediate retry
+        }
       } else {
         console.log("Score posted successfully", response);
       }
     });
+}
+
+export function postScore(profileId: number, score: number): void {
+  console.log(`Posting score ${score} for profile ${profileId}`);
+  
+  const now = Date.now();
+  const entry = scorePostBuffer.get(profileId);
+  
+  if (!entry) {
+    // First time posting for this profile
+    scorePostBuffer.set(profileId, {
+      lastPostTime: now,
+      pendingScore: null,
+      timeoutId: null,
+    });
+    actuallyPostScore(profileId, score);
+    return;
+  }
+  
+  const timeSinceLastPost = now - entry.lastPostTime;
+  
+  if (timeSinceLastPost >= POST_COOLDOWN_MS) {
+    // Cooldown has passed, post immediately
+    entry.lastPostTime = now;
+    entry.pendingScore = null;
+    
+    // Clear any pending timeout
+    if (entry.timeoutId) {
+      clearTimeout(entry.timeoutId);
+      entry.timeoutId = null;
+    }
+    
+    actuallyPostScore(profileId, score);
+  } else {
+    // Still in cooldown, buffer the score
+    const remainingTime = POST_COOLDOWN_MS - timeSinceLastPost;
+    const remainingSeconds = Math.ceil(remainingTime / 1000);
+    
+    // Keep the higher score
+    if (entry.pendingScore === null || score > entry.pendingScore) {
+      entry.pendingScore = score;
+      console.log(`Score ${score} buffered for profile ${profileId}. Will post in ${remainingSeconds} seconds.`);
+      
+      // Clear existing timeout if any
+      if (entry.timeoutId) {
+        clearTimeout(entry.timeoutId);
+      }
+      
+      // Schedule the post after cooldown
+      entry.timeoutId = setTimeout(() => {
+        if (entry.pendingScore !== null) {
+          console.log(`Posting buffered score ${entry.pendingScore} for profile ${profileId}`);
+          entry.lastPostTime = Date.now();
+          const scoreToPost = entry.pendingScore;
+          entry.pendingScore = null;
+          entry.timeoutId = null;
+          actuallyPostScore(profileId, scoreToPost);
+        }
+      }, remainingTime);
+    } else {
+      console.log(`Score ${score} ignored (lower than buffered score ${entry.pendingScore}) for profile ${profileId}.`);
+    }
+  }
 }
