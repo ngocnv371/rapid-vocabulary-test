@@ -21,5 +21,21 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "."),
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Vendor chunk for React and related libraries
+            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+            // Vendor chunk for Zalo Mini Program libraries
+            'vendor-zmp': ['zmp-sdk', 'zmp-ui'],
+            // Vendor chunk for Supabase
+            'vendor-supabase': ['@supabase/supabase-js'],
+          },
+        },
+      },
+      // Increase chunk size warning limit (default is 500kb)
+      chunkSizeWarningLimit: 1000,
+    },
   };
 });
