@@ -1,6 +1,6 @@
 
 export interface Category {
-  id: number;
+  id: string;
   name: string;
   icon: string;
 }
@@ -8,16 +8,16 @@ export interface Category {
 export interface Word {
   id: number;
   word: string;
-  category: number;
+  category: string;
   language: string;
   meaning: string;
 }
 
 export interface Score {
   id: number;
-  profile_id: string;
+  profile_id: number;
   score: number;
-  category: number;
+  category: string;
   created_at: string;
 }
 

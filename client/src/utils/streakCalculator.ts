@@ -43,7 +43,7 @@ export function calculateStreak(scores: Score[]): number {
     }
 
     // Count consecutive days going backwards
-    for (let i = (scoreDates[0] === today ? 1 : 1); i < scoreDates.length; i++) {
+    for (let i = 1; i < scoreDates.length; i++) {
         const expectedDate = checkDate.toISOString().split('T')[0];
         
         if (scoreDates[i] === expectedDate) {
