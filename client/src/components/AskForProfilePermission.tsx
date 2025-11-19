@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useAppContext } from "../contexts/AppContext";
 import { getItem, setItem } from "../services/storage";
 import { authorize } from "zmp-sdk";
-import { upsertProfile } from "../services/leaderboard";
+import { upsertProfile } from "../services/profile";
 
 const USER_DENIAL_KEY = "user_denial";
 function getUserDenial() {
