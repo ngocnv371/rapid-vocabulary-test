@@ -1,11 +1,14 @@
 import React, { useMemo } from 'react';
 import type { Score } from '../types';
+import { useTranslation } from 'react-i18next';
 
 interface WeeklyProgressChartProps {
     scores: Score[];
 }
 
 export default function WeeklyProgressChart({ scores }: WeeklyProgressChartProps) {
+    const { t } = useTranslation();
+    const locale = t('locale');
     const chartData = useMemo(() => {
         if (!scores.length) return [];
 
@@ -35,7 +38,7 @@ export default function WeeklyProgressChart({ scores }: WeeklyProgressChartProps
             const bestScore = dayScores.length > 0 ? Math.max(...dayScores) : 0;
             
             // Format label (e.g., "Mon", "Tue")
-            const dayLabel = date.toLocaleDateString('en-US', { weekday: 'short' });
+            const dayLabel = date.toLocaleDateString(locale, { weekday: 'short' });
             
             last7Days.push({
                 date: dayKey,
@@ -45,7 +48,7 @@ export default function WeeklyProgressChart({ scores }: WeeklyProgressChartProps
         }
 
         return last7Days;
-    }, [scores]);
+    }, [scores, locale]);
 
     const maxScore = useMemo(() => {
         const max = Math.max(...chartData.map(d => d.score), 10);
@@ -91,9 +94,9 @@ export default function WeeklyProgressChart({ scores }: WeeklyProgressChartProps
         <div className="w-full bg-gradient-to-br from-indigo-900/40 to-purple-900/40 p-6 rounded-2xl border border-indigo-400/30 backdrop-blur-sm mt-8">
             <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-300">
-                    📈 Weekly Progress
+                    📈 {t('profile.progressChart')}
                 </h3>
-                <div className="text-xs text-indigo-300">Last 7 Days</div>
+                <div className="text-xs text-indigo-300">{t('profile.last7Days')}</div>
             </div>
 
             <svg
@@ -226,7 +229,7 @@ export default function WeeklyProgressChart({ scores }: WeeklyProgressChartProps
             <div className="mt-4 flex items-center justify-center gap-2 text-xs text-indigo-300">
                 <div className="flex items-center gap-1">
                     <div className="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
-                    <span>Best Score</span>
+                    <span>{t('profile.legend')}</span>
                 </div>
             </div>
         </div>

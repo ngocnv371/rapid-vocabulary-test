@@ -53,6 +53,9 @@
     "streak": "Streak",
     "day": "day",
     "days": "days",
+    "progressChart": "Weekly Progress",
+    "last7Days": "Last 7 Days",
+    "legend": "Best Score",
     "loading": "Loading profile..."
   },
   "common": {
@@ -61,5 +64,6 @@
     "loading": "Loading...",
     "error": "Error",
     "success": "Success"
-  }
+  },
+  "locale": "en-US"
 }

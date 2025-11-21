@@ -53,6 +53,9 @@
     "streak": "Liên Tục",
     "day": "ngày",
     "days": "ngày",
+    "progressChart": "Tiến Độ Hàng Tuần",
+    "last7Days": "7 Ngày Qua",
+    "legend": "Điểm Cao Nhất",
     "loading": "Đang tải hồ sơ..."
   },
   "common": {
@@ -61,5 +64,6 @@
     "loading": "Đang tải...",
     "error": "Lỗi",
     "success": "Thành công"
-  }
+  },
+  "locale": "vi-VN"
 }
