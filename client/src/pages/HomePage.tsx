@@ -1,8 +1,4 @@
 import {
-  Avatar,
-  BottomNavigation,
-  Box,
-  Button,
   Header,
   Icon,
   Page,
@@ -12,6 +8,7 @@ import NavBar from "../components/NavBar";
 import { useCallback } from "react";
 import { useAppContext } from "../contexts/AppContext";
 import UserAvatar from "../components/UserAvatar";
+import { useTranslation } from "react-i18next";
 
 function SmallCard({
   icon,
@@ -41,6 +38,8 @@ function SmallCard({
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { spiritAnimal, user } = useAppContext();
+  const { t } = useTranslation();
+  
   const handleStartQuiz = useCallback(() => {
     if (!spiritAnimal) {
       navigate("/spirit-animal");
@@ -55,7 +54,7 @@ const HomePage: React.FC = () => {
       hideScrollbar
       className="relative min-h-screen"
     >
-      <Header title="Rapid Vocabulary Test" showBackIcon={false} />
+      <Header title={t('home.title')} showBackIcon={false} />
 
       <div className="px-4 pb-20">
         {/* Hero Section */}
@@ -64,10 +63,10 @@ const HomePage: React.FC = () => {
             <UserAvatar />
           </div>
           <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">
-            Welcome{user?.name ? `, ${user.name.split(" ")[0]}` : ""}!
+            {user?.name ? t('home.welcomeBack', { name: user.name.split(" ")[0] }) : t('home.welcome') + "!"}
           </h1>
           <p className="text-purple-200 text-lg">
-            Ready to level up your vocabulary?
+            {t('home.subtitle')}
           </p>
         </div>
 
@@ -84,7 +83,7 @@ const HomePage: React.FC = () => {
                 className="text-3xl text-white drop-shadow-lg"
               />
               <span className="text-2xl font-bold text-white drop-shadow-lg">
-                Let's Go! 🎯
+                {t('home.startButton')}
               </span>
             </div>
           </button>
@@ -94,23 +93,23 @@ const HomePage: React.FC = () => {
         <div className="grid grid-cols-2 gap-4 mb-10">
           <SmallCard
             icon="⚡"
-            title="Quick Tests"
-            desc="Fast-paced vocabulary challenges"
+            title={t('home.quickTests')}
+            desc={t('home.quickTestsDesc')}
           />
           <SmallCard
             icon="🏆"
-            title="Compete"
-            desc="Rise through the leaderboard"
+            title={t('home.compete')}
+            desc={t('home.competeDesc')}
           />
           <SmallCard
             icon="🎯"
-            title="Track Progress"
-            desc="Monitor your improvement"
+            title={t('home.trackProgress')}
+            desc={t('home.trackProgressDesc')}
           />
           <SmallCard
             icon={spiritAnimal || "🦄"}
-            title="Your Spirit"
-            desc="Unique animal avatar"
+            title={t('home.yourSpirit')}
+            desc={t('home.yourSpiritDesc')}
           />
         </div>
 
@@ -118,10 +117,10 @@ const HomePage: React.FC = () => {
         <div className="text-center bg-white/10 backdrop-blur-md rounded-3xl p-8 border-2 border-white/20 shadow-xl">
           <div className="text-4xl mb-4">🌟</div>
           <h2 className="text-2xl font-bold text-white mb-3 drop-shadow-md">
-            Ready to Test Your Skills?
+            {t('home.ctaTitle')}
           </h2>
           <p className="text-base text-white/90 font-medium drop-shadow-sm">
-            Join thousands of learners improving their vocabulary daily
+            {t('home.ctaSubtitle')}
           </p>
         </div>
       </div>

@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Home",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile"
+  },
+  "home": {
+    "title": "Rapid Vocabulary Test",
+    "welcome": "Welcome",
+    "welcomeBack": "Welcome, {{name}}!",
+    "subtitle": "Ready to level up your vocabulary?",
+    "startButton": "Let's Go! 🎯",
+    "quickTests": "Quick Tests",
+    "quickTestsDesc": "Fast-paced vocabulary challenges",
+    "compete": "Compete",
+    "competeDesc": "Rise through the leaderboard",
+    "trackProgress": "Track Progress",
+    "trackProgressDesc": "Monitor your improvement",
+    "yourSpirit": "Your Spirit",
+    "yourSpiritDesc": "Unique animal avatar",
+    "ctaTitle": "Ready to Test Your Skills?",
+    "ctaSubtitle": "Join thousands of learners improving their vocabulary daily"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "questionPrefix": "What is the meaning of",
+    "loading": "Loading questions...",
+    "errorTitle": "Oops! Something went wrong.",
+    "errorButton": "Choose a Different Spirit Animal",
+    "noQuestions": "No questions available."
+  },
+  "gameOver": {
+    "title": "Rapid Vocabulary Test",
+    "scorePrefix": "Your final score is",
+    "playAgain": "🎮 Play Again",
+    "viewLeaderboard": "🏆 View Leaderboard"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "topChampions": "🏆 Top Champions 🏆",
+    "champion": "CHAMPION",
+    "allRankings": "All Rankings",
+    "loading": "Loading leaderboard...",
+    "errorTitle": "Could Not Load Scores",
+    "noScores": "No scores yet. Be the first!"
+  },
+  "profile": {
+    "title": "Profile",
+    "highScores": "🏆 High Scores 🏆",
+    "bestThisWeek": "🎯 Best This Week 🎯",
+    "gamesThisWeek": "Games This Week",
+    "avgScore": "Avg Score",
+    "streak": "Streak",
+    "day": "day",
+    "days": "days",
+    "loading": "Loading profile..."
+  },
+  "common": {
+    "or": "or",
+    "and": "and",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  }
+}

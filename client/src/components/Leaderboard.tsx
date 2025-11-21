@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { supabase } from "../services/supabase";
 import type { ScoreWithProfile, Category } from "../types";
 import Spinner from "./Spinner";
+import { useTranslation } from "react-i18next";
 
 const RankDisplay: React.FC<{ rank: number; isTopThree?: boolean }> = ({ rank, isTopThree }) => {
   const medals: { [key: number]: string } = { 1: "🥇", 2: "🥈", 3: "🥉" };
@@ -75,6 +76,7 @@ const PlayerAvatar: React.FC<{ name: string; avatarUrl?: string; rank: number }>
 };
 
 export default function Leaderboard() {
+  const { t } = useTranslation();
   const [scores, setScores] = useState<ScoreWithProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -113,7 +115,7 @@ export default function Leaderboard() {
       {loading ? (
         <div className="flex flex-col items-center justify-center gap-4 py-12">
           <Spinner />
-          <p className="text-xl text-purple-300">Loading leaderboard...</p>
+          <p className="text-xl text-purple-300">{t('leaderboard.loading')}</p>
         </div>
       ) : error ? (
         <div className="text-center py-12">
@@ -134,14 +136,14 @@ export default function Leaderboard() {
             </svg>
           </div>
           <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-2">
-            Could Not Load Scores
+            {t('leaderboard.errorTitle')}
           </h3>
           <p className="text-gray-300">{error}</p>
         </div>
       ) : scores.length === 0 ? (
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-purple-500/30 text-center">
           <p className="text-gray-400 text-lg">
-            No scores yet. Be the first!
+            {t('leaderboard.noScores')}
           </p>
         </div>
       ) : (
@@ -150,7 +152,7 @@ export default function Leaderboard() {
           {topThree.length > 0 && (
             <div className="mb-8 animate-fade-in-up">
               <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
-                🏆 Top Champions 🏆
+                {t('leaderboard.topChampions')}
               </h2>
               <div className="flex items-end justify-center gap-2 mb-8 px-2">
                 {/* 2nd Place */}
@@ -188,7 +190,7 @@ export default function Leaderboard() {
                   >
                     <div className="relative bg-gradient-to-br from-yellow-500/20 to-amber-600/20 rounded-2xl p-4 border-2 border-yellow-400 shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300 hover:scale-105 animate-glow-pulse">
                       <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-2 py-0.5 rounded-full text-[10px] font-bold shadow-lg">
-                        CHAMPION
+                        {t('leaderboard.champion')}
                       </div>
                       <div className="flex flex-col items-center gap-2">
                         <RankDisplay rank={1} isTopThree />
@@ -244,7 +246,7 @@ export default function Leaderboard() {
           {rest.length > 0 && (
             <div className="space-y-3">
               <h3 className="text-xl font-semibold text-gray-300 mb-4 px-2">
-                All Rankings
+                {t('leaderboard.allRankings')}
               </h3>
               {rest.map((s, index) => {
                 const actualRank = index + 4;

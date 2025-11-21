@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 interface GameOverProps {
   score: number;
   onPlayAgain?: () => void;
@@ -9,6 +11,8 @@ export default function GameOver({
   onPlayAgain,
   onViewLeaderboard,
 }: GameOverProps) {
+  const { t } = useTranslation();
+  
   return (
     <div className="w-full max-w-2xl mx-auto p-4 pt-10 relative">
       {/* Animated background orbs */}
@@ -33,7 +37,7 @@ export default function GameOver({
         <div className="absolute -top-8 left-1/4 text-yellow-400 text-3xl animate-bounce">🎉</div>
         <div className="absolute -top-8 right-1/4 text-pink-400 text-3xl animate-bounce" style={{ animationDelay: '0.3s' }}>🎊</div>
         
-        <p className="text-2xl text-purple-200 mb-4 font-semibold tracking-wide">Your final score is</p>
+        <p className="text-2xl text-purple-200 mb-4 font-semibold tracking-wide">{t('gameOver.scorePrefix')}</p>
         
         <div className="inline-block relative group">
           {/* Glow effect */}
@@ -62,7 +66,7 @@ export default function GameOver({
           {/* Button shine effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
           <span className="relative flex items-center justify-center gap-2">
-            🎮 Play Again
+            {t('gameOver.playAgain')}
           </span>
         </button>
         
@@ -73,7 +77,7 @@ export default function GameOver({
           {/* Button shine effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
           <span className="relative flex items-center justify-center gap-2">
-            🏆 View Leaderboard
+            {t('gameOver.viewLeaderboard')}
           </span>
         </button>
       </div>

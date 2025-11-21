@@ -5,6 +5,7 @@ import type { Category, Word } from '../types';
 import Spinner from './Spinner';
 import EmojiCelebration from './EmojiCelebration';
 import { useEmojiCelebration, type CelebrationType } from '../hooks/useEmojiCelebration';
+import { useTranslation } from 'react-i18next';
 
 interface QuizProps {
   category?: Category;
@@ -18,6 +19,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 export default function Quiz({ category, onGameOver, onBackToCategories, onProgressUpdate }: QuizProps) {
+  const { t } = useTranslation();
   const [words, setWords] = useState<Word[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -122,7 +124,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
     return (
       <div className="flex flex-col items-center justify-center gap-4">
         <Spinner />
-        <p className="text-xl text-purple-300">Loading questions...</p>
+        <p className="text-xl text-purple-300">{t('quiz.loading')}</p>
       </div>
     );
   }
@@ -136,13 +138,13 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
         </div>
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3">Oops! Something went wrong.</h2>
+        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3">{t('quiz.errorTitle')}</h2>
         <p className="text-lg text-gray-300 mb-8">{error}</p>
         <button
           onClick={onBackToCategories}
           className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-lg transition-colors"
         >
-          Choose a Different Spirit Animal
+          {t('quiz.errorButton')}
         </button>
       </div>
       </div>
@@ -150,7 +152,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
   }
 
   if (words.length === 0 || currentQuestionIndex >= words.length) {
-    return <p className="text-xl">No questions available.</p>;
+    return <p className="text-xl">{t('quiz.noQuestions')}</p>;
   }
 
   const currentWord = words[currentQuestionIndex];
@@ -167,7 +169,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
             : 'opacity-100 translate-y-0'
         }`}
       >
-        <p className="text-xl md:text-2xl text-gray-400 mb-4">What is the meaning of</p>
+        <p className="text-xl md:text-2xl text-gray-400 mb-4">{t('quiz.questionPrefix')}</p>
         <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 break-words">
           {currentWord.word}
         </h2>

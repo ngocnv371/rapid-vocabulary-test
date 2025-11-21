@@ -3,6 +3,7 @@ import { App as ZApp, SnackbarProvider, ZMPRouter } from "zmp-ui";
 import { ConfigProvider } from "./components/config-provider";
 import { Layout } from "./components/layout";
 import { HeartsProvider } from "./contexts/HeartsContext";
+import "./i18n/config";
 
 import "zmp-ui/zaui.css";
 import "./css/tailwind.css";

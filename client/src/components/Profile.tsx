@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../services/supabase';
-import type { User } from '@supabase/supabase-js';
 import type { Score } from '../types';
 import Spinner from './Spinner';
 import { useAppContext } from '@/src/contexts/AppContext';
-import { Avatar, Box } from 'zmp-ui';
+import { Box } from 'zmp-ui';
 import AskForProfilePermission from './AskForProfilePermission';
 import { calculateStreak } from '../utils/streakCalculator';
 import WeeklyProgressChart from './WeeklyProgressChart';
 import UserAvatar from './UserAvatar';
+import { useTranslation } from 'react-i18next';
 
 export default function Profile() {
     const { user, profileId, spiritAnimal } = useAppContext();
+    const { t } = useTranslation();
     const [loading, setLoading] = useState<boolean>(true);
     const [highestScore, setHighestScore] = useState<number | null>(null);
     const [weeklyScores, setWeeklyScores] = useState<Score[]>([]);
@@ -80,7 +81,7 @@ export default function Profile() {
     }
 
     if (loading) {
-        return <div className="flex flex-col items-center justify-center gap-4"><Spinner /><p className="text-xl text-purple-300">Loading profile...</p></div>;
+        return <div className="flex flex-col items-center justify-center gap-4"><Spinner /><p className="text-xl text-purple-300">{t('profile.loading')}</p></div>;
     }
 
     if (error && !user) { // Only show full-page error if user couldn't be loaded
@@ -110,7 +111,7 @@ export default function Profile() {
 
             {/* Title with enhanced gradient */}
             <h2 className="text-4xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-purple-300 tracking-wide animate-pulse">
-                🏆 High Scores 🏆
+                {t('profile.highScores')}
             </h2>
 
             {/* Main Score Card with enhanced styling */}
@@ -126,7 +127,7 @@ export default function Profile() {
                     {/* Score card */}
                     <div className="relative bg-gradient-to-br from-purple-600 via-pink-600 to-purple-700 p-10 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-300 border border-white/20">
                         <div className="absolute top-2 right-2 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-                        <p className="text-sm text-purple-100 mb-3 uppercase tracking-widest font-bold">🎯 Best This Week 🎯</p>
+                        <p className="text-sm text-purple-100 mb-3 uppercase tracking-widest font-bold">{t('profile.bestThisWeek')}</p>
                         <p className="text-7xl font-black text-white drop-shadow-2xl tracking-tight">
                             {highestScore ?? 0}
                         </p>
@@ -142,21 +143,21 @@ export default function Profile() {
             <div className="grid grid-cols-3 gap-4 mt-8">
                 <div className="bg-gradient-to-br text-center from-indigo-600/50 to-purple-600/50 p-4 rounded-xl border border-indigo-400/30 backdrop-blur-sm hover:border-indigo-400 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="text-2xl mb-1">🎮</div>
-                    <div className="text-xs text-indigo-200 uppercase tracking-wide">Games This Week</div>
+                    <div className="text-xs text-indigo-200 uppercase tracking-wide">{t('profile.gamesThisWeek')}</div>
                     <div className="text-xl font-bold text-white mt-1">{stats.gamesPlayed}</div>
                 </div>
                 <div className="bg-gradient-to-br text-center from-pink-600/50 to-rose-600/50 p-4 rounded-xl border border-pink-400/30 backdrop-blur-sm hover:border-pink-400 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="text-2xl mb-1">⚡</div>
-                    <div className="text-xs text-pink-200 uppercase tracking-wide">Avg Score</div>
+                    <div className="text-xs text-pink-200 uppercase tracking-wide">{t('profile.avgScore')}</div>
                     <div className="text-xl font-bold text-white mt-1">
                         {stats.avgScore || '-'}
                     </div>
                 </div>
                 <div className="bg-gradient-to-br text-center from-violet-600/50 to-fuchsia-600/50 p-4 rounded-xl border border-violet-400/30 backdrop-blur-sm hover:border-violet-400 transition-all duration-300 hover:transform hover:scale-105">
                     <div className="text-2xl mb-1">🔥</div>
-                    <div className="text-xs text-violet-200 uppercase tracking-wide">Streak</div>
+                    <div className="text-xs text-violet-200 uppercase tracking-wide">{t('profile.streak')}</div>
                     <div className="text-xl font-bold text-white mt-1">
-                        {stats.streak > 0 ? `${stats.streak} ${stats.streak === 1 ? 'day' : 'days'}` : '-'}
+                        {stats.streak > 0 ? `${stats.streak} ${stats.streak === 1 ? t('profile.day') : t('profile.days')}` : '-'}
                     </div>
                 </div>
             </div>

@@ -6,9 +6,11 @@ import { useAppContext } from "@/src/contexts/AppContext";
 import { supabase } from "@/src/services/supabase";
 import { setItem, setLastScore } from "../services/storage";
 import { postScore } from "../services/leaderboard";
+import { useTranslation } from "react-i18next";
 
 const QuizPage: React.FC = () => {
   const { profileId } = useAppContext();
+  const { t } = useTranslation();
   const [progress, setProgress] = React.useState({ current: 0, total: 0 });
   const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ const QuizPage: React.FC = () => {
 
   return (
     <Page hideScrollbar>
-      <Header title="Quiz" />
+      <Header title={t('quiz.title')} />
       {progress.total > 0 && <ProgressBar current={progress.current} total={progress.total} />}
       <Quiz
         onGameOver={handleGameOver}

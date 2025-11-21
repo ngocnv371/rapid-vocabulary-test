@@ -3,8 +3,10 @@ import GameOver from "../components/GameOver";
 import React, { useCallback, useEffect } from "react";
 import { getItem, getLastScore } from "../services/storage";
 import NavBar from "../components/NavBar";
+import { useTranslation } from "react-i18next";
 
 const GameOverPage: React.FC = () => {
+  const { t } = useTranslation();
   const [score, setScore] = React.useState(0);
   const navigate = useNavigate();
   const playAgain = useCallback(() => {
@@ -25,7 +27,7 @@ const GameOverPage: React.FC = () => {
 
   return (
     <Page hideScrollbar>
-      <Header title="Rapid Vocabulary Test" showBackIcon={false} />
+      <Header title={t('gameOver.title')} showBackIcon={false} />
       <GameOver
         score={score}
         onPlayAgain={playAgain}

@@ -1,4 +1,4 @@
-import React, { FC, lazy, Suspense } from "react";
+import { FC, lazy, Suspense } from "react";
 import { Route } from "react-router";
 import { Box, AnimationRoutes } from "zmp-ui";
 import { getSystemInfo } from "zmp-sdk";

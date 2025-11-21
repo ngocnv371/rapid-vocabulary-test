@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "leaderboard": "Bảng xếp hạng",
+    "profile": "Hồ sơ"
+  },
+  "home": {
+    "title": "Kiểm Tra Từ Vựng Nhanh",
+    "welcome": "Chào mừng",
+    "welcomeBack": "Chào, {{name}}!",
+    "subtitle": "Sẵn sàng nâng cấp vốn từ vựng của bạn chưa?",
+    "startButton": "Bắt đầu! 🎯",
+    "quickTests": "Bài kiểm tra nhanh",
+    "quickTestsDesc": "Thử thách từ vựng nhịp độ nhanh",
+    "compete": "Thi đấu",
+    "competeDesc": "Vươn lên bảng xếp hạng",
+    "trackProgress": "Theo dõi tiến độ",
+    "trackProgressDesc": "Giám sát sự tiến bộ của bạn",
+    "yourSpirit": "Linh vật của bạn",
+    "yourSpiritDesc": "Hình đại diện động vật độc đáo",
+    "ctaTitle": "Sẵn sàng kiểm tra kỹ năng của bạn?",
+    "ctaSubtitle": "Tham gia cùng hàng nghìn người học đang cải thiện từ vựng mỗi ngày"
+  },
+  "quiz": {
+    "title": "Trắc nghiệm",
+    "questionPrefix": "Nghĩa của từ này là gì",
+    "loading": "Đang tải câu hỏi...",
+    "errorTitle": "Rất tiếc! Đã xảy ra lỗi.",
+    "errorButton": "Chọn Linh Vật Khác",
+    "noQuestions": "Không có câu hỏi nào."
+  },
+  "gameOver": {
+    "title": "Kiểm Tra Từ Vựng Nhanh",
+    "scorePrefix": "Điểm của bạn là",
+    "playAgain": "🎮 Chơi Lại",
+    "viewLeaderboard": "🏆 Xem Bảng Xếp Hạng"
+  },
+  "leaderboard": {
+    "title": "Bảng xếp hạng",
+    "topChampions": "🏆 Hàng Đầu 🏆",
+    "champion": "VÔ ĐỊCH",
+    "allRankings": "Toàn Bộ Xếp Hạng",
+    "loading": "Đang tải bảng xếp hạng...",
+    "errorTitle": "Không Thể Tải Điểm Số",
+    "noScores": "Chưa có điểm số nào. Hãy là người đầu tiên!"
+  },
+  "profile": {
+    "title": "Hồ sơ",
+    "highScores": "🏆 Điểm Cao 🏆",
+    "bestThisWeek": "🎯 Cao Nhất 🎯",
+    "gamesThisWeek": "Lượt Chơi",
+    "avgScore": "Trung Bình",
+    "streak": "Liên Tục",
+    "day": "ngày",
+    "days": "ngày",
+    "loading": "Đang tải hồ sơ..."
+  },
+  "common": {
+    "or": "hoặc",
+    "and": "và",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công"
+  }
+}
