@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../services/supabase';
 import type { Category, Word } from '../types';
@@ -36,23 +35,39 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
     const fetchWords = async () => {
       setLoading(true);
       setError(null);
+      
+      // First, get the total count
+      const { count } = await supabase
+        .from('words')
+        .select('*', { count: 'exact', head: true });
+      
+      if (!count || count < 4) {
+        setError('Not enough words available to start a quiz. (Need at least 4)');
+        setLoading(false);
+        return;
+      }
+      
+      // Calculate a random offset
+      const maxOffset = Math.max(0, count - 100);
+      const randomOffset = Math.floor(Math.random() * maxOffset);
+      
       const { data, error } = await supabase
         .from('words')
         .select('*')
-        .limit(100);
+        .range(randomOffset, randomOffset + 99);
 
       if (error) {
         setError('Failed to fetch words. Please try again.');
         console.error(error);
       } else if (data && data.length > 3) {
-        setWords(shuffleArray(data));
+        setWords(shuffleArray(data as any[]));
       } else {
         setError('Not enough words available to start a quiz. (Need at least 4)');
       }
       setLoading(false);
     };
 
-    onProgressUpdate(0, 0);
+    onProgressUpdate?.(0, 0);
     fetchWords();
   }, [category]);
 
@@ -111,12 +126,12 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
           setCurrentQuestionIndex(prev => prev + 1);
         } else {
           // Game won!
-          onGameOver(score + 1);
+          onGameOver?.(score + 1);
         }
       }, 500);
     } else {
       // Game over
-      onGameOver(score);
+      onGameOver?.(score);
     }
   };
 
