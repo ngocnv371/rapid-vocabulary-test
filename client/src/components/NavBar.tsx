@@ -16,7 +16,7 @@ export default function NavBar({ activeKey }: { activeKey: string }) {
         key="leaderboard"
       />
       <BottomNavigation.Item
-        label=""
+        label="Profile"
         linkTo="/profile"
         icon={<Icon icon="zi-user" />}
         key="profile"
