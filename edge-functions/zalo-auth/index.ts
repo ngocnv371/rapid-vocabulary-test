@@ -1,13 +1,27 @@
 import { createClient } from "npm:@supabase/supabase-js@2.25.0";
-// This function verifies the zalo token. Replace with real API call.
-async function verifyZaloToken(zaloAccessToken) {
-  // Placeholder: simulate an API call
-  // In production, call Zalo's API and return { userId, name, avatarUrl }
-  return {
-    id: `zalo_${zaloAccessToken.slice(0, 8)}`,
-    name: 'Zalo User',
-    avatar: 'https://example.com/avatar.png'
-  };
+import crypto from 'node:crypto';
+const calculateHMacSHA256 = (data: string, secretKey: string)=>{
+  const hmac = crypto.createHmac("sha256", secretKey);
+  hmac.update(data);
+  return hmac.digest("hex");
+};
+async function verifyZaloToken(zaloAccessToken: string) {
+  const zaloSecretKey = Deno.env.get('ZALO_APP_SECRET_KEY');
+  const response = await fetch("https://graph.zalo.me/v2.0/me?fields=id,name,picture", {
+    method: "GET",
+    headers: {
+      access_token: zaloAccessToken,
+      appsecret_proof: calculateHMacSHA256(zaloAccessToken, zaloSecretKey)
+    }
+  });
+  const json = await response.json();
+  console.log('json', json);
+  if (response.status != 200) {
+    throw new Error('Failed to request zalo');
+  }
+  const data = JSON.parse(json);
+  console.log('data', data);
+  return data;
 }
 function getClient() {
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
