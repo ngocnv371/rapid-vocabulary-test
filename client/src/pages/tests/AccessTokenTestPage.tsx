@@ -1,35 +1,55 @@
 import { Header, Page, Button, Box, Text } from "zmp-ui";
-import React, { useState } from "react";
-import { getAccessToken } from 'zmp-sdk';
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from "react";
+import { getAccessToken } from "zmp-sdk";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/src/services/supabase";
 
 const AccessTokenTestPage: React.FC = () => {
   const [token, setToken] = useState<string>("");
   const navigate = useNavigate();
+
+  // test the token against zalo api
+  const testToken = useCallback((token: string) => {
+    supabase.functions
+      .invoke("zalo-auth", {
+        body: { zaloAccessToken: token },
+      })
+      .then((response) => {
+        if (response.error) {
+          console.error("Token verification failed:", response.error);
+        } else {
+          console.log("Token verification succeeded:", response.data);
+        }
+      });
+  }, []);
 
   const handleGetToken = async () => {
     try {
       const accessToken = await getAccessToken();
       console.log("Access Token:", accessToken);
       setToken(accessToken);
+      testToken(accessToken);
     } catch (error) {
       console.error("Error getting access token:", error);
-      setToken("Error: " + (error instanceof Error ? error.message : String(error)));
+      setToken(
+        "Error: " + (error instanceof Error ? error.message : String(error))
+      );
     }
   };
 
   return (
     <Page>
-      <Header 
-        title="Access Token Test" 
+      <Header
+        title="Access Token Test"
         showBackIcon={true}
-        onBackClick={() => navigate('/test')}
+        onBackClick={() => navigate("/test")}
       />
       <Box className="p-4 space-y-4">
         <Box className="bg-blue-50 p-4 rounded-lg text-gray-800">
           <Text.Title className="mb-2">Test Instructions</Text.Title>
           <Text className="text-sm">
-            This page tests the Zalo Mini App access token retrieval using the getAccessToken() function from zmp-sdk.
+            This page tests the Zalo Mini App access token retrieval using the
+            getAccessToken() function from zmp-sdk.
           </Text>
           <Text className="text-sm mt-2">
             <strong>Expected behavior:</strong>
@@ -42,20 +62,16 @@ const AccessTokenTestPage: React.FC = () => {
           </ul>
         </Box>
 
-        <Button
-          fullWidth
-          variant="primary"
-          onClick={handleGetToken}
-        >
+        <Button fullWidth variant="primary" onClick={handleGetToken}>
           Get Access Token
         </Button>
 
-        {token && (
-          <Box className="bg-green-50 p-4 rounded-lg">
-            <Text className="text-sm font-semibold mb-2">Access Token:</Text>
-            <Text className="text-xs break-all font-mono">{token}</Text>
-          </Box>
-        )}
+        <Box className="bg-green-50 p-4 rounded-lg">
+          <Text className="text-sm font-semibold mb-2">Access Token:</Text>
+          <Text className="text-xs break-all font-mono text-gray-800">
+            {token || "-"}
+          </Text>
+        </Box>
 
         <Box className="bg-yellow-50 p-4 rounded-lg mt-4">
           <Text className="text-xs text-gray-600">
