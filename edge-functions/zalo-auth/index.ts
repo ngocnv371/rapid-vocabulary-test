@@ -1,11 +1,11 @@
 import { createClient } from "npm:@supabase/supabase-js@2.25.0";
 import crypto from 'node:crypto';
-const calculateHMacSHA256 = (data: string, secretKey: string)=>{
+const calculateHMacSHA256 = (data, secretKey)=>{
   const hmac = crypto.createHmac("sha256", secretKey);
   hmac.update(data);
   return hmac.digest("hex");
 };
-async function verifyZaloToken(zaloAccessToken: string) {
+async function verifyZaloToken(zaloAccessToken) {
   const zaloSecretKey = Deno.env.get('ZALO_APP_SECRET_KEY');
   const response = await fetch("https://graph.zalo.me/v2.0/me?fields=id,name,picture", {
     method: "GET",
@@ -41,8 +41,17 @@ function getClient() {
   });
   return supabase;
 }
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type'
+};
 Deno.serve(async (req)=>{
   try {
+    if (req.method === 'OPTIONS') {
+      return new Response('ok', {
+        headers: corsHeaders
+      });
+    }
     if (req.method !== 'POST') return new Response(JSON.stringify({
       error: 'Method not allowed'
     }), {
@@ -52,9 +61,9 @@ Deno.serve(async (req)=>{
       }
     });
     const body = await req.json().catch(()=>null);
-    const zaloAccessToken = body?.zalo_access_token;
+    const zaloAccessToken = body?.zaloAccessToken;
     if (!zaloAccessToken) return new Response(JSON.stringify({
-      error: 'zalo_access_token is required'
+      error: 'zaloAccessToken is required'
     }), {
       status: 400,
       headers: {
