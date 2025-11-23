@@ -3,6 +3,7 @@ import { Route } from "react-router";
 import { Box, AnimationRoutes } from "zmp-ui";
 import { getSystemInfo } from "zmp-sdk";
 import Spinner from "./Spinner";
+import TestMenuToggle from "./TestMenuToggle";
 
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import("../pages/HomePage"));
@@ -13,6 +14,8 @@ const LoginPage = lazy(() => import("../pages/LoginPage"));
 const GameOverPage = lazy(() => import("../pages/GameOverPage"));
 const SpiritPage = lazy(() => import("../pages/SpiritPage"));
 const TestPage = lazy(() => import("../pages/TestPage"));
+const ScorePostingTestPage = lazy(() => import("../pages/tests/ScorePostingTestPage"));
+const AccessTokenTestPage = lazy(() => import("../pages/tests/AccessTokenTestPage"));
 
 if (import.meta.env.DEV) {
   document.body.style.setProperty("--zaui-safe-area-inset-top", "24px");
@@ -41,9 +44,12 @@ export const Layout: FC = () => {
             <Route path="/game-over" element={<GameOverPage />}></Route>
             <Route path="/spirit-animal" element={<SpiritPage />}></Route>
             <Route path="/test" element={<TestPage />}></Route>
+            <Route path="/test/score-posting" element={<ScorePostingTestPage />}></Route>
+            <Route path="/test/access-token" element={<AccessTokenTestPage />}></Route>
           </AnimationRoutes>
         </Suspense>
       </Box>
+      <TestMenuToggle />
     </Box>
   );
 };

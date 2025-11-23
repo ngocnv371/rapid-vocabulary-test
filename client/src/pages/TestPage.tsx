@@ -1,75 +1,72 @@
-import { Header, Page, Button, Box, Text } from "zmp-ui";
-import React, { useState } from "react";
-import { useAppContext } from "@/src/contexts/AppContext";
-import { postScore } from "../services/leaderboard";
+import { Header, Page, Box, Text } from "zmp-ui";
+import React from "react";
+import { useNavigate } from 'react-router-dom';
+
+interface TestItem {
+  id: string;
+  title: string;
+  description: string;
+  path: string;
+  icon: string;
+}
+
+const tests: TestItem[] = [
+  {
+    id: 'score-posting',
+    title: 'Score Posting Test',
+    description: 'Test the score posting buffer mechanism and throttling behavior',
+    path: '/test/score-posting',
+    icon: '🎯'
+  },
+  {
+    id: 'access-token',
+    title: 'Access Token Test',
+    description: 'Test Zalo Mini App access token retrieval',
+    path: '/test/access-token',
+    icon: '🔑'
+  }
+];
 
 const TestPage: React.FC = () => {
-  const { profileId } = useAppContext();
-  const [lastScore, setLastScore] = useState<number | null>(null);
-  const [clickCount, setClickCount] = useState(0);
-
-  const handlePostRandomScore = () => {
-    if (!profileId) {
-      console.error("No profile ID available");
-      return;
-    }
-
-    const randomScore = Math.floor(Math.random() * 100) + 1;
-    setLastScore(randomScore);
-    setClickCount(prev => prev + 1);
-    postScore(profileId, randomScore);
-  };
+  const navigate = useNavigate();
 
   return (
     <Page>
-      <Header title="Score Posting Test" />
+      <Header title="Test Hub" />
       <Box className="p-4 space-y-4">
-        <Box className="bg-blue-50 p-4 rounded-lg text-gray-800">
-          <Text.Title className="mb-2">Test Instructions</Text.Title>
+        <Box className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg text-gray-800">
+          <Text.Title className="mb-2">🧪 Development Test Hub</Text.Title>
           <Text className="text-sm">
-            This page tests the score posting buffer mechanism. Click the button repeatedly to send random scores.
-          </Text>
-          <Text className="text-sm mt-2">
-            <strong>Expected behavior:</strong>
-          </Text>
-          <ul className="text-sm mt-1 ml-4 list-disc">
-            <li>First score posts immediately</li>
-            <li>Subsequent scores within 1 minute are buffered</li>
-            <li>Only the highest buffered score is kept</li>
-            <li>Buffered score posts automatically after 1 minute</li>
-          </ul>
-        </Box>
-
-        <Box className="bg-gray-50 p-4 rounded-lg text-gray-800">
-          <Text className="text-sm">
-            <strong>Profile ID:</strong> {profileId || "Not logged in"}
-          </Text>
-          <Text className="text-sm mt-1">
-            <strong>Button clicks:</strong> {clickCount}
-          </Text>
-          <Text className="text-sm mt-1">
-            <strong>Last attempted score:</strong> {lastScore !== null ? lastScore : "None"}
+            Select a test below to verify different features and functionalities of the app.
           </Text>
         </Box>
 
-        <Button
-          fullWidth
-          variant="primary"
-          onClick={handlePostRandomScore}
-          disabled={!profileId}
-        >
-          Post Random Score
-        </Button>
+        <Box className="space-y-3">
+          {tests.map((test) => (
+            <Box
+              key={test.id}
+              className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+              onClick={() => navigate(test.path)}
+            >
+              <div className="flex items-start gap-3">
+                <div className="text-3xl">{test.icon}</div>
+                <div className="flex-1">
+                  <Text className="font-semibold text-gray-800 mb-1">
+                    {test.title}
+                  </Text>
+                  <Text className="text-sm text-gray-600">
+                    {test.description}
+                  </Text>
+                </div>
+                <div className="text-gray-400">→</div>
+              </div>
+            </Box>
+          ))}
+        </Box>
 
-        {!profileId && (
-          <Text className="text-center text-red-500 text-sm">
-            Please log in to test score posting
-          </Text>
-        )}
-
-        <Box className="bg-yellow-50 p-4 rounded-lg mt-4">
+        <Box className="bg-yellow-50 p-4 rounded-lg mt-6">
           <Text className="text-xs text-gray-600">
-            Check the browser console for detailed logs about score posting, buffering, and throttling.
+            💡 <strong>Tip:</strong> Check the browser console for detailed logs when running tests.
           </Text>
         </Box>
       </Box>
