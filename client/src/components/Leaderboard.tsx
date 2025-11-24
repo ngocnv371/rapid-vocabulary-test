@@ -4,7 +4,10 @@ import type { ScoreWithProfile, Category } from "../types";
 import Spinner from "./Spinner";
 import { useTranslation } from "react-i18next";
 
-const RankDisplay: React.FC<{ rank: number; isTopThree?: boolean }> = ({ rank, isTopThree }) => {
+const RankDisplay: React.FC<{ rank: number; isTopThree?: boolean }> = ({
+  rank,
+  isTopThree,
+}) => {
   const medals: { [key: number]: string } = { 1: "🥇", 2: "🥈", 3: "🥉" };
   const medal = medals[rank];
 
@@ -39,18 +42,18 @@ const RankDisplay: React.FC<{ rank: number; isTopThree?: boolean }> = ({ rank, i
   );
 };
 
-const PlayerAvatar: React.FC<{ name: string; avatarUrl?: string; rank: number }> = ({ 
-  name, 
-  avatarUrl, 
-  rank 
-}) => {
+const PlayerAvatar: React.FC<{
+  name: string;
+  avatarUrl?: string;
+  rank: number;
+}> = ({ name, avatarUrl, rank }) => {
   const gradients: { [key: number]: string } = {
     1: "from-yellow-400 via-yellow-500 to-amber-500",
     2: "from-gray-300 via-gray-400 to-gray-500",
     3: "from-amber-600 via-yellow-700 to-orange-600",
   };
   const gradient = gradients[rank] || "from-purple-500 to-pink-500";
-  
+
   const sizes: { [key: number]: string } = {
     1: "w-20 h-20 text-2xl",
     2: "w-16 h-16 text-xl",
@@ -61,11 +64,17 @@ const PlayerAvatar: React.FC<{ name: string; avatarUrl?: string; rank: number }>
   const initial = name?.charAt(0).toUpperCase() || "?";
 
   return (
-    <div className={`relative ${rank <= 3 ? 'animate-glow-pulse' : ''}`}>
+    <div className={`relative ${rank <= 3 ? "animate-glow-pulse" : ""}`}>
       <div className={`p-1 rounded-full bg-gradient-to-br ${gradient}`}>
-        <div className={`${size} rounded-full bg-gray-900 flex items-center justify-center font-bold text-white overflow-hidden`}>
+        <div
+          className={`${size} rounded-full bg-gray-900 flex items-center justify-center font-bold text-white overflow-hidden`}
+        >
           {avatarUrl ? (
-            <img src={avatarUrl} alt={name} className="w-full h-full object-cover" />
+            <img
+              src={avatarUrl}
+              alt={name}
+              className="w-full h-full object-cover"
+            />
           ) : (
             initial
           )}
@@ -111,11 +120,11 @@ export default function Leaderboard() {
   const rest = scores.slice(3);
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4 relative">
+    <>
       {loading ? (
         <div className="flex flex-col items-center justify-center gap-4 py-12">
           <Spinner />
-          <p className="text-xl text-purple-300">{t('leaderboard.loading')}</p>
+          <p className="text-xl text-purple-300">{t("leaderboard.loading")}</p>
         </div>
       ) : error ? (
         <div className="text-center py-12">
@@ -136,15 +145,13 @@ export default function Leaderboard() {
             </svg>
           </div>
           <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-2">
-            {t('leaderboard.errorTitle')}
+            {t("leaderboard.errorTitle")}
           </h3>
           <p className="text-gray-300">{error}</p>
         </div>
       ) : scores.length === 0 ? (
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-purple-500/30 text-center">
-          <p className="text-gray-400 text-lg">
-            {t('leaderboard.noScores')}
-          </p>
+          <p className="text-gray-400 text-lg">{t("leaderboard.noScores")}</p>
         </div>
       ) : (
         <>
@@ -152,25 +159,31 @@ export default function Leaderboard() {
           {topThree.length > 0 && (
             <div className="mb-8 animate-fade-in-up">
               <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
-                {t('leaderboard.topChampions')}
+                {t("leaderboard.topChampions")}
               </h2>
               <div className="flex items-end justify-center gap-2 mb-8 px-2">
                 {/* 2nd Place */}
                 {topThree[1] && (
-                  <div 
+                  <div
                     className="flex-1 max-w-[115px] animate-fade-in-up"
-                    style={{ animationDelay: '0.1s', animationFillMode: 'both' }}
+                    style={{
+                      animationDelay: "0.1s",
+                      animationFillMode: "both",
+                    }}
                   >
                     <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl p-3 border-2 border-gray-400 shadow-xl hover:shadow-gray-400/50 transition-all duration-300 hover:scale-105">
                       <div className="flex flex-col items-center gap-2">
                         <RankDisplay rank={2} isTopThree />
-                        <PlayerAvatar 
-                          name={topThree[1].profiles?.name || "Player"} 
+                        <PlayerAvatar
+                          name={topThree[1].profiles?.name || "Player"}
                           avatarUrl={topThree[1].profiles?.avatar_url}
                           rank={2}
                         />
                         <div className="text-center w-full">
-                          <p className="text-white font-bold text-xs leading-tight line-clamp-2 px-1" title={topThree[1].profiles?.name}>
+                          <p
+                            className="text-white font-bold text-xs leading-tight line-clamp-2 px-1"
+                            title={topThree[1].profiles?.name}
+                          >
                             {topThree[1].profiles?.name}
                           </p>
                           <div className="mt-1.5 bg-gradient-to-r from-gray-400 to-gray-500 text-white px-2.5 py-1 rounded-full text-base font-bold">
@@ -184,23 +197,26 @@ export default function Leaderboard() {
 
                 {/* 1st Place */}
                 {topThree[0] && (
-                  <div 
+                  <div
                     className="flex-1 max-w-[130px] animate-fade-in-up"
-                    style={{ animationFillMode: 'both' }}
+                    style={{ animationFillMode: "both" }}
                   >
                     <div className="relative bg-gradient-to-br from-yellow-500/20 to-amber-600/20 rounded-2xl p-4 border-2 border-yellow-400 shadow-2xl hover:shadow-yellow-400/50 transition-all duration-300 hover:scale-105 animate-glow-pulse">
                       <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-2 py-0.5 rounded-full text-[10px] font-bold shadow-lg">
-                        {t('leaderboard.champion')}
+                        {t("leaderboard.champion")}
                       </div>
                       <div className="flex flex-col items-center gap-2">
                         <RankDisplay rank={1} isTopThree />
-                        <PlayerAvatar 
-                          name={topThree[0].profiles?.name || "Player"} 
+                        <PlayerAvatar
+                          name={topThree[0].profiles?.name || "Player"}
                           avatarUrl={topThree[0].profiles?.avatar_url}
                           rank={1}
                         />
                         <div className="text-center w-full">
-                          <p className="text-white font-bold text-xs leading-tight line-clamp-2 px-1" title={topThree[0].profiles?.name}>
+                          <p
+                            className="text-white font-bold text-xs leading-tight line-clamp-2 px-1"
+                            title={topThree[0].profiles?.name}
+                          >
                             {topThree[0].profiles?.name}
                           </p>
                           <div className="mt-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 px-3 py-1.5 rounded-full text-lg font-bold shadow-lg">
@@ -214,20 +230,26 @@ export default function Leaderboard() {
 
                 {/* 3rd Place */}
                 {topThree[2] && (
-                  <div 
+                  <div
                     className="flex-1 max-w-[115px] animate-fade-in-up"
-                    style={{ animationDelay: '0.2s', animationFillMode: 'both' }}
+                    style={{
+                      animationDelay: "0.2s",
+                      animationFillMode: "both",
+                    }}
                   >
                     <div className="bg-gradient-to-br from-orange-700 to-amber-800 rounded-2xl p-3 border-2 border-amber-600 shadow-xl hover:shadow-amber-600/50 transition-all duration-300 hover:scale-105">
                       <div className="flex flex-col items-center gap-2">
                         <RankDisplay rank={3} isTopThree />
-                        <PlayerAvatar 
-                          name={topThree[2].profiles?.name || "Player"} 
+                        <PlayerAvatar
+                          name={topThree[2].profiles?.name || "Player"}
                           avatarUrl={topThree[2].profiles?.avatar_url}
                           rank={3}
                         />
                         <div className="text-center w-full">
-                          <p className="text-white font-bold text-xs leading-tight line-clamp-2 px-1" title={topThree[2].profiles?.name}>
+                          <p
+                            className="text-white font-bold text-xs leading-tight line-clamp-2 px-1"
+                            title={topThree[2].profiles?.name}
+                          >
                             {topThree[2].profiles?.name}
                           </p>
                           <div className="mt-1.5 bg-gradient-to-r from-amber-600 to-orange-700 text-white px-2.5 py-1 rounded-full text-base font-bold">
@@ -244,9 +266,9 @@ export default function Leaderboard() {
 
           {/* Rest of Rankings */}
           {rest.length > 0 && (
-            <div className="space-y-3">
+            <div className="space-y-3 px-4">
               <h3 className="text-xl font-semibold text-gray-300 mb-4 px-2">
-                {t('leaderboard.allRankings')}
+                {t("leaderboard.allRankings")}
               </h3>
               {rest.map((s, index) => {
                 const actualRank = index + 4;
@@ -254,9 +276,9 @@ export default function Leaderboard() {
                   <div
                     key={s.id || index}
                     className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-4 rounded-xl shadow-lg border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm animate-fade-in-up"
-                    style={{ 
+                    style={{
                       animationDelay: `${(index + 3) * 0.05}s`,
-                      animationFillMode: 'both'
+                      animationFillMode: "both",
                     }}
                   >
                     <div className="flex items-center gap-4">
@@ -264,8 +286,8 @@ export default function Leaderboard() {
                         <RankDisplay rank={actualRank} />
                       </div>
                       <div className="flex-shrink-0">
-                        <PlayerAvatar 
-                          name={s.profiles?.name || "Player"} 
+                        <PlayerAvatar
+                          name={s.profiles?.name || "Player"}
                           avatarUrl={s.profiles?.avatar_url}
                           rank={actualRank}
                         />
@@ -278,10 +300,20 @@ export default function Leaderboard() {
                           {s.profiles?.name}
                         </p>
                         <div className="flex items-center gap-2 text-sm text-gray-400">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                              clipRule="evenodd"
+                            />
                           </svg>
-                          <span>{new Date(s.created_at).toLocaleDateString()}</span>
+                          <span>
+                            {new Date(s.created_at).toLocaleDateString()}
+                          </span>
                         </div>
                       </div>
                       <div className="flex-shrink-0">
@@ -297,6 +329,6 @@ export default function Leaderboard() {
           )}
         </>
       )}
-    </div>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { Header, Page, Box, Text } from "zmp-ui";
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 interface TestItem {
   id: string;
@@ -12,32 +12,37 @@ interface TestItem {
 
 const tests: TestItem[] = [
   {
-    id: 'score-posting',
-    title: 'Score Posting Test',
-    description: 'Test the score posting buffer mechanism and throttling behavior',
-    path: '/test/score-posting',
-    icon: '🎯'
+    id: "score-posting",
+    title: "Score Posting Test",
+    description:
+      "Test the score posting buffer mechanism and throttling behavior",
+    path: "/test/score-posting",
+    icon: "🎯",
   },
   {
-    id: 'access-token',
-    title: 'Access Token Test',
-    description: 'Test Zalo Mini App access token retrieval',
-    path: '/test/access-token',
-    icon: '🔑'
-  }
+    id: "access-token",
+    title: "Access Token Test",
+    description: "Test Zalo Mini App access token retrieval",
+    path: "/test/access-token",
+    icon: "🔑",
+  },
 ];
 
 const TestPage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <Page>
+    <Page
+      hideScrollbar
+      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+    >
       <Header title="Test Hub" />
       <Box className="p-4 space-y-4">
         <Box className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg text-gray-800">
           <Text.Title className="mb-2">🧪 Development Test Hub</Text.Title>
           <Text className="text-sm">
-            Select a test below to verify different features and functionalities of the app.
+            Select a test below to verify different features and functionalities
+            of the app.
           </Text>
         </Box>
 
@@ -66,7 +71,8 @@ const TestPage: React.FC = () => {
 
         <Box className="bg-yellow-50 p-4 rounded-lg mt-6">
           <Text className="text-xs text-gray-600">
-            💡 <strong>Tip:</strong> Check the browser console for detailed logs when running tests.
+            💡 <strong>Tip:</strong> Check the browser console for detailed logs
+            when running tests.
           </Text>
         </Box>
       </Box>

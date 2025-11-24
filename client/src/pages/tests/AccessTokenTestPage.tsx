@@ -38,7 +38,10 @@ const AccessTokenTestPage: React.FC = () => {
   };
 
   return (
-    <Page>
+    <Page
+      hideScrollbar
+      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+    >
       <Header
         title="Access Token Test"
         showBackIcon={true}

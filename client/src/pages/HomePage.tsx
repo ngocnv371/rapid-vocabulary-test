@@ -52,11 +52,11 @@ const HomePage: React.FC = () => {
   return (
     <Page
       hideScrollbar
-      className="relative min-h-screen"
+      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
     >
       <Header title={t('home.title')} showBackIcon={false} />
 
-      <div className="px-4 pb-20">
+      <div className="px-4 pb-20 ">
         {/* Hero Section */}
         <div className="text-center mb-8 animate-fade-in-up">
           <div className="relative mb-4 animate-float">

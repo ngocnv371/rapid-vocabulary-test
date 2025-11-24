@@ -46,7 +46,7 @@ export default function SpiritAnimalSelector({
   onSelect,
 }: SpiritAnimalSelectorProps) {
   return (
-    <div className="w-full max-w-3xl mx-auto p-4 relative">
+    <div className="p-4">
       <h2 className="text-4xl font-extrabold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
         Choose Your Spirit Animal
       </h2>

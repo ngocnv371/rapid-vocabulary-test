@@ -26,8 +26,11 @@ const GameOverPage: React.FC = () => {
   }, []);
 
   return (
-    <Page hideScrollbar>
-      <Header title={t('gameOver.title')} showBackIcon={false} />
+    <Page
+      hideScrollbar
+      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+    >
+      <Header title={t("gameOver.title")} showBackIcon={false} />
       <GameOver
         score={score}
         onPlayAgain={playAgain}

@@ -35,9 +35,14 @@ const QuizPage: React.FC = () => {
   }, [navigate]);
 
   return (
-    <Page hideScrollbar>
-      <Header title={t('quiz.title')} />
-      {progress.total > 0 && <ProgressBar current={progress.current} total={progress.total} />}
+    <Page
+      hideScrollbar
+      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+    >
+      <Header title={t("quiz.title")} />
+      {progress.total > 0 && (
+        <ProgressBar current={progress.current} total={progress.total} />
+      )}
       <Quiz
         onGameOver={handleGameOver}
         onProgressUpdate={handleProgressUpdate}

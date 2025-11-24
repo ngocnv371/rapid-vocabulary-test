@@ -2,7 +2,7 @@ import { Header, Page, Button, Box, Text } from "zmp-ui";
 import React, { useState } from "react";
 import { useAppContext } from "@/src/contexts/AppContext";
 import { postScore } from "../../services/leaderboard";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const ScorePostingTestPage: React.FC = () => {
   const { profileId } = useAppContext();
@@ -18,22 +18,26 @@ const ScorePostingTestPage: React.FC = () => {
 
     const randomScore = Math.floor(Math.random() * 100) + 1;
     setLastScore(randomScore);
-    setClickCount(prev => prev + 1);
+    setClickCount((prev) => prev + 1);
     postScore(profileId, randomScore);
   };
 
   return (
-    <Page>
-      <Header 
-        title="Score Posting Test" 
+    <Page
+      hideScrollbar
+      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+    >
+      <Header
+        title="Score Posting Test"
         showBackIcon={true}
-        onBackClick={() => navigate('/test')}
+        onBackClick={() => navigate("/test")}
       />
       <Box className="p-4 space-y-4">
         <Box className="bg-blue-50 p-4 rounded-lg text-gray-800">
           <Text.Title className="mb-2">Test Instructions</Text.Title>
           <Text className="text-sm">
-            This page tests the score posting buffer mechanism. Click the button repeatedly to send random scores.
+            This page tests the score posting buffer mechanism. Click the button
+            repeatedly to send random scores.
           </Text>
           <Text className="text-sm mt-2">
             <strong>Expected behavior:</strong>
@@ -54,7 +58,8 @@ const ScorePostingTestPage: React.FC = () => {
             <strong>Button clicks:</strong> {clickCount}
           </Text>
           <Text className="text-sm mt-1">
-            <strong>Last attempted score:</strong> {lastScore !== null ? lastScore : "None"}
+            <strong>Last attempted score:</strong>{" "}
+            {lastScore !== null ? lastScore : "None"}
           </Text>
         </Box>
 
@@ -75,7 +80,8 @@ const ScorePostingTestPage: React.FC = () => {
 
         <Box className="bg-yellow-50 p-4 rounded-lg mt-4">
           <Text className="text-xs text-gray-600">
-            Check the browser console for detailed logs about score posting, buffering, and throttling.
+            Check the browser console for detailed logs about score posting,
+            buffering, and throttling.
           </Text>
         </Box>
       </Box>

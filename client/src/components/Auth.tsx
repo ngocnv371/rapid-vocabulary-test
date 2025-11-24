@@ -50,7 +50,7 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
   const buttonStyles = "w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-900 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300";
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4">
+    <div className="bg-gray-900 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-2xl border border-purple-500/30 relative">
         {onBack && (
           <button 

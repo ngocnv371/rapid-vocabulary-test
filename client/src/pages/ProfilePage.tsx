@@ -7,8 +7,11 @@ import { useTranslation } from "react-i18next";
 const ProfilePage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Page hideScrollbar>
-      <Header title={t('profile.title')} />
+    <Page
+      hideScrollbar
+      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+    >
+      <Header title={t("profile.title")} />
       <LanguageSwitcher />
       <Profile />
       <NavBar activeKey="profile" />

@@ -9,7 +9,9 @@ const LoginPage: React.FC = () => {
   }, []);
 
   return (
-    <Page hideScrollbar>
+    <Page 
+      hideScrollbar
+      className="relative min-h-screen w-full max-w-2xl mx-auto relative">
       <Header title="Login" />
       <Auth onSignInSuccess={handleSignInSuccess} />
     </Page>

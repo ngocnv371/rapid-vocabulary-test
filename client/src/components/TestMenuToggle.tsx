@@ -5,12 +5,7 @@ const TestMenuToggle: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
-  // Only show in development mode
-  if (import.meta.env.PROD) {
-    return null;
-  }
-
+  
   // Don't show if already on a test page
   if (location.pathname.includes('/test')) {
     return null;
