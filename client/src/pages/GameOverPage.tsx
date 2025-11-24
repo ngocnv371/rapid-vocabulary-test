@@ -28,7 +28,7 @@ const GameOverPage: React.FC = () => {
   return (
     <Page
       hideScrollbar
-      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+      className="relative min-h-screen w-full max-w-2xl mx-auto"
     >
       <Header title={t("gameOver.title")} showBackIcon={false} />
       <GameOver

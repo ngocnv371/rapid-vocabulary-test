@@ -34,7 +34,7 @@ const TestPage: React.FC = () => {
   return (
     <Page
       hideScrollbar
-      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+      className="relative min-h-screen w-full max-w-2xl mx-auto"
     >
       <Header title="Test Hub" />
       <Box className="p-4 space-y-4">

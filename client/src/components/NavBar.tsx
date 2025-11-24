@@ -3,23 +3,23 @@ import { useTranslation } from "react-i18next";
 
 export default function NavBar({ activeKey }: { activeKey: string }) {
   const { t } = useTranslation();
-  
+
   return (
-    <BottomNavigation fixed activeKey={activeKey}>
+    <BottomNavigation activeKey={activeKey} style={{ position: "sticky", bottom: 0 }}>
       <BottomNavigation.Item
-        label={t('nav.home')}
+        label={t("nav.home")}
         linkTo="/"
         icon={<Icon icon="zi-home" />}
         key="home"
       />
       <BottomNavigation.Item
-        label={t('nav.leaderboard')}
+        label={t("nav.leaderboard")}
         linkTo="/leaderboard"
         icon={<Icon icon="zi-list-1" />}
         key="leaderboard"
       />
       <BottomNavigation.Item
-        label={t('nav.profile')}
+        label={t("nav.profile")}
         linkTo="/profile"
         icon={<Icon icon="zi-user" />}
         key="profile"

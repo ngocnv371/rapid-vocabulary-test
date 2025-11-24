@@ -25,7 +25,7 @@ const ScorePostingTestPage: React.FC = () => {
   return (
     <Page
       hideScrollbar
-      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+      className="relative min-h-screen w-full max-w-2xl mx-auto"
     >
       <Header
         title="Score Posting Test"

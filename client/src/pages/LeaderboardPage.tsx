@@ -8,12 +8,7 @@ const LeaderboardPage: React.FC = () => {
   return (
     <Page
       hideScrollbar
-      style={{
-        overscrollBehavior: "none",
-        WebkitOverflowScrolling: "touch",
-        touchAction: "pan-y",
-      }}
-      className="relative min-h-screen w-full max-w-2xl mx-auto relative"
+      className="relative min-h-screen w-full max-w-2xl mx-auto"
     >
       <Header title={t("leaderboard.title")} />
       <Leaderboard />
