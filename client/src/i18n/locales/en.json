@@ -57,6 +57,7 @@
     "last7Days": "Last 7 Days",
     "legend": "Best Score",
     "loading": "Loading profile...",
+    "login": "Login",
     "logout": "Logout",
     "logoutError": "Failed to logout. Please try again.",
     "anonymousMode": "You're now in anonymous mode 🎭"

@@ -3,7 +3,7 @@ import { supabase } from "../services/supabase";
 import type { Score } from "../types";
 import Spinner from "./Spinner";
 import { useAppContext } from "@/src/contexts/AppContext";
-import { Box, useSnackbar } from "zmp-ui";
+import { Box, useSnackbar, useNavigate } from "zmp-ui";
 import { calculateStreak } from "../utils/streakCalculator";
 import WeeklyProgressChart from "./WeeklyProgressChart";
 import UserAvatar from "./UserAvatar";
@@ -14,6 +14,7 @@ export default function Profile() {
   const isAnonymous = user?.is_anonymous;
   const { t } = useTranslation();
   const { openSnackbar } = useSnackbar();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
   const [highestScore, setHighestScore] = useState<number | null>(null);
   const [weeklyScores, setWeeklyScores] = useState<Score[]>([]);
@@ -224,27 +225,54 @@ export default function Profile() {
       {/* Weekly Progress Chart */}
       {!isAnonymous && <WeeklyProgressChart scores={weeklyScores} />}
 
+      {/* Login Button for Anonymous Users */}
+      {isAnonymous && (
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => navigate("/login")}
+            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border border-purple-400/30 backdrop-blur-sm flex items-center gap-2"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+              />
+            </svg>
+            {t("profile.login")}
+          </button>
+        </div>
+      )}
+
       {/* Logout Button */}
       {!isAnonymous && (
-        <button
-          onClick={handleLogout}
-          className="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border border-red-400/30 backdrop-blur-sm flex items-center gap-2"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={handleLogout}
+            className="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border border-red-400/30 backdrop-blur-sm flex items-center gap-2"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-            />
-          </svg>
-          {t("profile.logout")}
-        </button>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+            {t("profile.logout")}
+          </button>
+        </div>
       )}
 
       {error && (
