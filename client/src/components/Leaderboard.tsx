@@ -120,7 +120,7 @@ export default function Leaderboard() {
   const rest = scores.slice(3);
 
   return (
-    <>
+    <div className="min-h-screen">
       {loading ? (
         <div className="flex flex-col items-center justify-center gap-4 py-12">
           <Spinner />
@@ -329,6 +329,6 @@ export default function Leaderboard() {
           )}
         </>
       )}
-    </>
+    </div>
   );
 }

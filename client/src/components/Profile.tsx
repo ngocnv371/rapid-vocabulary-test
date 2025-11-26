@@ -84,7 +84,7 @@ export default function Profile() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4">
+      <div className="flex flex-col items-center justify-center gap-4 min-h-screen">
         <Spinner />
         <p className="text-xl text-purple-300">{t("profile.loading")}</p>
       </div>
@@ -93,11 +93,11 @@ export default function Profile() {
 
   if (error && !user) {
     // Only show full-page error if user couldn't be loaded
-    return <div className="text-center text-red-400">{error}</div>;
+    return <div className="text-center text-red-400 min-h-screen">{error}</div>;
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 min-h-screen">
       {/* Animated background orbs */}
       <div className="absolute top-0 left-1/4 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
       <div
