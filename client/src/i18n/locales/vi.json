@@ -56,7 +56,10 @@
     "progressChart": "Tiến Độ Hàng Tuần",
     "last7Days": "7 Ngày Qua",
     "legend": "Điểm Cao Nhất",
-    "loading": "Đang tải hồ sơ..."
+    "loading": "Đang tải hồ sơ...",
+    "logout": "Đăng xuất",
+    "logoutError": "Không thể đăng xuất. Vui lòng thử lại.",
+    "anonymousMode": "Bạn đang ở chế độ ẩn danh 🎭"
   },
   "common": {
     "or": "hoặc",

@@ -3,19 +3,41 @@ import { supabase } from "../services/supabase";
 import type { Score } from "../types";
 import Spinner from "./Spinner";
 import { useAppContext } from "@/src/contexts/AppContext";
-import { Box } from "zmp-ui";
+import { Box, useSnackbar } from "zmp-ui";
 import { calculateStreak } from "../utils/streakCalculator";
 import WeeklyProgressChart from "./WeeklyProgressChart";
 import UserAvatar from "./UserAvatar";
 import { useTranslation } from "react-i18next";
 
 export default function Profile() {
-  const { profile } = useAppContext();
+  const { profile, reloadUser, user } = useAppContext();
+  const isAnonymous = user?.is_anonymous;
   const { t } = useTranslation();
+  const { openSnackbar } = useSnackbar();
   const [loading, setLoading] = useState<boolean>(true);
   const [highestScore, setHighestScore] = useState<number | null>(null);
   const [weeklyScores, setWeeklyScores] = useState<Score[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error("Error logging out:", error);
+        setError(t("profile.logoutError"));
+      } else {
+        reloadUser();
+        openSnackbar({
+          text: t("profile.anonymousMode"),
+          type: "success",
+          duration: 3000,
+        });
+      }
+    } catch (err) {
+      console.error("Unexpected error during logout:", err);
+      setError(t("profile.logoutError"));
+    }
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -200,7 +222,30 @@ export default function Profile() {
       </div>
 
       {/* Weekly Progress Chart */}
-      <WeeklyProgressChart scores={weeklyScores} />
+      {!isAnonymous && <WeeklyProgressChart scores={weeklyScores} />}
+
+      {/* Logout Button */}
+      {!isAnonymous && (
+        <button
+          onClick={handleLogout}
+          className="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border border-red-400/30 backdrop-blur-sm flex items-center gap-2"
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
+          </svg>
+          {t("profile.logout")}
+        </button>
+      )}
 
       {error && (
         <p className="mt-6 text-center text-red-300 bg-red-900/50 p-4 rounded-xl border border-red-500/30 backdrop-blur-sm animate-shake">

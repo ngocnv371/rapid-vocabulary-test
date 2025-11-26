@@ -56,7 +56,10 @@
     "progressChart": "Weekly Progress",
     "last7Days": "Last 7 Days",
     "legend": "Best Score",
-    "loading": "Loading profile..."
+    "loading": "Loading profile...",
+    "logout": "Logout",
+    "logoutError": "Failed to logout. Please try again.",
+    "anonymousMode": "You're now in anonymous mode 🎭"
   },
   "common": {
     "or": "or",
