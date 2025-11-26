@@ -37,7 +37,7 @@ function SmallCard({
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const { spiritAnimal, user } = useAppContext();
+  const { spiritAnimal, profile } = useAppContext();
   const { t } = useTranslation();
   
   const handleStartQuiz = useCallback(() => {
@@ -63,7 +63,7 @@ const HomePage: React.FC = () => {
             <UserAvatar />
           </div>
           <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">
-            {user?.name ? t('home.welcomeBack', { name: user.name.split(" ")[0] }) : t('home.welcome') + "!"}
+            {profile?.name ? t('home.welcomeBack', { name: profile.name.split(" ")[0] }) : t('home.welcome') + "!"}
           </h1>
           <p className="text-purple-200 text-lg">
             {t('home.subtitle')}

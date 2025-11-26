@@ -10,19 +10,18 @@ import UserAvatar from "./UserAvatar";
 import { useTranslation } from "react-i18next";
 
 export default function Profile() {
-  const { user, profileId, spiritAnimal } = useAppContext();
+  const { profile } = useAppContext();
   const { t } = useTranslation();
   const [loading, setLoading] = useState<boolean>(true);
   const [highestScore, setHighestScore] = useState<number | null>(null);
   const [weeklyScores, setWeeklyScores] = useState<Score[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);
       setError(null);
-      if (profileId) {
+      if (profile?.id) {
         // Calculate date one week ago
         const oneWeekAgo = new Date();
         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
@@ -32,7 +31,7 @@ export default function Profile() {
         const { data, error: scoresError } = await supabase
           .from("scores")
           .select("*")
-          .eq("profile_id", profileId)
+          .eq("profile_id", profile?.id)
           .gte("created_at", oneWeekAgoISO)
           .order("score", { ascending: false });
 
@@ -52,11 +51,11 @@ export default function Profile() {
       }
       setLoading(false);
     };
-    if (!profileId) {
+    if (!profile?.id) {
       return;
     }
     fetchProfile();
-  }, [profileId]);
+  }, [profile?.id]);
 
   // Memoized stats calculations
   const stats = useMemo(() => {
@@ -78,10 +77,6 @@ export default function Profile() {
     };
   }, [weeklyScores]);
 
-  if (!user) {
-    return null;
-  }
-
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 min-h-screen">
@@ -91,8 +86,8 @@ export default function Profile() {
     );
   }
 
-  if (error && !user) {
-    // Only show full-page error if user couldn't be loaded
+  if (error && !profile) {
+    // Only show full-page error if profile couldn't be loaded
     return <div className="text-center text-red-400 min-h-screen">{error}</div>;
   }
 
@@ -210,11 +205,6 @@ export default function Profile() {
       {error && (
         <p className="mt-6 text-center text-red-300 bg-red-900/50 p-4 rounded-xl border border-red-500/30 backdrop-blur-sm animate-shake">
           {error}
-        </p>
-      )}
-      {message && (
-        <p className="mt-6 text-center text-green-300 bg-green-900/50 p-4 rounded-xl border border-green-500/30 backdrop-blur-sm">
-          {message}
         </p>
       )}
       <Box className="my-12"></Box>

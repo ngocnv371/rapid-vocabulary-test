@@ -3,13 +3,12 @@ import Quiz from "../components/Quiz";
 import ProgressBar from "../components/ProgressBar";
 import React, { useCallback } from "react";
 import { useAppContext } from "@/src/contexts/AppContext";
-import { supabase } from "@/src/services/supabase";
-import { setItem, setLastScore } from "../services/storage";
+import { setLastScore } from "../services/storage";
 import { postScore } from "../services/leaderboard";
 import { useTranslation } from "react-i18next";
 
 const QuizPage: React.FC = () => {
-  const { profileId } = useAppContext();
+  const { profile } = useAppContext();
   const { t } = useTranslation();
   const [progress, setProgress] = React.useState({ current: 0, total: 0 });
   const navigate = useNavigate();
@@ -22,12 +21,12 @@ const QuizPage: React.FC = () => {
 
   const handleGameOver = useCallback(
     async (score: number) => {
-      if (profileId) {
-        postScore(profileId, score);
+      if (profile?.id) {
+        postScore(profile.id, score);
       }
       navigate("/game-over");
     },
-    [profileId]
+    [profile?.id]
   );
 
   const handleBackToCategories = useCallback(() => {

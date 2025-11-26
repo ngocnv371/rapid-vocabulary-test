@@ -5,13 +5,13 @@ import { postScore } from "../../services/leaderboard";
 import { useNavigate } from "react-router-dom";
 
 const ScorePostingTestPage: React.FC = () => {
-  const { profileId } = useAppContext();
+  const { profile } = useAppContext();
   const [lastScore, setLastScore] = useState<number | null>(null);
   const [clickCount, setClickCount] = useState(0);
   const navigate = useNavigate();
 
   const handlePostRandomScore = () => {
-    if (!profileId) {
+    if (!profile?.id) {
       console.error("No profile ID available");
       return;
     }
@@ -19,7 +19,7 @@ const ScorePostingTestPage: React.FC = () => {
     const randomScore = Math.floor(Math.random() * 100) + 1;
     setLastScore(randomScore);
     setClickCount((prev) => prev + 1);
-    postScore(profileId, randomScore);
+    postScore(profile?.id, randomScore);
   };
 
   return (
@@ -52,7 +52,7 @@ const ScorePostingTestPage: React.FC = () => {
 
         <Box className="bg-gray-50 p-4 rounded-lg text-gray-800">
           <Text className="text-sm">
-            <strong>Profile ID:</strong> {profileId || "Not logged in"}
+            <strong>Profile ID:</strong> {profile?.id || "Not logged in"}
           </Text>
           <Text className="text-sm mt-1">
             <strong>Button clicks:</strong> {clickCount}
@@ -67,12 +67,12 @@ const ScorePostingTestPage: React.FC = () => {
           fullWidth
           variant="primary"
           onClick={handlePostRandomScore}
-          disabled={!profileId}
+          disabled={!profile?.id}
         >
           Post Random Score
         </Button>
 
-        {!profileId && (
+        {!profile?.id && (
           <Text className="text-center text-red-500 text-sm">
             Please log in to test score posting
           </Text>

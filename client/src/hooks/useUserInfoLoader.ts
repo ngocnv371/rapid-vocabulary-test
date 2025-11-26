@@ -1,21 +1,27 @@
 import { useCallback, useEffect, useState } from "react";
-import { getUserInfo, upsertProfile } from "../services/profile";
-import { UserInfo } from "../types";
+import { supabase } from "../services/supabase";
+import { type User } from "@supabase/supabase-js";
+import { Profile } from "../types";
 
 export function useUserInfoLoader() {
-  const [user, setUser] = useState<UserInfo | null>(null);
-  const [profileId, setProfileId] = useState<number | null>(null);
-  const reload = useCallback(() => {
-    console.log("Fetching user info from Zalo...");
-    getUserInfo().then(
-      (user) => {
-        console.log("User info from Zalo:", user);
-        setUser(user.userInfo);
-      },
-      (reason) => {
-        console.error("Failed to get user info from Zalo:", reason);
-      }
-    );
+  const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const reload = useCallback(async () => {
+    console.log("Checking Supabase auth user...");
+    let { data } = await supabase.auth.getUser();
+    let user = data?.user;
+    if (!user) {
+      console.log("No auth user, signing in anonymously...");
+      const res = await supabase.auth.signInAnonymously();
+      user = res.data.user;
+    }
+
+    if (!user) {
+      console.error("Failed to get or create auth user.");
+      return;
+    }
+
+    setUser(user);
   }, []);
 
   // initial load
@@ -23,23 +29,29 @@ export function useUserInfoLoader() {
     reload();
   }, [reload]);
 
-  // when user changes, upsert profile
+  // when user changes, process profile
   useEffect(() => {
     if (!user?.id) {
       return;
     }
 
-    console.log("Current user state:", user?.id, user?.name, user?.avatar);
-    upsertProfile(
-      {
-        zaloId: user?.id,
-        name: user?.name,
-        avatarUrl: user?.avatar,
-      },
-      (id) => {
-        setProfileId(id);
-      }
-    );
-  }, [user?.id, user?.name, user?.avatar]);
-  return { user, profileId, reload };
+    console.log("Loading profile for user", user.id);
+    supabase
+      .from("profiles")
+      .select("*")
+      .eq("user_id", user.id)
+      .single()
+      .then((response) => {
+        if (response.error) {
+          console.error("Error fetching profile:", response.error);
+          setProfile(null);
+        } else if (response.data) {
+          const profile = response.data;
+          console.log("Profile found", profile);
+          setProfile(profile);
+        }
+      });
+  }, [user]);
+
+  return { user, profile, reload };
 }

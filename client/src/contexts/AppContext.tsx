@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState } from "react";
 import { useUserInfoLoader } from "../hooks/useUserInfoLoader";
-import { UserInfo } from "../types";
+import { Profile } from "../types";
+import { type User } from "@supabase/supabase-js";
 
 interface AppContextType {
-  user: UserInfo | null;
+  user: User | null;
   spiritAnimal: string;
   setSpiritAnimal: React.Dispatch<React.SetStateAction<string>>;
-  profileId?: number | null;
+  profile?: Profile | null;
   reloadUser: () => void;
 }
 
@@ -16,12 +17,12 @@ interface AppProviderProps {
 }
 
 export function AppProvider({ children }: AppProviderProps) {
-  const { user, profileId, reload } = useUserInfoLoader();
+  const { user, profile, reload } = useUserInfoLoader();
   const [spiritAnimal, setSpiritAnimal] = useState<string>("🐔");
 
   const value: AppContextType = {
     user,
-    profileId,
+    profile,
     spiritAnimal,
     setSpiritAnimal,
     reloadUser: reload,
