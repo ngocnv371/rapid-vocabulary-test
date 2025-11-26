@@ -5,8 +5,6 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import { getItem, setItem } from "../services/storage";
-import { type UserInfo } from "zmp-sdk";
 
 interface HeartsContextType {
   hearts: number;
@@ -33,13 +31,13 @@ export function HeartsProvider({ children }: HeartsProviderProps) {
   // load saved hearts on start
   useEffect(() => {
     try {
-      const savedHearts = getItem(HEARTS_STORAGE_KEY);
+      const savedHearts = localStorage.getItem(HEARTS_STORAGE_KEY);
       if (savedHearts !== null) {
         setHearts(parseInt(savedHearts, 10));
       } else {
         const initialHearts = DEFAULT_HEARTS;
         setHearts(initialHearts);
-        setItem(HEARTS_STORAGE_KEY, String(initialHearts));
+        localStorage.setItem(HEARTS_STORAGE_KEY, String(initialHearts));
       }
     } catch (error) {
       console.error("Error accessing nativeStorage:", error);
@@ -50,7 +48,7 @@ export function HeartsProvider({ children }: HeartsProviderProps) {
   // persist hearts on change
   useEffect(() => {
     try {
-      setItem(HEARTS_STORAGE_KEY, String(hearts));
+      localStorage.setItem(HEARTS_STORAGE_KEY, String(hearts));
     } catch (error) {
       console.error("Error saving hearts to nativeStorage:", error);
     }

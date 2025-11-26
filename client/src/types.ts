@@ -31,3 +31,9 @@ export interface Profile {
 export interface ScoreWithProfile extends Score {
   profiles: Profile | null;
 }
+
+export interface UserInfo {
+  id: string;
+  name: string;
+  avatar: string;
+}

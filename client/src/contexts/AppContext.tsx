@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import { type UserInfo } from "zmp-sdk";
 import { useUserInfoLoader } from "../hooks/useUserInfoLoader";
+import { UserInfo } from "../types";
 
 interface AppContextType {
   user: UserInfo | null;

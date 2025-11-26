@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { getUserInfo, type UserInfo } from "zmp-sdk";
-import { upsertProfile } from "../services/profile";
+import { getUserInfo, upsertProfile } from "../services/profile";
+import { UserInfo } from "../types";
 
 export function useUserInfoLoader() {
   const [user, setUser] = useState<UserInfo | null>(null);

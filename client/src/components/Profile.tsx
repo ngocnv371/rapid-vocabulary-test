@@ -4,7 +4,6 @@ import type { Score } from "../types";
 import Spinner from "./Spinner";
 import { useAppContext } from "@/src/contexts/AppContext";
 import { Box } from "zmp-ui";
-import AskForProfilePermission from "./AskForProfilePermission";
 import { calculateStreak } from "../utils/streakCalculator";
 import WeeklyProgressChart from "./WeeklyProgressChart";
 import UserAvatar from "./UserAvatar";
@@ -207,8 +206,6 @@ export default function Profile() {
 
       {/* Weekly Progress Chart */}
       <WeeklyProgressChart scores={weeklyScores} />
-
-      <AskForProfilePermission />
 
       {error && (
         <p className="mt-6 text-center text-red-300 bg-red-900/50 p-4 rounded-xl border border-red-500/30 backdrop-blur-sm animate-shake">

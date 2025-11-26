@@ -1,7 +1,6 @@
 import { FC, lazy, Suspense } from "react";
 import { Route } from "react-router";
 import { Box, AnimationRoutes } from "zmp-ui";
-import { getSystemInfo } from "zmp-sdk";
 import Spinner from "./Spinner";
 import TestMenuToggle from "./TestMenuToggle";
 
@@ -15,22 +14,10 @@ const GameOverPage = lazy(() => import("../pages/GameOverPage"));
 const SpiritPage = lazy(() => import("../pages/SpiritPage"));
 const TestPage = lazy(() => import("../pages/TestPage"));
 const ScorePostingTestPage = lazy(() => import("../pages/tests/ScorePostingTestPage"));
-const AccessTokenTestPage = lazy(() => import("../pages/tests/AccessTokenTestPage"));
 
-if (import.meta.env.DEV) {
-  document.body.style.setProperty("--zaui-safe-area-inset-top", "24px");
-} else if (getSystemInfo().platform === "android") {
-  const statusBarHeight =
-    window.ZaloJavaScriptInterface?.getStatusBarHeight() ?? 0;
-  const androidSafeTop = Math.round(statusBarHeight / window.devicePixelRatio);
-  document.body.style.setProperty(
-    "--zaui-safe-area-inset-top",
-    `${androidSafeTop}px`
-  );
-}
+document.body.style.setProperty("--zaui-safe-area-inset-top", "24px");
 
 export const Layout: FC = () => {
-
   return (
     <Box flex flexDirection="column" className="h-screen">
       <Box className="flex-1 flex flex-col overflow-hidden">
@@ -45,7 +32,6 @@ export const Layout: FC = () => {
             <Route path="/spirit-animal" element={<SpiritPage />}></Route>
             <Route path="/test" element={<TestPage />}></Route>
             <Route path="/test/score-posting" element={<ScorePostingTestPage />}></Route>
-            <Route path="/test/access-token" element={<AccessTokenTestPage />}></Route>
           </AnimationRoutes>
         </Suspense>
       </Box>

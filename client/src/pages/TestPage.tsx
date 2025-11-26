@@ -19,13 +19,6 @@ const tests: TestItem[] = [
     path: "/test/score-posting",
     icon: "🎯",
   },
-  {
-    id: "access-token",
-    title: "Access Token Test",
-    description: "Test Zalo Mini App access token retrieval",
-    path: "/test/access-token",
-    icon: "🔑",
-  },
 ];
 
 const TestPage: React.FC = () => {

@@ -1,5 +1,17 @@
-import { Profile } from "@/src/types";
+import { Profile, UserInfo } from "@/src/types";
 import { supabase } from "./supabase";
+
+export function getUserInfo(): Promise<{ userInfo: UserInfo }> {
+  return new Promise((resolve) => {
+    resolve({
+      userInfo: {
+        id: "123456",
+        name: "John Doe",
+        avatar: "https://example.com/avatar.jpg",
+      },
+    });
+  });
+}
 
 export function upsertProfile(
   payload: {
