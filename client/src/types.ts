@@ -23,6 +23,7 @@ export interface Score {
 
 export interface Profile {
   id: number;
+  user_id: string;
   name: string | null;
   zalo_id: string | null;
   avatar_url: string | null;

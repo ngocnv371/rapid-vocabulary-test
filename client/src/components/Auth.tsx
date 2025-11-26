@@ -1,6 +1,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { supabase } from '../services/supabase';
+import { upsertProfile } from '../services/profile';
 import Spinner from './Spinner';
 
 interface AuthProps {
@@ -12,6 +13,7 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -23,13 +25,20 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
     setMessage(null);
 
     if (isSignUp) {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
       });
       if (error) {
         setError(error.message);
-      } else {
+      } else if (data.user) {
+        // Create profile with the user's name
+        upsertProfile({
+          userId: data.user.id,
+          name: name || 'User',
+          avatarUrl: '',
+        });
+        
         setMessage('Registration successful! Please check your email to confirm your account.');
       }
     } else {
@@ -44,14 +53,14 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
       }
     }
     setLoading(false);
-  }, [email, password, isSignUp, onSignInSuccess]);
+  }, [email, password, name, isSignUp, onSignInSuccess]);
   
   const inputStyles = "w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-white";
   const buttonStyles = "w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-900 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300";
 
   return (
-    <div className="bg-gray-900 flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-2xl border border-purple-500/30 relative">
+    <div className="flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md p-8 relative">
         {onBack && (
           <button 
             onClick={onBack} 
@@ -84,6 +93,20 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
               autoComplete="email"
             />
           </div>
+          {isSignUp && (
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Name (optional)</label>
+              <input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={inputStyles}
+                placeholder="Your name"
+                autoComplete="name"
+              />
+            </div>
+          )}
           <div>
             <label htmlFor="password"className="block text-sm font-medium text-gray-400 mb-2">Password</label>
             <input
@@ -111,6 +134,7 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
               setIsSignUp(!isSignUp);
               setError(null);
               setMessage(null);
+              setName('');
             }} 
             className="font-medium text-purple-400 hover:text-purple-300"
           >

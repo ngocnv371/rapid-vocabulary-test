@@ -23,7 +23,7 @@ interface Database {
       profiles: {
         Row: Profile;
         Insert: Omit<Profile, 'id'>;
-        Update: Partial<Omit<Profile, 'id'>>;
+        Update: Partial<Omit<Profile, 'id' | 'user_id'>>;
       };
     };
   };
