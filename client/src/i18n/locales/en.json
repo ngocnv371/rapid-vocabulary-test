@@ -60,6 +60,7 @@
     "login": "Login",
     "logout": "Logout",
     "logoutError": "Failed to logout. Please try again.",
+    "anonymousUser": "Anonymous",
     "anonymousMode": "You're now in anonymous mode 🎭"
   },
   "common": {

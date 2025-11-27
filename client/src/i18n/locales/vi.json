@@ -60,6 +60,7 @@
     "login": "Đăng nhập",
     "logout": "Đăng xuất",
     "logoutError": "Không thể đăng xuất. Vui lòng thử lại.",
+    "anonymousUser": "Ẩn Danh",
     "anonymousMode": "Bạn đang ở chế độ ẩn danh 🎭"
   },
   "common": {

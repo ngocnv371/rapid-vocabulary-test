@@ -124,7 +124,7 @@ export default function Profile() {
       ></div>
 
       {/* Profile Avatar Section - Centered */}
-      <div className="relative flex justify-center mb-6">
+      <div className="relative flex flex-col items-center mb-6">
         <div className="relative inline-block">
           {/* Glow ring around avatar */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 blur-xl opacity-75 animate-pulse"></div>
@@ -140,6 +140,10 @@ export default function Profile() {
             </svg>
           </div>
         </div>
+        {/* Profile Name */}
+          <h3 className="mt-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-pink-300 to-purple-200">
+            {profile?.name || t("profile.anonymousUser")}
+          </h3>
       </div>
 
       {/* Title with enhanced gradient */}
