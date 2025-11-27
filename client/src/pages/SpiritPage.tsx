@@ -17,7 +17,7 @@ const SpiritPage: React.FC = () => {
       if (!handleGameAttempt()) return;
       useHeart();
       setSpiritAnimal(animal.icon);
-      navigate("/quiz");
+      navigate("/", { replace: true });
     },
     [hearts, navigate, useHeart, handleGameAttempt]
   );
