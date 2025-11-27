@@ -1,8 +1,6 @@
-
-import React, { useCallback, useState } from 'react';
-import { supabase } from '../services/supabase';
-import { upsertProfile } from '../services/profile';
-import Spinner from './Spinner';
+import React, { useCallback, useState } from "react";
+import { supabase } from "../services/supabase";
+import Spinner from "./Spinner";
 
 interface AuthProps {
   onSignInSuccess?: () => void;
@@ -11,64 +9,78 @@ interface AuthProps {
 
 const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
-  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setMessage(null);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setLoading(true);
+      setError(null);
+      setMessage(null);
 
-    if (isSignUp) {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-      if (error) {
-        setError(error.message);
-      } else if (data.user) {
-        // Create profile with the user's name
-        upsertProfile({
-          userId: data.user.id,
-          name: name || 'User',
-          avatarUrl: '',
+      if (isSignUp) {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { name },
+          },
         });
-        
-        setMessage('Registration successful! Please check your email to confirm your account.');
-      }
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) {
-        setError(error.message);
+        if (error) {
+          setError(error.message);
+        } else if (data.user) {
+          setMessage(
+            "Registration successful! Please check your email to confirm your account."
+          );
+        }
       } else {
-        onSignInSuccess?.();
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (error) {
+          setError(error.message);
+        } else {
+          onSignInSuccess?.();
+        }
       }
-    }
-    setLoading(false);
-  }, [email, password, name, isSignUp, onSignInSuccess]);
-  
-  const inputStyles = "w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-white";
-  const buttonStyles = "w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-900 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300";
+      setLoading(false);
+    },
+    [email, password, name, isSignUp, onSignInSuccess]
+  );
+
+  const inputStyles =
+    "w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-white";
+  const buttonStyles =
+    "w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-900 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300";
 
   return (
     <div className="flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md p-8 relative">
         {onBack && (
-          <button 
-            onClick={onBack} 
-            className="absolute top-2 right-2 p-2 text-gray-400 hover:text-white rounded-full hover:bg-gray-700" 
+          <button
+            onClick={onBack}
+            className="absolute top-2 right-2 p-2 text-gray-400 hover:text-white rounded-full hover:bg-gray-700"
             aria-label="Close auth form"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         )}
@@ -76,12 +88,17 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
           Rapid Vocabulary Test
         </h1>
         <p className="text-center text-gray-400 mb-8">
-          {isSignUp ? 'Create an account to begin' : 'Sign in to your test'}
+          {isSignUp ? "Create an account to begin" : "Sign in to your test"}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email address</label>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-400 mb-2"
+            >
+              Email address
+            </label>
             <input
               id="email"
               type="email"
@@ -95,7 +112,12 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
           </div>
           {isSignUp && (
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Name (optional)</label>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-400 mb-2"
+              >
+                Name (optional)
+              </label>
               <input
                 id="name"
                 type="text"
@@ -108,7 +130,12 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
             </div>
           )}
           <div>
-            <label htmlFor="password"className="block text-sm font-medium text-gray-400 mb-2">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-400 mb-2"
+            >
+              Password
+            </label>
             <input
               id="password"
               type="password"
@@ -121,31 +148,45 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
             />
           </div>
           <button type="submit" disabled={loading} className={buttonStyles}>
-            {loading ? <Spinner className="w-6 h-6" /> : (isSignUp ? 'Sign Up' : 'Sign In')}
+            {loading ? (
+              <Spinner className="w-6 h-6" />
+            ) : isSignUp ? (
+              "Sign Up"
+            ) : (
+              "Sign In"
+            )}
           </button>
         </form>
-        
-        {error && <p className="mt-4 text-center text-red-400 bg-red-900/50 p-3 rounded-md">{error}</p>}
-        {message && <p className="mt-4 text-center text-green-400 bg-green-900/50 p-3 rounded-md">{message}</p>}
+
+        {error && (
+          <p className="mt-4 text-center text-red-400 bg-red-900/50 p-3 rounded-md">
+            {error}
+          </p>
+        )}
+        {message && (
+          <p className="mt-4 text-center text-green-400 bg-green-900/50 p-3 rounded-md">
+            {message}
+          </p>
+        )}
 
         <p className="mt-6 text-center text-sm text-gray-400">
-          {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
-          <button onClick={() => {
+          {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
+          <button
+            onClick={() => {
               setIsSignUp(!isSignUp);
               setError(null);
               setMessage(null);
-              setName('');
-            }} 
+              setName("");
+            }}
             className="font-medium text-purple-400 hover:text-purple-300"
           >
-            {isSignUp ? 'Sign In' : 'Sign Up'}
+            {isSignUp ? "Sign In" : "Sign Up"}
           </button>
         </p>
-
       </div>
-       <footer className="text-center mt-8 text-gray-600">
-            <p>Powered by Gemini and Supabase</p>
-        </footer>
+      <footer className="text-center mt-8 text-gray-600">
+        <p>Powered by Gemini and Supabase</p>
+      </footer>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { Profile } from "../types";
 export function useUserInfoLoader() {
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
-  const reload = useCallback(async () => {
+  const reloadUser = useCallback(async () => {
     console.log("Checking Supabase auth user...");
     let { data } = await supabase.auth.getUser();
     let user = data?.user;
@@ -26,20 +26,15 @@ export function useUserInfoLoader() {
 
   // initial load
   useEffect(() => {
-    reload();
-  }, [reload]);
+    reloadUser();
+  }, [reloadUser]);
 
-  // when user changes, process profile
-  useEffect(() => {
-    if (!user?.id) {
-      return;
-    }
-
-    console.log("Loading profile for user", user.id);
+  const reloadProfile = useCallback(() => {
+    console.log("Loading profile for user", user?.id);
     supabase
       .from("profiles")
       .select("*")
-      .eq("user_id", user.id)
+      .eq("user_id", user?.id)
       .single()
       .then((response) => {
         if (response.error) {
@@ -51,7 +46,16 @@ export function useUserInfoLoader() {
           setProfile(profile);
         }
       });
-  }, [user]);
+  }, [user?.id]);
 
-  return { user, profile, reload };
+  // when user changes, process profile
+  useEffect(() => {
+    if (!user?.id) {
+      return;
+    }
+
+    reloadProfile();
+  }, [user?.id, reloadProfile]);
+
+  return { user, profile, reloadUser, reloadProfile };
 }

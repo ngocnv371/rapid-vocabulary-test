@@ -9,6 +9,7 @@ interface AppContextType {
   setSpiritAnimal: React.Dispatch<React.SetStateAction<string>>;
   profile?: Profile | null;
   reloadUser: () => void;
+  reloadProfile: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -17,7 +18,7 @@ interface AppProviderProps {
 }
 
 export function AppProvider({ children }: AppProviderProps) {
-  const { user, profile, reload } = useUserInfoLoader();
+  const { user, profile, reloadUser, reloadProfile } = useUserInfoLoader();
   const [spiritAnimal, setSpiritAnimal] = useState<string>("🐔");
 
   const value: AppContextType = {
@@ -25,7 +26,8 @@ export function AppProvider({ children }: AppProviderProps) {
     profile,
     spiritAnimal,
     setSpiritAnimal,
-    reloadUser: reload,
+    reloadUser,
+    reloadProfile,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
