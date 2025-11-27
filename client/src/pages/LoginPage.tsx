@@ -8,7 +8,7 @@ const LoginPage: React.FC = () => {
   const { reloadUser } = useAppContext();
   const handleSignInSuccess = useCallback(() => {
     reloadUser();
-    navigate("/profile", { replace: true });
+    navigate("/", { replace: true });
   }, []);
 
   return (
