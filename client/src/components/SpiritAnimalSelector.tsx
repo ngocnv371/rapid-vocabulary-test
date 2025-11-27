@@ -15,6 +15,14 @@ const spiritAnimals: Animal[] = [
   { id: '6', name: "Playful Dolphin", icon: "🐬" },
   { id: '7', name: "Strong Bear", icon: "🐻" },
   { id: '8', name: "Free Butterfly", icon: "🦋" },
+  { id: '9', name: "Happy Panda", icon: "🐼" },
+  { id: '10', name: "Curious Koala", icon: "🐨" },
+  { id: '11', name: "Loyal Puppy", icon: "🐶" },
+  { id: '12', name: "Cozy Cat", icon: "🐱" },
+  { id: '13', name: "Bouncy Bunny", icon: "🐰" },
+  { id: '14', name: "Cheerful Penguin", icon: "🐧" },
+  { id: '15', name: "Tiny Hamster", icon: "🐹" },
+  { id: '16', name: "Fluffy Chick", icon: "🐣" },
 ];
 
 const AnimalCard: React.FC<{ animal: Animal; onClick: () => void }> = ({
