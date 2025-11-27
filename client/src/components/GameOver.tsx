@@ -14,7 +14,7 @@ export default function GameOver({
   const { t } = useTranslation();
   
   return (
-    <div className="p-4 pt-10">
+    <div className="p-4 pt-10 min-h-screen">
       {/* Animated background orbs */}
       <div className="absolute top-0 left-1/4 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
