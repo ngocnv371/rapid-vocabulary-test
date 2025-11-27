@@ -1,21 +1,20 @@
 import React from "react";
-import type { Category } from "../types";
+import type { Animal } from "../types";
 
-type Animal = Category;
 interface SpiritAnimalSelectorProps {
   onSelect: (animal: Animal) => void;
 }
 
 // Spirit animals with cute emojis
 const spiritAnimals: Animal[] = [
-  { id: 1, name: "Wise Owl", icon: "🦉" },
-  { id: 2, name: "Brave Lion", icon: "🦁" },
-  { id: 3, name: "Clever Fox", icon: "🦊" },
-  { id: 4, name: "Swift Eagle", icon: "🦅" },
-  { id: 5, name: "Gentle Deer", icon: "🦌" },
-  { id: 6, name: "Playful Dolphin", icon: "🐬" },
-  { id: 7, name: "Strong Bear", icon: "🐻" },
-  { id: 8, name: "Free Butterfly", icon: "🦋" },
+  { id: '1', name: "Wise Owl", icon: "🦉" },
+  { id: '2', name: "Brave Lion", icon: "🦁" },
+  { id: '3', name: "Clever Fox", icon: "🦊" },
+  { id: '4', name: "Swift Eagle", icon: "🦅" },
+  { id: '5', name: "Gentle Deer", icon: "🦌" },
+  { id: '6', name: "Playful Dolphin", icon: "🐬" },
+  { id: '7', name: "Strong Bear", icon: "🐻" },
+  { id: '8', name: "Free Butterfly", icon: "🦋" },
 ];
 
 const AnimalCard: React.FC<{ animal: Animal; onClick: () => void }> = ({
@@ -46,7 +45,7 @@ export default function SpiritAnimalSelector({
   onSelect,
 }: SpiritAnimalSelectorProps) {
   return (
-    <div className="p-4">
+    <div className="p-4 min-h-screen">
       <h2 className="text-4xl font-extrabold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
         Choose Your Spirit Animal
       </h2>

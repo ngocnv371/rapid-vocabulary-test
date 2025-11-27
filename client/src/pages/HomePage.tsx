@@ -14,13 +14,26 @@ function SmallCard({
   icon,
   title,
   desc,
+  link,
 }: {
   icon: string;
   title: string;
   desc: string;
+  link?: string;
 }) {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    if (link) {
+      navigate(link);
+    }
+  };
+  
   return (
-    <div className="group text-center relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md p-6 border border-white/20 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/30 hover:bg-white/20">
+    <div 
+      onClick={handleClick}
+      className="group text-center relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md p-6 border border-white/20 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/30 hover:bg-white/20 cursor-pointer"
+    >
       <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       <div className="relative z-10">
         <div className="text-5xl mb-3 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 drop-shadow-lg">
@@ -95,21 +108,25 @@ const HomePage: React.FC = () => {
             icon="⚡"
             title={t('home.quickTests')}
             desc={t('home.quickTestsDesc')}
+            link="/quiz"
           />
           <SmallCard
             icon="🏆"
             title={t('home.compete')}
             desc={t('home.competeDesc')}
+            link="/leaderboard"
           />
           <SmallCard
             icon="🎯"
             title={t('home.trackProgress')}
             desc={t('home.trackProgressDesc')}
+            link="/profile"
           />
           <SmallCard
             icon={spiritAnimal || "🦄"}
             title={t('home.yourSpirit')}
             desc={t('home.yourSpiritDesc')}
+            link="/spirit-animal"
           />
         </div>
 
