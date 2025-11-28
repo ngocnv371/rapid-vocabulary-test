@@ -8,6 +8,7 @@ import TestMenuToggle from "./TestMenuToggle";
 const HomePage = lazy(() => import("../pages/HomePage"));
 const LeaderboardPage = lazy(() => import("../pages/LeaderboardPage"));
 const ProfilePage = lazy(() => import("../pages/ProfilePage"));
+const EditProfilePage = lazy(() => import("../pages/EditProfilePage"));
 const QuizPage = lazy(() => import("../pages/QuizPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const GameOverPage = lazy(() => import("../pages/GameOverPage"));
@@ -26,6 +27,7 @@ export const Layout: FC = () => {
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/leaderboard" element={<LeaderboardPage />}></Route>
             <Route path="/profile" element={<ProfilePage />}></Route>
+            <Route path="/profile/edit" element={<EditProfilePage />}></Route>
             <Route path="/quiz" element={<QuizPage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/game-over" element={<GameOverPage />}></Route>

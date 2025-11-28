@@ -61,7 +61,23 @@
     "logout": "Logout",
     "logoutError": "Failed to logout. Please try again.",
     "anonymousUser": "Anonymous",
-    "anonymousMode": "You're now in anonymous mode 🎭"
+    "anonymousMode": "You're now in anonymous mode 🎭",
+    "editProfile": "Edit Profile"
+  },
+  "editProfile": {
+    "title": "Edit Profile",
+    "heading": "Update Your Display Name",
+    "displayNameLabel": "Display Name",
+    "placeholder": "Enter your display name",
+    "characters": "characters",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "nameRequired": "Display name is required",
+    "nameTooLong": "Display name is too long (max 50 characters)",
+    "notLoggedIn": "You must be logged in to edit your profile",
+    "updateSuccess": "Profile updated successfully!",
+    "updateError": "Failed to update profile. Please try again."
   },
   "common": {
     "or": "or",

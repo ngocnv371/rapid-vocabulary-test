@@ -61,7 +61,23 @@
     "logout": "Đăng xuất",
     "logoutError": "Không thể đăng xuất. Vui lòng thử lại.",
     "anonymousUser": "Ẩn Danh",
-    "anonymousMode": "Bạn đang ở chế độ ẩn danh 🎭"
+    "anonymousMode": "Bạn đang ở chế độ ẩn danh 🎭",
+    "editProfile": "Chỉnh Sửa Hồ Sơ"
+  },
+  "editProfile": {
+    "title": "Chỉnh Sửa Hồ Sơ",
+    "heading": "Cập Nhật Tên Hiển Thị",
+    "displayNameLabel": "Tên Hiển Thị",
+    "placeholder": "Nhập tên hiển thị của bạn",
+    "characters": "ký tự",
+    "save": "Lưu",
+    "saving": "Đang lưu...",
+    "cancel": "Hủy",
+    "nameRequired": "Tên hiển thị là bắt buộc",
+    "nameTooLong": "Tên hiển thị quá dài (tối đa 50 ký tự)",
+    "notLoggedIn": "Bạn phải đăng nhập để chỉnh sửa hồ sơ",
+    "updateSuccess": "Cập nhật hồ sơ thành công!",
+    "updateError": "Không thể cập nhật hồ sơ. Vui lòng thử lại."
   },
   "common": {
     "or": "hoặc",
