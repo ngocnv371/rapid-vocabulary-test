@@ -42,3 +42,27 @@ CREATE TRIGGER on_profile_created
 AFTER INSERT ON public.profiles
 FOR EACH ROW
 EXECUTE FUNCTION public.handle_new_profile();
+
+-- Function to decrease credits when a score is posted
+CREATE OR REPLACE FUNCTION public.handle_score_posted()
+RETURNS trigger
+LANGUAGE plpgsql
+SECURITY DEFINER set search_path = ''
+AS $$
+BEGIN
+  UPDATE public.credits
+  SET amount = GREATEST(amount - 1, 0)
+  WHERE profile_id = NEW.profile_id;
+  
+  RETURN NEW;
+END;
+$$;
+
+-- Trigger to decrease credits when a score is posted
+DROP TRIGGER IF EXISTS on_score_posted ON public.scores;
+
+CREATE TRIGGER on_score_posted
+AFTER INSERT ON public.scores
+FOR EACH ROW
+EXECUTE FUNCTION public.handle_score_posted();
+

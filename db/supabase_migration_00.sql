@@ -107,14 +107,12 @@ CREATE POLICY "Allow public to read all scores"
   TO public
   USING (true);
 
--- Only non-anonymous authenticated users can insert scores
-CREATE POLICY "Only permanent users can post scores"
+-- All authenticated users can insert scores
+CREATE POLICY "Allow all authenticated users to post scores"
   ON public.scores
   FOR INSERT
   TO authenticated
-  WITH CHECK (
-    (SELECT (auth.jwt()->>'is_anonymous')::boolean) IS FALSE
-  );
+  WITH CHECK (TRUE);
 
 -- Users can delete their own scores
 CREATE POLICY "Allow users to delete own scores"
