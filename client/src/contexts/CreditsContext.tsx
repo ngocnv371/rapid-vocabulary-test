@@ -4,13 +4,16 @@ import React, {
   useState,
   useEffect,
   useCallback,
+  useRef,
 } from "react";
+import { useAppContext } from "./AppContext";
+import { fetchCredits } from "../services/credits";
 
 interface CreditsContextType {
-  credits: number;
-  setCredits: React.Dispatch<React.SetStateAction<number>>;
+  credits: number | null;
+  isLoading: boolean;
   useCredit: () => void;
-  resetCredits: () => void;
+  refreshCredits: () => Promise<void>;
   showOutOfCreditsDialog: boolean;
   setShowOutOfCreditsDialog: React.Dispatch<React.SetStateAction<boolean>>;
   canPlayGame: () => boolean;
@@ -18,68 +21,92 @@ interface CreditsContextType {
 }
 
 const CreditsContext = createContext<CreditsContextType | undefined>(undefined);
-const DEFAULT_CREDITS = 5;
-const CREDITS_STORAGE_KEY = "credits";
+
+const FETCH_INTERVAL_MS = 60000; // 1 minute
+
 interface CreditsProviderProps {
   children: React.ReactNode;
 }
 
 export function CreditsProvider({ children }: CreditsProviderProps) {
-  const [credits, setCredits] = useState<number>(DEFAULT_CREDITS);
+  const { profile } = useAppContext();
+  const [credits, setCredits] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [showOutOfCreditsDialog, setShowOutOfCreditsDialog] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // load saved credits on start
-  useEffect(() => {
-    try {
-      const savedCredits = localStorage.getItem(CREDITS_STORAGE_KEY);
-      if (savedCredits !== null) {
-        setCredits(parseInt(savedCredits, 10));
-      } else {
-        const initialCredits = DEFAULT_CREDITS;
-        setCredits(initialCredits);
-        localStorage.setItem(CREDITS_STORAGE_KEY, String(initialCredits));
-      }
-    } catch (error) {
-      console.error("Error accessing nativeStorage:", error);
-      setCredits(DEFAULT_CREDITS); // Fallback to default value
+  // Fetch credits from Supabase
+  const refreshCredits = useCallback(async () => {
+    if (!profile?.id) {
+      setCredits(null);
+      setIsLoading(false);
+      return;
     }
+
+    try {
+      const amount = await fetchCredits(profile.id);
+      setCredits(amount);
+    } catch (error) {
+      console.error("Error refreshing credits:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [profile?.id]);
+
+  // Initial fetch and setup periodic fetching
+  useEffect(() => {
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
+    if (!profile?.id) {
+      setCredits(null);
+      setIsLoading(false);
+      return;
+    }
+
+    // Initial fetch
+    setIsLoading(true);
+    refreshCredits();
+
+    // Set up periodic fetching (every 1 minute)
+    intervalRef.current = setInterval(() => {
+      refreshCredits();
+    }, FETCH_INTERVAL_MS);
+
+    // Cleanup on unmount or profile change
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [profile?.id, refreshCredits]);
+
+  // Optimistically reduce credits by one (used after posting score)
+  const useCredit = useCallback(() => {
+    setCredits((prev) => (prev !== null && prev > 0 ? prev - 1 : prev));
   }, []);
 
-  // persist credits on change
-  useEffect(() => {
-    try {
-      localStorage.setItem(CREDITS_STORAGE_KEY, String(credits));
-    } catch (error) {
-      console.error("Error saving credits to nativeStorage:", error);
-    }
+  const canPlayGame = useCallback(() => {
+    return credits !== null && credits > 0;
   }, [credits]);
 
-  const useCredit = useCallback(() => {
-    setCredits((prev) => Math.max(0, prev - 1));
-  }, []);
-
-  const resetCredits = useCallback(() => {
-    const initialCredits = DEFAULT_CREDITS;
-    setCredits(initialCredits);
-  }, []);
-
-  const canPlayGame = () => {
-    return credits > 0;
-  };
-
-  const handleGameAttempt = () => {
-    if (credits <= 0) {
+  const handleGameAttempt = useCallback(() => {
+    if (!canPlayGame()) {
       setShowOutOfCreditsDialog(true);
       return false;
     }
     return true;
-  };
+  }, [canPlayGame]);
 
   const value: CreditsContextType = {
     credits,
-    setCredits,
+    isLoading,
     useCredit,
-    resetCredits,
+    refreshCredits,
     showOutOfCreditsDialog,
     setShowOutOfCreditsDialog,
     canPlayGame,

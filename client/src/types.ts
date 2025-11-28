@@ -34,6 +34,11 @@ export interface Profile {
   avatar_url: string | null;
 }
 
+export interface Credits {
+  profile_id: number;
+  amount: number;
+}
+
 export interface ScoreWithProfile extends Score {
   profiles: Profile | null;
 }
