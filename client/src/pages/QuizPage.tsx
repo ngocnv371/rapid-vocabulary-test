@@ -8,10 +8,11 @@ import { postScore } from "../services/leaderboard";
 import { useTranslation } from "react-i18next";
 
 const QuizPage: React.FC = () => {
-  const { profile } = useAppContext();
+  const { profile, user } = useAppContext();
   const { t } = useTranslation();
   const [progress, setProgress] = React.useState({ current: 0, total: 0 });
   const navigate = useNavigate();
+  const isAnonymous = user?.is_anonymous ?? true;
 
   const handleProgressUpdate = useCallback((current: number, total: number) => {
     console.log(`Progress: ${current} out of ${total}`);
@@ -21,12 +22,12 @@ const QuizPage: React.FC = () => {
 
   const handleGameOver = useCallback(
     async (score: number) => {
-      if (profile?.id) {
+      if (profile?.id && !isAnonymous) {
         postScore(profile.id, score);
       }
       navigate("/game-over");
     },
-    [profile?.id]
+    [profile?.id, isAnonymous]
   );
 
   const handleBackToCategories = useCallback(() => {

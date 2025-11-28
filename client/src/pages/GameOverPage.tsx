@@ -1,7 +1,7 @@
-import { BottomNavigation, Box, Header, Icon, Page, useNavigate } from "zmp-ui";
+import { Box, Header, Page, useNavigate } from "zmp-ui";
 import GameOver from "../components/GameOver";
 import React, { useCallback, useEffect } from "react";
-import { getItem, getLastScore } from "../services/storage";
+import { getLastScore } from "../services/storage";
 import NavBar from "../components/NavBar";
 import { useTranslation } from "react-i18next";
 
