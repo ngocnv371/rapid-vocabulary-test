@@ -2,18 +2,49 @@
 
 -- profiles
 CREATE TABLE IF NOT EXISTS public.profiles (
-  id serial PRIMARY KEY,
-  user_id uuid,
+  id serial PRIMARY KEY, -- separate id from user_id on purpose
+  user_id uuid not null references auth.users on delete cascade,
   name text,
   spirit text,
   zalo_id text,
   avatar_url text
 );
 
-CREATE OR REPLACE FUNCTION public.handle_new_auth_user()
+ALTER TABLE IF EXISTS public.profiles ENABLE ROW LEVEL SECURITY;
+
+-- Allow anyone to read all profiles (for leaderboard display)
+CREATE POLICY "Allow public to read all profiles"
+  ON public.profiles
+  FOR SELECT
+  TO public
+  USING (true);
+
+-- Allow users to insert their own profile (via trigger)
+CREATE POLICY "Allow users to insert own profile"
+  ON public.profiles
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (auth.uid() = user_id);
+
+-- Allow users to update only their own profile
+CREATE POLICY "Allow users to update own profile"
+  ON public.profiles
+  FOR UPDATE
+  TO authenticated
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
+-- Allow users to delete their own profile
+CREATE POLICY "Allow users to delete own profile"
+  ON public.profiles
+  FOR DELETE
+  TO authenticated
+  USING (auth.uid() = user_id);
+
+CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger
 LANGUAGE plpgsql
-SECURITY DEFINER
+SECURITY DEFINER set search_path = ''
 AS $$
 BEGIN
   INSERT INTO public.profiles (user_id, name, spirit, avatar_url, zalo_id)
@@ -25,29 +56,12 @@ END;
 $$;
 
 
-DROP TRIGGER IF EXISTS trigger_handle_new_auth_user ON auth.users;
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 
-CREATE TRIGGER trigger_handle_new_auth_user
+CREATE TRIGGER on_auth_user_created
 AFTER INSERT ON auth.users
 FOR EACH ROW
-EXECUTE FUNCTION public.handle_new_auth_user();
-
-ALTER TABLE IF EXISTS public.profiles ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow public to read all profiles"
-  ON public.profiles
-  FOR SELECT
-  TO public
-  USING (true);
-
-CREATE POLICY "Allow public to insert profiles" ON public.profiles
-  FOR INSERT
-  TO public
-  WITH CHECK (true);
-
-CREATE POLICY "Allow public to update profiles" ON public.profiles
-  FOR UPDATE
-  TO public
-  USING (true);
+EXECUTE FUNCTION public.handle_new_user();
 
 -- categories
 CREATE TABLE IF NOT EXISTS public.categories (
@@ -85,11 +99,32 @@ CREATE TABLE IF NOT EXISTS public.scores (
   created_at      timestamptz NOT NULL DEFAULT now()
 );
 ALTER TABLE public.scores ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow public to insert scores" ON public.scores
-  FOR INSERT
-  TO public
-  WITH CHECK (true);
-CREATE POLICY "Allow public to read all scores" ON public.scores
+
+-- Allow public to read all scores (for leaderboard)
+CREATE POLICY "Allow public to read all scores"
+  ON public.scores
   FOR SELECT
   TO public
   USING (true);
+
+-- Only non-anonymous authenticated users can insert scores
+CREATE POLICY "Only permanent users can post scores"
+  ON public.scores
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (
+    (SELECT (auth.jwt()->>'is_anonymous')::boolean) IS FALSE
+  );
+
+-- Users can delete their own scores
+CREATE POLICY "Allow users to delete own scores"
+  ON public.scores
+  FOR DELETE
+  TO authenticated
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.profiles
+      WHERE profiles.user_id = auth.uid()
+      AND profiles.id = scores.profile_id
+    )
+  );
