@@ -141,9 +141,9 @@ export default function Profile() {
           </div>
         </div>
         {/* Profile Name */}
-          <h3 className="mt-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-pink-300 to-purple-200">
-            {profile?.name || t("profile.anonymousUser")}
-          </h3>
+        <h3 className="mt-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-pink-300 to-purple-200">
+          {profile?.name || t("profile.anonymousUser")}
+        </h3>
         {/* Edit Profile Button */}
         {!isAnonymous && (
           <button
@@ -168,85 +168,89 @@ export default function Profile() {
         )}
       </div>
 
-      {/* Title with enhanced gradient */}
-      <h2 className="text-4xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-purple-300 tracking-wide animate-pulse">
-        {t("profile.highScores")}
-      </h2>
+      {!isAnonymous && (
+        <>
+          {/* Title with enhanced gradient */}
+          <h2 className="text-4xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-purple-300 tracking-wide animate-pulse">
+            {t("profile.highScores")}
+          </h2>
 
-      {/* Main Score Card with enhanced styling */}
-      <div className="text-center mb-8 relative">
-        {/* Decorative stars */}
-        <div className="absolute -top-4 left-1/4 text-yellow-400 text-2xl animate-bounce">
-          ✨
-        </div>
-        <div
-          className="absolute -top-4 right-1/4 text-yellow-400 text-2xl animate-bounce"
-          style={{ animationDelay: "0.5s" }}
-        >
-          ✨
-        </div>
-
-        <div className="inline-block relative group">
-          {/* Outer glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
-
-          {/* Score card */}
-          <div className="relative bg-gradient-to-br from-purple-600 via-pink-600 to-purple-700 p-10 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-300 border border-white/20">
-            <div className="absolute top-2 right-2 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-            <p className="text-sm text-purple-100 mb-3 uppercase tracking-widest font-bold">
-              {t("profile.bestThisWeek")}
-            </p>
-            <p className="text-7xl font-black text-white drop-shadow-2xl tracking-tight">
-              {highestScore ?? 0}
-            </p>
-            {/* Confetti dots */}
-            <div className="absolute top-4 left-4 w-2 h-2 bg-yellow-300 rounded-full animate-ping"></div>
+          {/* Main Score Card with enhanced styling */}
+          <div className="text-center mb-8 relative">
+            {/* Decorative stars */}
+            <div className="absolute -top-4 left-1/4 text-yellow-400 text-2xl animate-bounce">
+              ✨
+            </div>
             <div
-              className="absolute bottom-4 right-6 w-2 h-2 bg-pink-300 rounded-full animate-ping"
-              style={{ animationDelay: "0.3s" }}
-            ></div>
-            <div
-              className="absolute top-6 right-8 w-2 h-2 bg-blue-300 rounded-full animate-ping"
-              style={{ animationDelay: "0.6s" }}
-            ></div>
-          </div>
-        </div>
-      </div>
+              className="absolute -top-4 right-1/4 text-yellow-400 text-2xl animate-bounce"
+              style={{ animationDelay: "0.5s" }}
+            >
+              ✨
+            </div>
 
-      {/* Stats Row */}
-      <div className="grid grid-cols-3 gap-4 mt-8">
-        <div className="bg-gradient-to-br text-center from-indigo-600/50 to-purple-600/50 p-4 rounded-xl border border-indigo-400/30 backdrop-blur-sm hover:border-indigo-400 transition-all duration-300 hover:transform hover:scale-105">
-          <div className="text-2xl mb-1">🎮</div>
-          <div className="text-xs text-indigo-200 uppercase tracking-wide">
-            {t("profile.gamesThisWeek")}
+            <div className="inline-block relative group">
+              {/* Outer glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+
+              {/* Score card */}
+              <div className="relative bg-gradient-to-br from-purple-600 via-pink-600 to-purple-700 p-10 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-300 border border-white/20">
+                <div className="absolute top-2 right-2 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+                <p className="text-sm text-purple-100 mb-3 uppercase tracking-widest font-bold">
+                  {t("profile.bestThisWeek")}
+                </p>
+                <p className="text-7xl font-black text-white drop-shadow-2xl tracking-tight">
+                  {highestScore ?? 0}
+                </p>
+                {/* Confetti dots */}
+                <div className="absolute top-4 left-4 w-2 h-2 bg-yellow-300 rounded-full animate-ping"></div>
+                <div
+                  className="absolute bottom-4 right-6 w-2 h-2 bg-pink-300 rounded-full animate-ping"
+                  style={{ animationDelay: "0.3s" }}
+                ></div>
+                <div
+                  className="absolute top-6 right-8 w-2 h-2 bg-blue-300 rounded-full animate-ping"
+                  style={{ animationDelay: "0.6s" }}
+                ></div>
+              </div>
+            </div>
           </div>
-          <div className="text-xl font-bold text-white mt-1">
-            {stats.gamesPlayed}
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-3 gap-4 mt-8">
+            <div className="bg-gradient-to-br text-center from-indigo-600/50 to-purple-600/50 p-4 rounded-xl border border-indigo-400/30 backdrop-blur-sm hover:border-indigo-400 transition-all duration-300 hover:transform hover:scale-105">
+              <div className="text-2xl mb-1">🎮</div>
+              <div className="text-xs text-indigo-200 uppercase tracking-wide">
+                {t("profile.gamesThisWeek")}
+              </div>
+              <div className="text-xl font-bold text-white mt-1">
+                {stats.gamesPlayed}
+              </div>
+            </div>
+            <div className="bg-gradient-to-br text-center from-pink-600/50 to-rose-600/50 p-4 rounded-xl border border-pink-400/30 backdrop-blur-sm hover:border-pink-400 transition-all duration-300 hover:transform hover:scale-105">
+              <div className="text-2xl mb-1">⚡</div>
+              <div className="text-xs text-pink-200 uppercase tracking-wide">
+                {t("profile.avgScore")}
+              </div>
+              <div className="text-xl font-bold text-white mt-1">
+                {stats.avgScore || "-"}
+              </div>
+            </div>
+            <div className="bg-gradient-to-br text-center from-violet-600/50 to-fuchsia-600/50 p-4 rounded-xl border border-violet-400/30 backdrop-blur-sm hover:border-violet-400 transition-all duration-300 hover:transform hover:scale-105">
+              <div className="text-2xl mb-1">🔥</div>
+              <div className="text-xs text-violet-200 uppercase tracking-wide">
+                {t("profile.streak")}
+              </div>
+              <div className="text-xl font-bold text-white mt-1">
+                {stats.streak > 0
+                  ? `${stats.streak} ${
+                      stats.streak === 1 ? t("profile.day") : t("profile.days")
+                    }`
+                  : "-"}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="bg-gradient-to-br text-center from-pink-600/50 to-rose-600/50 p-4 rounded-xl border border-pink-400/30 backdrop-blur-sm hover:border-pink-400 transition-all duration-300 hover:transform hover:scale-105">
-          <div className="text-2xl mb-1">⚡</div>
-          <div className="text-xs text-pink-200 uppercase tracking-wide">
-            {t("profile.avgScore")}
-          </div>
-          <div className="text-xl font-bold text-white mt-1">
-            {stats.avgScore || "-"}
-          </div>
-        </div>
-        <div className="bg-gradient-to-br text-center from-violet-600/50 to-fuchsia-600/50 p-4 rounded-xl border border-violet-400/30 backdrop-blur-sm hover:border-violet-400 transition-all duration-300 hover:transform hover:scale-105">
-          <div className="text-2xl mb-1">🔥</div>
-          <div className="text-xs text-violet-200 uppercase tracking-wide">
-            {t("profile.streak")}
-          </div>
-          <div className="text-xl font-bold text-white mt-1">
-            {stats.streak > 0
-              ? `${stats.streak} ${
-                  stats.streak === 1 ? t("profile.day") : t("profile.days")
-                }`
-              : "-"}
-          </div>
-        </div>
-      </div>
+        </>
+      )}
 
       {/* Weekly Progress Chart */}
       {!isAnonymous && <WeeklyProgressChart scores={weeklyScores} />}
