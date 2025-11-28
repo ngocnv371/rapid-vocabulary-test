@@ -131,9 +131,9 @@ CREATE POLICY "Allow users to delete own scores"
 
 -- credits table to track user credits
 CREATE TABLE IF NOT EXISTS public.credits (
-  id              BIGSERIAL PRIMARY KEY,
   profile_id      serial NOT NULL UNIQUE REFERENCES public.profiles(id) ON DELETE CASCADE,
-  amount          INT NOT NULL DEFAULT 0
+  amount          INT NOT NULL DEFAULT 0,
+  primary key (profile_id)
 );
 ALTER TABLE public.credits ENABLE ROW LEVEL SECURITY;
 
