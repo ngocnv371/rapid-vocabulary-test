@@ -1,17 +1,22 @@
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/AppContext";
 
 interface GameOverProps {
   score: number;
   onPlayAgain?: () => void;
   onViewLeaderboard?: () => void;
+  onLogin?: () => void;
 }
 
 export default function GameOver({
   score,
   onPlayAgain,
   onViewLeaderboard,
+  onLogin,
 }: GameOverProps) {
   const { t } = useTranslation();
+  const { user } = useAppContext();
+  const isAnonymous = user?.is_anonymous ?? true;
   
   return (
     <div className="p-4 pt-10 min-h-screen">
@@ -56,6 +61,20 @@ export default function GameOver({
           </div>
         </div>
       </div>
+
+      {/* Anonymous User Warning */}
+      {isAnonymous && (
+        <div className="mb-6 mx-auto max-w-md">
+          <button
+            onClick={onLogin}
+            className="w-full bg-yellow-500/20 backdrop-blur-sm border border-yellow-500/40 rounded-xl p-4 shadow-lg hover:bg-yellow-500/30 hover:border-yellow-500/60 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+          >
+            <p className="text-yellow-200 text-center text-sm leading-relaxed">
+              {t('gameOver.anonymousWarning')}
+            </p>
+          </button>
+        </div>
+      )}
 
       {/* Action Buttons */}
       <div className="flex flex-col gap-4 sm:gap-5 relative">

@@ -19,6 +19,11 @@ const GameOverPage: React.FC = () => {
     navigate("/leaderboard", { replace: true });
   }, []);
 
+  const goToLogin = useCallback(() => {
+    console.log("Navigate to login");
+    navigate("/login", { replace: true });
+  }, []);
+
   // load last_score
   useEffect(() => {
     const lastScore = getLastScore();
@@ -35,6 +40,7 @@ const GameOverPage: React.FC = () => {
         score={score}
         onPlayAgain={playAgain}
         onViewLeaderboard={viewLeaderboard}
+        onLogin={goToLogin}
       />
       <Box p={4}></Box>
       <NavBar activeKey="" />

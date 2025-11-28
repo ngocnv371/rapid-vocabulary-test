@@ -33,7 +33,8 @@
     "title": "Kiểm Tra Từ Vựng Nhanh",
     "scorePrefix": "Điểm của bạn là",
     "playAgain": "🎮 Chơi Lại",
-    "viewLeaderboard": "🏆 Xem Bảng Xếp Hạng"
+    "viewLeaderboard": "🏆 Xem Bảng Xếp Hạng",
+    "anonymousWarning": "⚠️ Điểm số của bạn sẽ không được ghi lại vì bạn đang chơi ẩn danh. Đăng nhập để lưu điểm số!"
   },
   "leaderboard": {
     "title": "Bảng xếp hạng",

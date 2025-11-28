@@ -33,7 +33,8 @@
     "title": "Rapid Vocabulary Test",
     "scorePrefix": "Your final score is",
     "playAgain": "🎮 Play Again",
-    "viewLeaderboard": "🏆 View Leaderboard"
+    "viewLeaderboard": "🏆 View Leaderboard",
+    "anonymousWarning": "⚠️ Your score won't be recorded because you're playing anonymously. Log in to save your scores!"
   },
   "leaderboard": {
     "title": "Leaderboard",
