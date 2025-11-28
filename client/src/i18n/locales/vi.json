@@ -2,6 +2,7 @@
   "nav": {
     "home": "Trang chủ",
     "leaderboard": "Bảng xếp hạng",
+    "shop": "Cửa hàng",
     "profile": "Hồ sơ"
   },
   "home": {
@@ -79,6 +80,41 @@
     "notLoggedIn": "Bạn phải đăng nhập để chỉnh sửa hồ sơ",
     "updateSuccess": "Cập nhật hồ sơ thành công!",
     "updateError": "Không thể cập nhật hồ sơ. Vui lòng thử lại."
+  },
+  "shop": {
+    "title": "Cửa Hàng Credit",
+    "currentCredits": "Credit Hiện Tại",
+    "description": {
+      "title": "Nhận Thêm Credit!",
+      "subtitle": "Mua gói credit để tiếp tục chơi và nâng cao kỹ năng từ vựng của bạn."
+    },
+    "credits": "credit",
+    "bonus": "THƯỞNG!",
+    "popular": "⭐ PHỔ BIẾN",
+    "buyNow": "Mua Ngay",
+    "products": {
+      "small": {
+        "name": "Gói Khởi Đầu"
+      },
+      "medium": {
+        "name": "Gói Giá Trị"
+      },
+      "large": {
+        "name": "Gói Sức Mạnh"
+      },
+      "mega": {
+        "name": "Gói Tối Thượng"
+      }
+    },
+    "info": {
+      "title": "Credit Hoạt Động Như Thế Nào",
+      "description": "Mỗi bài trắc nghiệm tốn 1 credit. Credit được sử dụng để mở khóa các thử thách từ vựng mới và theo dõi tiến trình của bạn trên bảng xếp hạng."
+    },
+    "success": "Đã mua thành công {{credits}} credit!",
+    "errors": {
+      "notLoggedIn": "Vui lòng đăng nhập để mua credit",
+      "purchaseFailed": "Mua hàng thất bại. Vui lòng thử lại."
+    }
   },
   "common": {
     "or": "hoặc",

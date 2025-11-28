@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "leaderboard": "Leaderboard",
+    "shop": "Shop",
     "profile": "Profile"
   },
   "home": {
@@ -79,6 +80,41 @@
     "notLoggedIn": "You must be logged in to edit your profile",
     "updateSuccess": "Profile updated successfully!",
     "updateError": "Failed to update profile. Please try again."
+  },
+  "shop": {
+    "title": "Credit Shop",
+    "currentCredits": "Current Credits",
+    "description": {
+      "title": "Get More Credits!",
+      "subtitle": "Purchase credit packs to keep playing and improving your vocabulary skills."
+    },
+    "credits": "credits",
+    "bonus": "BONUS!",
+    "popular": "⭐ POPULAR",
+    "buyNow": "Buy Now",
+    "products": {
+      "small": {
+        "name": "Starter Pack"
+      },
+      "medium": {
+        "name": "Value Pack"
+      },
+      "large": {
+        "name": "Power Pack"
+      },
+      "mega": {
+        "name": "Ultimate Pack"
+      }
+    },
+    "info": {
+      "title": "How Credits Work",
+      "description": "Each quiz costs 1 credit. Credits are used to unlock new vocabulary challenges and track your progress on the leaderboard."
+    },
+    "success": "Successfully purchased {{credits}} credits!",
+    "errors": {
+      "notLoggedIn": "Please log in to purchase credits",
+      "purchaseFailed": "Purchase failed. Please try again."
+    }
   },
   "common": {
     "or": "or",

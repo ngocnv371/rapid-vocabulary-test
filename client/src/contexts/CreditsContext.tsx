@@ -13,6 +13,7 @@ interface CreditsContextType {
   credits: number | null;
   isLoading: boolean;
   useCredit: () => void;
+  addCredits: (amount: number) => void;
   refreshCredits: () => Promise<void>;
   showOutOfCreditsDialog: boolean;
   setShowOutOfCreditsDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -90,6 +91,11 @@ export function CreditsProvider({ children }: CreditsProviderProps) {
     setCredits((prev) => (prev !== null && prev > 0 ? prev - 1 : prev));
   }, []);
 
+  // Optimistically add credits (used after purchase)
+  const addCredits = useCallback((amount: number) => {
+    setCredits((prev) => (prev !== null ? prev + amount : amount));
+  }, []);
+
   const canPlayGame = useCallback(() => {
     return credits !== null && credits > 0;
   }, [credits]);
@@ -106,6 +112,7 @@ export function CreditsProvider({ children }: CreditsProviderProps) {
     credits,
     isLoading,
     useCredit,
+    addCredits,
     refreshCredits,
     showOutOfCreditsDialog,
     setShowOutOfCreditsDialog,
