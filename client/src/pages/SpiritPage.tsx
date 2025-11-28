@@ -2,24 +2,24 @@ import { Box, Header, Page, useNavigate } from "zmp-ui";
 import NavBar from "../components/NavBar";
 import SpiritAnimalSelector from "../components/SpiritAnimalSelector";
 import { useCallback } from "react";
-import { useHeartsContext } from "../contexts/HeartsContext";
+import { useCreditsContext } from "../contexts/CreditsContext";
 import { useAppContext } from "../contexts/AppContext";
 import { Animal } from "../types";
 
 const SpiritPage: React.FC = () => {
   const { setSpiritAnimal } = useAppContext();
-  const { hearts, useHeart, handleGameAttempt } = useHeartsContext();
+  const { credits, useCredit, handleGameAttempt } = useCreditsContext();
   const navigate = useNavigate();
 
   const handleSpiritSelect = useCallback(
     (animal: Animal) => {
       console.log("Spirit animal selected!");
       if (!handleGameAttempt()) return;
-      useHeart();
+      useCredit();
       setSpiritAnimal(animal.icon);
       navigate("/", { replace: true });
     },
-    [hearts, navigate, useHeart, handleGameAttempt]
+    [credits, navigate, useCredit, handleGameAttempt]
   );
 
   return (
