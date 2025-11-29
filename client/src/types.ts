@@ -60,6 +60,7 @@ export interface Order {
   currency: string;
   description: string | null;
   reference: string | null;
+  checkout_url: string | null;
   payment_status: string;
   payment_id: string | null;
   created_at: string;

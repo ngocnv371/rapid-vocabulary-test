@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS public.orders (
   payment_id      TEXT,
   reference       TEXT,
   description     TEXT,
+  checkout_url    TEXT,
   created_at      timestamptz NOT NULL DEFAULT now()
 );
 

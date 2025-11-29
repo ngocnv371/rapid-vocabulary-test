@@ -142,19 +142,23 @@ async function createOrder(client, product_id, authToken) {
       cancelUrl: `${Deno.env.get("APP_URL") || ""}/payment/cancel`,
     };
     const paymentRequest = await payOS.paymentRequests.create(paymentData);
-    console.log(paymentRequest);
-    const { checkoutUrl, qrCode } = paymentRequest;
+    const { checkoutUrl, qrCode, paymentLinkId, reference, description } = paymentRequest;
     // Update order with payment_id from PayOS
     await client
       .from("orders")
       .update({
-        payment_id: order.id.toString(),
+        payment_id: paymentLinkId,
+        checkout_url: checkoutUrl,
+        reference,
+        description,
       })
       .eq("id", order.id);
     return new Response(
       JSON.stringify({
         checkoutUrl,
         qrCode,
+        reference,
+        description,
         orderId: order.id,
       }),
       {

@@ -84,6 +84,7 @@
   "shop": {
     "title": "Cửa Hàng Credit",
     "currentCredits": "Credit Hiện Tại",
+    "myOrders": "Đơn Hàng Của Tôi",
     "description": {
       "title": "Nhận Thêm Credit!",
       "subtitle": "Mua gói credit để tiếp tục chơi và nâng cao kỹ năng từ vựng của bạn."
@@ -106,6 +107,21 @@
     "errors": {
       "notLoggedIn": "Vui lòng đăng nhập để mua credit",
       "purchaseFailed": "Mua hàng thất bại. Vui lòng thử lại."
+    }
+  },
+  "orders": {
+    "title": "Đơn Hàng Của Tôi",
+    "orderId": "Mã Đơn Hàng",
+    "noOrders": "Chưa có đơn hàng",
+    "noOrdersDesc": "Lịch sử mua hàng của bạn sẽ xuất hiện ở đây sau khi bạn thực hiện đơn hàng đầu tiên.",
+    "amount": "Số Tiền",
+    "date": "Ngày",
+    "reference": "Tham Chiếu",
+    "payNow": "Thanh Toán Ngay",
+    "status": {
+      "completed": "Hoàn Thành",
+      "pending": "Đang Chờ",
+      "failed": "Thất Bại"
     }
   },
   "common": {

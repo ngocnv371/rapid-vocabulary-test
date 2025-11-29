@@ -84,6 +84,7 @@
   "shop": {
     "title": "Credit Shop",
     "currentCredits": "Current Credits",
+    "myOrders": "My Orders",
     "description": {
       "title": "Get More Credits!",
       "subtitle": "Purchase credit packs to keep playing and improving your vocabulary skills."
@@ -106,6 +107,21 @@
     "errors": {
       "notLoggedIn": "Please log in to purchase credits",
       "purchaseFailed": "Purchase failed. Please try again."
+    }
+  },
+  "orders": {
+    "title": "My Orders",
+    "orderId": "Order ID",
+    "noOrders": "No orders yet",
+    "noOrdersDesc": "Your purchase history will appear here once you make your first order.",
+    "amount": "Amount",
+    "date": "Date",
+    "reference": "Reference",
+    "payNow": "Pay Now",
+    "status": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "failed": "Failed"
     }
   },
   "common": {

@@ -16,6 +16,7 @@ const SpiritPage = lazy(() => import("../pages/SpiritPage"));
 const TestPage = lazy(() => import("../pages/TestPage"));
 const ScorePostingTestPage = lazy(() => import("../pages/tests/ScorePostingTestPage"));
 const ShopPage = lazy(() => import("../pages/ShopPage"));
+const MyOrdersPage = lazy(() => import("../pages/MyOrdersPage"));
 
 document.body.style.setProperty("--zaui-safe-area-inset-top", "24px");
 
@@ -28,6 +29,7 @@ export const Layout: FC = () => {
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/leaderboard" element={<LeaderboardPage />}></Route>
             <Route path="/shop" element={<ShopPage />}></Route>
+            <Route path="/my-orders" element={<MyOrdersPage />}></Route>
             <Route path="/profile" element={<ProfilePage />}></Route>
             <Route path="/profile/edit" element={<EditProfilePage />}></Route>
             <Route path="/quiz" element={<QuizPage />}></Route>

@@ -98,6 +98,17 @@ const ShopPage: FC = () => {
         title={t("shop.title")}
         showBackIcon={false}
       />
+
+      {/* My Orders Link */}
+      <Box className="px-4 pt-3 pb-2">
+        <button
+          onClick={() => navigate("/my-orders")}
+          className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+        >
+          <Icon icon="zi-list-1" />
+          <Text className="text-sm font-semibold">{t("shop.myOrders")}</Text>
+        </button>
+      </Box>
       
       <Box className="p-4">
         {loading ? (
