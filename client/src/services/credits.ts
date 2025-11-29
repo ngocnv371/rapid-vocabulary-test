@@ -51,22 +51,42 @@ export async function fetchCredits(profileId: number): Promise<number | null> {
 }
 
 /**
- * Processes a product order and adds credits to the user's account
- * @param profileId The profile ID making the order
+ * Initiates a product purchase by creating an order and payment link
  * @param productId The ID of the product being purchased
- * @param credits The number of credits to add (including bonus)
- * @returns True if successful, false otherwise
+ * @returns Object with checkoutUrl and orderId if successful, null otherwise
  */
 export async function purchaseProduct(
-  profileId: number,
   productId: string,
-): Promise<boolean> {
+): Promise<{ checkoutUrl: string; orderId: number } | null> {
   try {
-    // TODO: call edge function `/order?product_id=123` to initiate order processing
-    return true;
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    if (!session) {
+      console.error('User not authenticated');
+      return null;
+    }
+
+    // Call edge function with product_id as query parameter
+    const { data, error } = await supabase.functions.invoke(`order?product_id=${productId}`, {
+      method: 'POST',
+    });
+
+    if (error) {
+      console.error('Error creating order:', error);
+      return null;
+    }
+
+    const { checkoutUrl, orderId } = data as { checkoutUrl: string; orderId: number };
+    
+    if (!checkoutUrl || !orderId) {
+      console.error('Invalid response from order function');
+      return null;
+    }
+
+    return { checkoutUrl, orderId };
   } catch (error) {
     console.error('Error processing order:', error);
-    return false;
+    return null;
   }
 }
 

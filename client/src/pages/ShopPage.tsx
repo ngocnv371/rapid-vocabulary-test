@@ -7,10 +7,13 @@ import { purchaseProduct, fetchProducts } from "../services/credits";
 import { useAppContext } from "../contexts/AppContext";
 import Spinner from "../components/Spinner";
 import type { Product } from "../types";
+import { useNavigate } from "react-router-dom";
 
 const ShopPage: FC = () => {
   const { t } = useTranslation();
-  const { profile } = useAppContext();
+  const { profile, user } = useAppContext();
+  const isAnonymous = user?.is_anonymous ?? true;
+  const navigate = useNavigate();
   const { credits, refreshCredits } = useCreditsContext();
   const { openSnackbar } = useSnackbar();
   const [purchasing, setPurchasing] = useState<string | null>(null);
@@ -52,6 +55,10 @@ const ShopPage: FC = () => {
       });
       return;
     }
+    if (isAnonymous) {
+      navigate("/login");
+      return;
+    }
 
     setPurchasing(product.id);
 
@@ -60,9 +67,10 @@ const ShopPage: FC = () => {
       // For now, we'll simulate a successful purchase
       const totalCredits = product.credits + product.bonus_credits;
       
-      const success = await purchaseProduct(profile.id, product.id, totalCredits);
+      const result = await purchaseProduct(product.id);
 
-      if (success) {
+      if (result) {
+        console.log('result', result);
         await refreshCredits();
         openSnackbar({
           type: "success",
