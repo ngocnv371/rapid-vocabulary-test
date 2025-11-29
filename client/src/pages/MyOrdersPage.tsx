@@ -174,11 +174,10 @@ const MyOrdersPage: FC = () => {
                       </Text>
                     </div>
                   )}
-                  {order.checkout_url && order.payment_status !== "completed" && (
+                  {order.checkout_url && order.payment_status === "pending" && (
                     <div className="pt-2">
                       <a
                         href={order.checkout_url}
-                        target="_blank"
                         rel="noopener noreferrer"
                         className="block w-full text-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-all shadow-lg hover:shadow-purple-500/50"
                       >
