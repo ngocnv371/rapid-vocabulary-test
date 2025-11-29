@@ -188,10 +188,17 @@ async function createOrder(client, product_id, authToken) {
     );
   }
 }
+function isFakeWebhook(payload) {
+  return (
+    payload.orderCode == 123 &&
+    payload.description == "VQRIO123" &&
+    payload.accountNumber == "12345678"
+  );
+}
 async function verifyOrder(client, payload) {
   try {
     // Verify webhook signature
-    const webhookData = payOS.verifyPaymentWebhookData(payload);
+    const webhookData = await payOS.webhooks.verify(payload);
     if (!webhookData || webhookData.code !== "00") {
       return new Response(
         JSON.stringify({
@@ -207,6 +214,22 @@ async function verifyOrder(client, payload) {
       );
     }
     const orderCode = webhookData.orderCode.toString();
+    if (isFakeWebhook(webhookData)) {
+      // return success for fake webhook
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: "Fake webhook received",
+        }),
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+            ...corsHeaders,
+          },
+        }
+      );
+    }
     // Find the order by payment_id (orderCode)
     const { data: order, error: orderError } = await client
       .from("orders")
@@ -365,7 +388,8 @@ Deno.serve(async (req) => {
           authToken
         );
       case url.endsWith("/order") && method === "POST":
-        return await verifyOrder(client, await req.json());
+        const body = await req.json();
+        return await verifyOrder(client, body);
       default:
         return new Response(
           JSON.stringify({
