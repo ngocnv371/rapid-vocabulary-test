@@ -1,7 +1,7 @@
 import { createClient, SupabaseClient } from "npm:@supabase/supabase-js@2.25.0";
 import { PayOS } from "npm:@payos/node@2.0.3";
 
-const payos = new PayOS({
+const payOS = new PayOS({
   clientId: Deno.env.get("PAYOS_CLIENT_ID") || "",
   apiKey: Deno.env.get("PAYOS_API_KEY") || "",
   checksumKey: Deno.env.get("PAYOS_CHECKSUM_KEY") || "",
@@ -47,6 +47,22 @@ async function createOrder(client: SupabaseClient, product_id: string) {
       }),
       {
         status: 401,
+        headers: {
+          "Content-Type": "application/json",
+          ...corsHeaders,
+        },
+      }
+    );
+  }
+
+  // Reject anonymous users
+  if (user.is_anonymous) {
+    return new Response(
+      JSON.stringify({
+        error: "Anonymous users cannot create orders",
+      }),
+      {
+        status: 403,
         headers: {
           "Content-Type": "application/json",
           ...corsHeaders,
@@ -140,8 +156,10 @@ async function createOrder(client: SupabaseClient, product_id: string) {
       returnUrl: `${Deno.env.get("APP_URL") || ""}/payment/success`,
       cancelUrl: `${Deno.env.get("APP_URL") || ""}/payment/cancel`,
     };
-
-    const paymentLinkResponse = await payos.createPaymentLink(paymentData);
+    
+    const paymentRequest = await payOS.paymentRequests.create(paymentData);
+    console.log(paymentRequest);
+    const { checkoutUrl, qrCode } = paymentRequest;
 
     // Update order with payment_id from PayOS
     await client
@@ -151,8 +169,8 @@ async function createOrder(client: SupabaseClient, product_id: string) {
 
     return new Response(
       JSON.stringify({
-        checkoutUrl: paymentLinkResponse.checkoutUrl,
-        orderCode: order.id,
+        checkoutUrl,
+        qrCode,
         orderId: order.id,
       }),
       {
@@ -189,7 +207,7 @@ async function createOrder(client: SupabaseClient, product_id: string) {
 async function verifyOrder(client: SupabaseClient, payload: any) {
   try {
     // Verify webhook signature
-    const webhookData = payos.verifyPaymentWebhookData(payload);
+    const webhookData = payOS.verifyPaymentWebhookData(payload);
 
     if (!webhookData || webhookData.code !== "00") {
       return new Response(
