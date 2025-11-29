@@ -86,7 +86,7 @@ const MyOrdersPage: FC = () => {
   return (
     <Page
       hideScrollbar
-      className="relative min-h-screen w-full max-w-2xl mx-auto bg-gray-900"
+      className="relative w-full max-w-2xl mx-auto bg-gray-900"
     >
       <Header
         title={t("orders.title")}
@@ -94,7 +94,7 @@ const MyOrdersPage: FC = () => {
         onBackClick={() => navigate("/shop")}
       />
 
-      <Box className="p-4 pb-20">
+      <Box className="p-4 pb-20 min-h-screen">
         {loading ? (
           <div className="flex flex-col items-center justify-center gap-4 py-12">
             <Spinner />
