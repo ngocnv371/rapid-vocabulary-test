@@ -30,59 +30,35 @@ INSERT INTO public.products (id, name, credits, bonus_credits, price, currency) 
   ('mega_pack', 'Ultimate Pack', 100, 40, 120000, 'VND')
 ON CONFLICT (id) DO NOTHING;
 
--- purchases table to track user purchases
-CREATE TABLE IF NOT EXISTS public.purchases (
+-- orders table to track user orders
+CREATE TABLE IF NOT EXISTS public.orders (
   id              BIGSERIAL PRIMARY KEY,
   profile_id      INT NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
   product_id      TEXT NOT NULL REFERENCES public.products(id) ON DELETE RESTRICT,
-  credits_amount  INT NOT NULL,
-  price_paid      DECIMAL(10, 2) NOT NULL,
+  credits         INT NOT NULL,
+  amount          DECIMAL(10, 2) NOT NULL,
   currency        TEXT NOT NULL DEFAULT 'VND',
   payment_status  TEXT NOT NULL DEFAULT 'completed',
   payment_id      TEXT,
-  purchased_at    timestamptz NOT NULL DEFAULT now()
+  reference       TEXT,
+  description     TEXT,
+  created_at      timestamptz NOT NULL DEFAULT now()
 );
 
-ALTER TABLE public.purchases ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 
--- Users can only view their own purchases
-CREATE POLICY "Users can view own purchases"
-  ON public.purchases
+-- Users can only view their own orders
+CREATE POLICY "Users can view own orders"
+  ON public.orders
   FOR SELECT
   TO authenticated
   USING (
     EXISTS (
       SELECT 1 FROM public.profiles
       WHERE profiles.user_id = auth.uid()
-      AND profiles.id = purchases.profile_id
+      AND profiles.id = orders.profile_id
     )
   );
-
--- Function to add credits when a purchase is created
-CREATE OR REPLACE FUNCTION public.handle_purchase_created()
-RETURNS trigger
-LANGUAGE plpgsql
-SECURITY DEFINER set search_path = ''
-AS $$
-BEGIN
-  -- Only add credits if payment status is completed
-  IF NEW.payment_status = 'completed' THEN
-    UPDATE public.credits
-    SET amount = amount + NEW.credits_amount
-    WHERE profile_id = NEW.profile_id;
-  END IF;
-  
-  RETURN NEW;
-END;
-$$;
-
--- Trigger to add credits when a purchase is created
-DROP TRIGGER IF EXISTS on_purchase_created ON public.purchases;
-
-CREATE TRIGGER on_purchase_created
-AFTER INSERT ON public.purchases
-FOR EACH ROW
-EXECUTE FUNCTION public.handle_purchase_created();
 
 -- Add RPC function to add credits (for backward compatibility and manual operations)
 CREATE OR REPLACE FUNCTION public.add_credits(p_profile_id INT, p_amount INT)

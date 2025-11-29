@@ -1,6 +1,6 @@
 
 import { createClient } from '@supabase/supabase-js';
-import { type Word, type Category, type Score, type Profile, type Credits, type Product, type Purchase } from '../types';
+import { type Word, type Category, type Score, type Profile, type Credits, type Product, type Order } from '../types';
 
 interface Database {
   public: {
@@ -35,10 +35,10 @@ interface Database {
         Insert: Omit<Product, 'created_at' | 'updated_at'>;
         Update: Partial<Omit<Product, 'id' | 'created_at' | 'updated_at'>>;
       };
-      purchases: {
-        Row: Purchase;
-        Insert: Omit<Purchase, 'id' | 'purchased_at'>;
-        Update: Partial<Omit<Purchase, 'id' | 'profile_id' | 'purchased_at'>>;
+      orders: {
+        Row: Order;
+        Insert: Omit<Order, 'id' | 'purchased_at'>;
+        Update: Partial<Omit<Order, 'id' | 'profile_id' | 'purchased_at'>>;
       };
     };
   };

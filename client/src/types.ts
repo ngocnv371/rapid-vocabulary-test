@@ -51,16 +51,18 @@ export interface Product {
   updated_at: string;
 }
 
-export interface Purchase {
+export interface Order {
   id: number;
   profile_id: number;
   product_id: string;
-  credits_amount: number;
-  price_paid: number;
+  credits: number;
+  amount: number;
   currency: string;
+  description: string | null;
+  reference: string | null;
   payment_status: string;
   payment_id: string | null;
-  purchased_at: string;
+  created_at: string;
 }
 
 export interface ScoreWithProfile extends Score {
