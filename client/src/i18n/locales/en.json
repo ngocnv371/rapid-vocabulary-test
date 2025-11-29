@@ -93,18 +93,10 @@
     "popular": "⭐ POPULAR",
     "buyNow": "Buy Now",
     "products": {
-      "small": {
-        "name": "Starter Pack"
-      },
-      "medium": {
-        "name": "Value Pack"
-      },
-      "large": {
-        "name": "Power Pack"
-      },
-      "mega": {
-        "name": "Ultimate Pack"
-      }
+      "small_pack": "Starter Pack",
+      "medium_pack": "Value Pack",
+      "large_pack": "Power Pack",
+      "mega_pack": "Ultimate Pack"
     },
     "info": {
       "title": "How Credits Work",

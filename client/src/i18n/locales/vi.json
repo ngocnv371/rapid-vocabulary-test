@@ -93,18 +93,10 @@
     "popular": "⭐ PHỔ BIẾN",
     "buyNow": "Mua Ngay",
     "products": {
-      "small": {
-        "name": "Gói Khởi Đầu"
-      },
-      "medium": {
-        "name": "Gói Giá Trị"
-      },
-      "large": {
-        "name": "Gói Sức Mạnh"
-      },
-      "mega": {
-        "name": "Gói Tối Thượng"
-      }
+      "small_pack": "Gói Khởi Đầu",
+      "medium_pack": "Gói Giá Trị",
+      "large_pack": "Gói Sức Mạnh",
+      "mega_pack": "Gói Tối Thượng"
     },
     "info": {
       "title": "Credit Hoạt Động Như Thế Nào",

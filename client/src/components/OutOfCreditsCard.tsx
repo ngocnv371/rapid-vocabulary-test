@@ -6,9 +6,9 @@ const OutOfCreditsCard: React.FC = () => {
   const { showOutOfCreditsDialog, setShowOutOfCreditsDialog } = useCreditsContext();
   const navigate = useNavigate();
 
-  const onLogin = useCallback(() => {
+  const onShop = useCallback(() => {
     setShowOutOfCreditsDialog(false);
-    navigate("/login");
+    navigate("/shop");
   }, [navigate, setShowOutOfCreditsDialog]);
 
   const onClose = useCallback(() => {
@@ -41,10 +41,10 @@ const OutOfCreditsCard: React.FC = () => {
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <button
-          onClick={onLogin}
+          onClick={onShop}
           className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-lg transition-colors"
         >
-          Login / Sign Up
+          Shop
         </button>
         <button
           onClick={onClose}

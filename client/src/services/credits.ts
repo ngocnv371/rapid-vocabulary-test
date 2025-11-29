@@ -1,4 +1,29 @@
 import { supabase } from './supabase';
+import type { Product } from '../types';
+
+/**
+ * Fetches all active products from the database
+ * @returns Array of products, or empty array on error
+ */
+export async function fetchProducts(): Promise<Product[]> {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .eq('active', true)
+      .order('price', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching products:', error);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
+}
 
 /**
  * Fetches the current credit amount for a given profile

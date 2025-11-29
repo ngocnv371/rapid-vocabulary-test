@@ -39,6 +39,30 @@ export interface Credits {
   amount: number;
 }
 
+export interface Product {
+  id: string;
+  name: string;
+  credits: number;
+  bonus_credits: number;
+  price: number;
+  currency: string;
+  active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Purchase {
+  id: number;
+  profile_id: number;
+  product_id: string;
+  credits_amount: number;
+  price_paid: number;
+  currency: string;
+  payment_status: string;
+  payment_id: string | null;
+  purchased_at: string;
+}
+
 export interface ScoreWithProfile extends Score {
   profiles: Profile | null;
 }
