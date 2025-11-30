@@ -90,6 +90,7 @@ export default function Leaderboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filterCategory, setFilterCategory] = useState<string>("All");
+  const [viewMode, setViewMode] = useState<"recent" | "best">("best");
 
   useEffect(() => {
     const fetchScores = async () => {
@@ -101,6 +102,13 @@ export default function Leaderboard() {
         .select("*, profiles(id, name, avatar_url)")
         .order("score", { ascending: false })
         .limit(20);
+
+      // Filter for recent mode - only show scores from last 7 days
+      if (viewMode === "recent") {
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        query = query.gte("created_at", sevenDaysAgo.toISOString());
+      }
 
       const { data, error } = await query;
 
@@ -114,13 +122,37 @@ export default function Leaderboard() {
     };
 
     fetchScores();
-  }, [filterCategory]);
+  }, [filterCategory, viewMode]);
 
   const topThree = scores.slice(0, 3);
   const rest = scores.slice(3);
 
   return (
     <div className="min-h-screen">
+      {/* Toggle between Recent and Best Streaks */}
+      <div className="mb-6 flex justify-center gap-2 px-4">
+        <button
+          onClick={() => setViewMode("best")}
+          className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+            viewMode === "best"
+              ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
+              : "bg-gray-800 text-gray-400 hover:text-white"
+          }`}
+        >
+          🏆 {t("leaderboard.bestStreaks") || "Best Streaks"}
+        </button>
+        <button
+          onClick={() => setViewMode("recent")}
+          className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+            viewMode === "recent"
+              ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
+              : "bg-gray-800 text-gray-400 hover:text-white"
+          }`}
+        >
+          ⏱️ {t("leaderboard.recentScores") || "Recent Scores"}
+        </button>
+      </div>
+
       {loading ? (
         <div className="flex flex-col items-center justify-center gap-4 py-12">
           <Spinner />
