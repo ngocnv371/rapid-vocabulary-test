@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "../services/supabase";
-import type { Score } from "../types";
+import type { Score, Profile as ProfileType } from "../types";
 import Spinner from "./Spinner";
 import { useAppContext } from "@/src/contexts/AppContext";
 import { Box, useSnackbar, useNavigate } from "zmp-ui";
@@ -9,17 +9,24 @@ import WeeklyProgressChart from "./WeeklyProgressChart";
 import UserAvatar from "./UserAvatar";
 import { useTranslation } from "react-i18next";
 import { useMetaTags } from "../hooks/useMetaTags";
+import { useParams } from "react-router-dom";
 
 export default function Profile() {
-  const { profile, reloadUser, user } = useAppContext();
+  const { profile: currentUserProfile, reloadUser, user } = useAppContext();
+  const { id: profileId } = useParams<{ id: string }>();
   const isAnonymous = user?.is_anonymous;
   const { t } = useTranslation();
   const { openSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
+  const [profileData, setProfileData] = useState<ProfileType | null>(null);
   const [highestScore, setHighestScore] = useState<number | null>(null);
   const [weeklyScores, setWeeklyScores] = useState<Score[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  // Determine which profile to display
+  const targetProfileId = profileId ? parseInt(profileId) : undefined;
+  const isOwnProfile = targetProfileId === currentUserProfile?.id;
 
   const handleLogout = async () => {
     try {
@@ -88,7 +95,33 @@ export default function Profile() {
     const fetchProfile = async () => {
       setLoading(true);
       setError(null);
-      if (profile?.id) {
+      
+      if (!targetProfileId) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        // Fetch profile data if viewing another user's profile
+        if (!isOwnProfile && targetProfileId) {
+          const { data: fetchedProfile, error: profileError } = await supabase
+            .from("profiles")
+            .select("*")
+            .eq("id", targetProfileId as any)
+            .single();
+
+          if (profileError) {
+            console.error("Error fetching profile:", profileError);
+            setError("Could not fetch profile.");
+            setLoading(false);
+            return;
+          }
+          
+          setProfileData(fetchedProfile as any);
+        } else if (currentUserProfile) {
+          setProfileData(currentUserProfile);
+        }
+
         // Calculate date one week ago
         const oneWeekAgo = new Date();
         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
@@ -98,31 +131,30 @@ export default function Profile() {
         const { data, error: scoresError } = await supabase
           .from("scores")
           .select("*")
-          .eq("profile_id", profile?.id)
+          .eq("profile_id", targetProfileId as any)
           .gte("created_at", oneWeekAgoISO)
           .order("score", { ascending: false });
 
         if (scoresError) {
           console.error("Error fetching scores:", scoresError);
-          setError("Could not fetch your scores.");
+          setError("Could not fetch scores.");
         } else if (data && data.length > 0) {
-          const scores = data as Score[];
-          setWeeklyScores(scores);
-          setHighestScore(scores[0].score || 0);
+          setWeeklyScores(data as any);
+          setHighestScore((data[0] as any).score || 0);
         } else {
           setWeeklyScores([]);
-          setHighestScore(0); // No scores yet
+          setHighestScore(0);
         }
-      } else {
-        setError("No user is logged in.");
+      } catch (err) {
+        console.error("Unexpected error:", err);
+        setError("An unexpected error occurred.");
       }
+      
       setLoading(false);
     };
-    if (!profile?.id) {
-      return;
-    }
+    
     fetchProfile();
-  }, [profile?.id]);
+  }, [targetProfileId, isOwnProfile, currentUserProfile]);
 
   // Memoized stats calculations
   const stats = useMemo(() => {
@@ -146,19 +178,19 @@ export default function Profile() {
 
   // Update meta tags for social sharing
   useMetaTags({
-    title: `${profile?.name || t("profile.anonymousUser")} - ${t("profile.title")} | Rapid Vocabulary Test`,
+    title: `${profileData?.name || t("profile.anonymousUser")} - ${t("profile.title")} | Rapid Vocabulary Test`,
     description: t("profile.shareText", {
       score: highestScore ?? 0,
       games: stats.gamesPlayed,
       streak: stats.streak,
     }),
-    ogTitle: `${profile?.name || t("profile.anonymousUser")}'s Profile`,
+    ogTitle: `${profileData?.name || t("profile.anonymousUser")}'s Profile`,
     ogDescription: t("profile.shareText", {
       score: highestScore ?? 0,
       games: stats.gamesPlayed,
       streak: stats.streak,
     }),
-    twitterTitle: `${profile?.name || t("profile.anonymousUser")}'s Profile`,
+    twitterTitle: `${profileData?.name || t("profile.anonymousUser")}'s Profile`,
     twitterDescription: t("profile.shareText", {
       score: highestScore ?? 0,
       games: stats.gamesPlayed,
@@ -175,7 +207,7 @@ export default function Profile() {
     );
   }
 
-  if (error && !profile) {
+  if (error && !profileData) {
     // Only show full-page error if profile couldn't be loaded
     return <div className="text-center text-red-400 min-h-screen">{error}</div>;
   }
@@ -208,11 +240,11 @@ export default function Profile() {
         </div>
         {/* Profile Name */}
         <h3 className="mt-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-pink-300 to-purple-200">
-          {profile?.name || t("profile.anonymousUser")}
+          {profileData?.name || t("profile.anonymousUser")}
         </h3>
         {/* Action Buttons */}
         <div className="mt-2 flex gap-2 flex-wrap justify-center">
-          {!isAnonymous && (
+          {!isAnonymous && isOwnProfile && (
             <>
               <button
                 onClick={() => navigate("/profile/edit")}
@@ -254,10 +286,32 @@ export default function Profile() {
               </button>
             </>
           )}
+          {/* Share button for viewing other profiles */}
+          {!isOwnProfile && (
+            <button
+              onClick={handleShare}
+              className="px-4 py-2 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 hover:from-blue-500/50 hover:to-cyan-500/50 text-blue-200 text-sm font-medium rounded-lg border border-blue-400/30 backdrop-blur-sm transition-all duration-300 flex items-center gap-2"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                />
+              </svg>
+              {t("profile.shareProfile")}
+            </button>
+          )}
         </div>
       </div>
 
-      {!isAnonymous && (
+      {profileData && (
         <>
           {/* Title with enhanced gradient */}
           <h2 className="text-4xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-purple-300 tracking-wide animate-pulse">
@@ -342,10 +396,10 @@ export default function Profile() {
       )}
 
       {/* Weekly Progress Chart */}
-      {!isAnonymous && <WeeklyProgressChart scores={weeklyScores} />}
+      {profileData && <WeeklyProgressChart scores={weeklyScores} />}
 
-      {/* Login Button for Anonymous Users */}
-      {isAnonymous && (
+      {/* Login Button for Anonymous Users viewing own profile */}
+      {isAnonymous && isOwnProfile && (
         <div className="mt-8 flex justify-center">
           <button
             onClick={() => navigate("/login")}
@@ -369,8 +423,8 @@ export default function Profile() {
         </div>
       )}
 
-      {/* Logout Button */}
-      {!isAnonymous && (
+      {/* Logout Button - only on own profile */}
+      {!isAnonymous && isOwnProfile && (
         <div className="mt-8 flex justify-center">
           <button
             onClick={handleLogout}

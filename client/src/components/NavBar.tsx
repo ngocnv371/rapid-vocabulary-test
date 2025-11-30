@@ -1,8 +1,10 @@
 import { BottomNavigation, Icon } from "zmp-ui";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function NavBar({ activeKey }: { activeKey: string }) {
   const { t } = useTranslation();
+  const { profile } = useAppContext();
 
   return (
     <BottomNavigation activeKey={activeKey} style={{ position: "sticky", bottom: 0 }}>
@@ -26,7 +28,7 @@ export default function NavBar({ activeKey }: { activeKey: string }) {
       />
       <BottomNavigation.Item
         label={t("nav.profile")}
-        linkTo="/profile"
+        linkTo={profile?.id ? `/profile/${profile.id}` : "/login"}
         icon={<Icon icon="zi-user" />}
         key="profile"
       />

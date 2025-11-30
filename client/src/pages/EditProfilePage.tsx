@@ -48,8 +48,8 @@ const EditProfilePage: React.FC = () => {
     try {
       const { error } = await supabase
         .from("profiles")
-        .update({ name: displayName.trim() })
-        .eq("id", profile.id);
+        .update({ name: displayName.trim() } as any)
+        .eq("id", profile.id as any);
 
       if (error) {
         console.error("Error updating profile:", error);
@@ -65,7 +65,7 @@ const EditProfilePage: React.FC = () => {
           duration: 3000,
         });
         reloadProfile();
-        navigate("/profile");
+        navigate(`/profile/${profile.id}`);
       }
     } catch (err) {
       console.error("Unexpected error:", err);
@@ -80,8 +80,16 @@ const EditProfilePage: React.FC = () => {
   };
 
   const handleCancel = () => {
-    navigate("/profile");
+    if (profile?.id) {
+      navigate(`/profile/${profile.id}`);
+    } else {
+      navigate("/login");
+    }
   };
+
+  if (!profile?.id) {
+    return null;
+  }
 
   return (
     <Page

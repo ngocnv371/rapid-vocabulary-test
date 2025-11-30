@@ -34,7 +34,7 @@ export const Layout: FC = () => {
             <Route path="/my-orders" element={<MyOrdersPage />}></Route>
             <Route path="/payment/success" element={<PaymentSuccessPage />}></Route>
             <Route path="/payment/cancel" element={<PaymentCancelPage />}></Route>
-            <Route path="/profile" element={<ProfilePage />}></Route>
+            <Route path="/profile/:id" element={<ProfilePage />}></Route>
             <Route path="/profile/edit" element={<EditProfilePage />}></Route>
             <Route path="/quiz" element={<QuizPage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
