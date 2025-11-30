@@ -120,7 +120,7 @@ const HomePage: React.FC = () => {
             icon="🎯"
             title={t('home.trackProgress')}
             desc={t('home.trackProgressDesc')}
-            link="/profile"
+            link={profile?.id ? `/profile/${profile.id}` : "/login"}
           />
           <SmallCard
             icon={spiritAnimal || "🦄"}
