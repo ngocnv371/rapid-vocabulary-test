@@ -3,8 +3,13 @@ import { supabase } from '../services/supabase';
 import type { Category, Word } from '../types';
 import Spinner from './Spinner';
 import EmojiCelebration from './EmojiCelebration';
-import { useEmojiCelebration, type CelebrationType } from '../hooks/useEmojiCelebration';
+import { useEmojiCelebration } from '../hooks/useEmojiCelebration';
 import { useTranslation } from 'react-i18next';
+
+// Quiz Configuration Constants
+const INITIAL_WORD_COUNT = 100;  // Number of words to load initially
+const BATCH_SIZE = 25;            // Number of words to fetch in each batch
+const PREFETCH_THRESHOLD = 10;    // Fetch more words when this many remain
 
 interface QuizProps {
   category?: Category;
@@ -26,57 +31,120 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
   const [score, setScore] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [totalWordCount, setTotalWordCount] = useState(0);
+  const [usedWordIds, setUsedWordIds] = useState<Set<number>>(new Set());
   
   // Change this to try different effects:
   // 'burst-pop', 'spinning-star', 'confetti-rain', 'ripple-wave', 'firework', or 'random'
   const { emojiParticles, containerRef, triggerCelebration } = useEmojiCelebration('random');
 
-  useEffect(() => {
-    const fetchWords = async () => {
-      setLoading(true);
-      setError(null);
-      
-      // First, get the total count
-      const { count } = await supabase
+  // Fetch a batch of words
+  const fetchWordBatch = async (batchSize: number = BATCH_SIZE): Promise<Word[]> => {
+    console.log('Fetching word batch of size:', batchSize);
+    // First, get the total count if we don't have it
+    let count = totalWordCount;
+    if (count === 0) {
+      const { count: fetchedCount } = await supabase
         .from('words')
         .select('*', { count: 'exact', head: true });
       
-      if (!count || count < 4) {
-        setError('Not enough words available to start a quiz. (Need at least 4)');
-        setLoading(false);
-        return;
+      if (fetchedCount !== null) {
+        console.log('Total word count fetched:', fetchedCount);
+        setTotalWordCount(fetchedCount);
+        count = fetchedCount;
       }
-      
-      // Calculate a random offset
-      const maxOffset = Math.max(0, count - 100);
+    }
+
+    if (count < 4) {
+      throw new Error('Not enough words available to start a quiz. (Need at least 4)');
+    }
+    
+    // Try to fetch unique words we haven't seen yet
+    let attempts = 0;
+    let newWords: Word[] = [];
+    
+    while (newWords.length < Math.min(batchSize, 4) && attempts < 5) {
+      const maxOffset = Math.max(0, count - batchSize);
       const randomOffset = Math.floor(Math.random() * maxOffset);
-      
+      console.log('Fetching words with offset:', randomOffset, 'and batch size:', batchSize);
       const { data, error } = await supabase
         .from('words')
         .select('*')
-        .range(randomOffset, randomOffset + 99);
+        .range(randomOffset, randomOffset + batchSize - 1);
 
       if (error) {
-        setError('Failed to fetch words. Please try again.');
-        console.error(error);
-      } else if (data && data.length > 3) {
-        setWords(shuffleArray(data as any[]));
-      } else {
-        setError('Not enough words available to start a quiz. (Need at least 4)');
+        throw error;
       }
+      
+      if (data) {
+        // Filter out words we've already used
+        const freshWords = (data as unknown as Word[]).filter(w => !usedWordIds.has(w.id));
+        newWords = [...newWords, ...freshWords];
+      }
+      
+      attempts++;
+    }
+    
+    // Update used word IDs
+    const newIds = new Set(usedWordIds);
+    newWords.forEach(w => newIds.add(w.id));
+    setUsedWordIds(newIds);
+    
+    return shuffleArray(newWords.slice(0, batchSize));
+  };
+
+  useEffect(() => {
+    const fetchInitialWords = async () => {
+      setLoading(true);
+      setError(null);
+      
+      try {
+        console.log('Fetching initial word batch...');
+        const initialBatch = await fetchWordBatch(INITIAL_WORD_COUNT);
+        if (initialBatch.length < 4) {
+          setError('Not enough words available to start a quiz. (Need at least 4)');
+        } else {
+          setWords(initialBatch);
+        }
+      } catch (err) {
+        setError('Failed to fetch words. Please try again.');
+        console.error(err);
+      }
+      
       setLoading(false);
     };
 
     onProgressUpdate?.(0, 0);
-    fetchWords();
+    fetchInitialWords();
   }, [category]);
 
   // Update progress when words load or question changes
   useEffect(() => {
     if (words.length > 0 && onProgressUpdate) {
-      onProgressUpdate(currentQuestionIndex + 1, words.length);
+      // Show unlimited progress (no fixed total)
+      onProgressUpdate(score, score); // both current and total are the same (score count)
     }
-  }, [currentQuestionIndex, words.length, onProgressUpdate]);
+  }, [currentQuestionIndex, words.length, score, onProgressUpdate]);
+
+  // Auto-fetch more words when approaching the end
+  useEffect(() => {
+    const remainingWords = words.length - currentQuestionIndex;
+    
+    if (remainingWords <= PREFETCH_THRESHOLD && !isFetchingMore && words.length > 0) {
+      setIsFetchingMore(true);
+      
+      fetchWordBatch(BATCH_SIZE).then(newBatch => {
+        if (newBatch.length > 0) {
+          setWords(prev => [...prev, ...newBatch]);
+        }
+        setIsFetchingMore(false);
+      }).catch(err => {
+        console.error('Error fetching more words:', err);
+        setIsFetchingMore(false);
+      });
+    }
+  }, [currentQuestionIndex, words.length, isFetchingMore]);
 
   const allMeanings = useMemo(() => {
       if (!words.length) return [];
@@ -115,22 +183,19 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
       // Trigger emoji celebration
       triggerCelebration(event);
       
-      setScore(prev => prev + 1);
+      const newScore = score + 1;
+      setScore(newScore);
       
       // Start transition animation immediately
       setIsTransitioning(true);
       
       // Delay progression to show animation
       setTimeout(() => {
-        if (currentQuestionIndex + 1 < words.length) {
-          setCurrentQuestionIndex(prev => prev + 1);
-        } else {
-          // Game won!
-          onGameOver?.(score + 1);
-        }
+        setCurrentQuestionIndex(prev => prev + 1);
+        // Note: We no longer check if we've reached the end - it's infinite!
       }, 500);
     } else {
-      // Game over
+      // Game over - wrong answer ends the streak
       onGameOver?.(score);
     }
   };
@@ -166,7 +231,21 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
     );
   }
 
-  if (words.length === 0 || currentQuestionIndex >= words.length) {
+  // Handle edge case: user reached end while fetching next batch
+  if (currentQuestionIndex >= words.length) {
+    if (isFetchingMore) {
+      return (
+        <div className="flex flex-col items-center justify-center gap-4 p-8">
+          <Spinner />
+          <p className="text-xl text-purple-300">{t('quiz.loadingMore') || 'Loading more words...'}</p>
+          <p className="text-sm text-gray-400">{t('quiz.keepGoing') || 'Great job! Keep going! 🎉'}</p>
+        </div>
+      );
+    }
+    return <p className="text-xl">{t('quiz.noQuestions')}</p>;
+  }
+
+  if (words.length === 0) {
     return <p className="text-xl">{t('quiz.noQuestions')}</p>;
   }
 

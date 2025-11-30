@@ -26,6 +26,8 @@
     "title": "Trắc nghiệm",
     "questionPrefix": "Nghĩa của từ này là gì",
     "loading": "Đang tải câu hỏi...",
+    "loadingMore": "Đang tải thêm từ...",
+    "keepGoing": "Làm tốt lắm! Tiếp tục nào! 🎉",
     "errorTitle": "Rất tiếc! Đã xảy ra lỗi.",
     "errorButton": "Chọn Linh Vật Khác",
     "noQuestions": "Không có câu hỏi nào."
@@ -39,6 +41,8 @@
   },
   "leaderboard": {
     "title": "Bảng xếp hạng",
+    "bestStreaks": "Chuỗi Cao Nhất",
+    "recentScores": "Điểm Gần Đây",
     "topChampions": "🏆 Hàng Đầu 🏆",
     "champion": "VÔ ĐỊCH",
     "allRankings": "Toàn Bộ Xếp Hạng",

@@ -26,6 +26,8 @@
     "title": "Quiz",
     "questionPrefix": "What is the meaning of",
     "loading": "Loading questions...",
+    "loadingMore": "Loading more words...",
+    "keepGoing": "Great job! Keep going! 🎉",
     "errorTitle": "Oops! Something went wrong.",
     "errorButton": "Choose a Different Spirit Animal",
     "noQuestions": "No questions available."
@@ -39,6 +41,8 @@
   },
   "leaderboard": {
     "title": "Leaderboard",
+    "bestStreaks": "Best Streaks",
+    "recentScores": "Recent Scores",
     "topChampions": "🏆 Top Champions 🏆",
     "champion": "CHAMPION",
     "allRankings": "All Rankings",
