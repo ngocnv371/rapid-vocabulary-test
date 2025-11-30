@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreditsContext } from "../contexts/CreditsContext";
 
 const OutOfCreditsCard: React.FC = () => {
-  const { showOutOfCreditsDialog, setShowOutOfCreditsDialog } = useCreditsContext();
+  const { showOutOfCreditsDialog, setShowOutOfCreditsDialog, credits } = useCreditsContext();
   const navigate = useNavigate();
 
   const onShop = useCallback(() => {
@@ -16,7 +16,7 @@ const OutOfCreditsCard: React.FC = () => {
     navigate("/");
   }, [setShowOutOfCreditsDialog, navigate]);
 
-  if (!showOutOfCreditsDialog) {
+  if (!showOutOfCreditsDialog || credits > 0) {
     return null;
   }
 
