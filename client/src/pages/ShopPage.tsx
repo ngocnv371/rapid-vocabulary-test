@@ -106,10 +106,9 @@ const ShopPage: FC = () => {
                       {credits !== null ? credits : "..."}
                     </Text>
                   </div>
-                  <Icon
-                    icon="zi-star"
-                    className="text-6xl text-purple-500/20"
-                  />
+                  <span role="img" aria-label="credit emoji" className="text-6xl opacity-20">
+                    💖
+                  </span>
                 </div>
               </Box>
 

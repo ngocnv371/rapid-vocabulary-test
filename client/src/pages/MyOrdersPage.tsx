@@ -139,7 +139,9 @@ const MyOrdersPage: FC = () => {
                 <Box className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg p-3 mb-3 border border-purple-500/30">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Icon icon="zi-star" className="text-xl text-purple-400" />
+                      <span role="img" aria-label="credit emoji" className="text-xl">
+                        💖
+                      </span>
                       <Text className="text-lg font-bold text-purple-400">
                         {order.credits} {t("shop.credits")}
                       </Text>
