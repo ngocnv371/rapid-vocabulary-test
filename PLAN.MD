@@ -21,9 +21,7 @@ MVP phase, with just the essentials. To build audience.
   - [x] hearts deduction on wrong answers
 
 ## User Profile & Identity
-- [x] user don't need to login
-  - [x] federated profile from 3rd party (Zalo platform)
-    - [ ] permissions to share name & avatar from platform
+- [x] user don't need to login (supabase anonymous)
 - [x] spirit animal selection (user personalization)
 - [x] profile page with user stats
 - [x] persistent user data via local storage
@@ -41,7 +39,8 @@ MVP phase, with just the essentials. To build audience.
 - [x] Tailwind CSS styling
 
 ## Deployment
-- [ ] deployed to Zalo platform
+- [ ] deployed host
+  - [ ] select hosting
 - [ ] production build optimization
 - [ ] platform-specific configurations
 
@@ -50,7 +49,7 @@ MVP phase, with just the essentials. To build audience.
 Establish our brand. Make our own website.
 
 ## Branding & Marketing
-- [ ] landing page
+- [x] landing page
 - [ ] domain name
   - [ ] find a good one [https://www.matbao.net/ten-mien/ket-qua-kiem-tra-ten-mien.html?tenmien=voka.vn#top_search]
 - [ ] business license
@@ -58,24 +57,23 @@ Establish our brand. Make our own website.
 - [ ] social media presence
 
 ## Monetization
-- [ ] introduce in-app currency to unlock access
-- [ ] introduce IAP to gain currency
-- [ ] integrate with payment portal
+- [x] introduce in-app currency to unlock access
+- [x] introduce IAP to gain currency
+- [x] integrate with payment portal
 - [ ] premium features/content
-- [ ] ads integration (optional)
 
 ## Enhanced Features
 - [ ] daily challenges
 - [ ] achievement system
-- [ ] streak tracking
+- [x] streak tracking
 - [ ] friend system & challenges
 - [ ] push notifications
 
 ## Backend Infrastructure
-- [ ] Supabase backend integration
-- [ ] user authentication system
-- [ ] cloud-based user data sync
-- [ ] analytics & metrics tracking
+- [x] Supabase backend integration
+- [x] user authentication system
+- [x] cloud-based user data sync
+- [x] analytics & metrics tracking
 - [ ] error logging & monitoring
 
 # Phase 3: Expansion
@@ -95,7 +93,7 @@ Establish our brand. Make our own website.
 - [ ] vocabulary progress tracking
 
 ## Platform Expansion
-- [ ] standalone web app
+- [x] standalone web app
 - [ ] mobile apps (iOS/Android)
 - [ ] PWA version
 - [ ] offline mode
