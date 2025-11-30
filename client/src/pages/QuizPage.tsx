@@ -1,6 +1,5 @@
 import { Header, Page, useNavigate } from "zmp-ui";
 import Quiz from "../components/Quiz";
-import ProgressBar from "../components/ProgressBar";
 import React, { useCallback, useEffect } from "react";
 import { useAppContext } from "@/src/contexts/AppContext";
 import { useCreditsContext } from "@/src/contexts/CreditsContext";
@@ -9,6 +8,7 @@ import { postScore } from "../services/leaderboard";
 import { useTranslation } from "react-i18next";
 import CreditsButton from "../components/CreditsButton";
 import OutOfCreditsCard from "../components/OutOfCreditsCard";
+import StreakBar from "../components/StreakBar";
 
 const QuizPage: React.FC = () => {
   const { profile } = useAppContext();
@@ -53,7 +53,7 @@ const QuizPage: React.FC = () => {
     >
       <Header title={t("quiz.title")} />
       {progress.total > 0 && (
-        <ProgressBar current={progress.current} total={progress.total} />
+        <StreakBar streak={progress.current} />
       )}
       <CreditsButton />
       <OutOfCreditsCard />
