@@ -64,7 +64,12 @@
     "logoutError": "Failed to logout. Please try again.",
     "anonymousUser": "Anonymous",
     "anonymousMode": "You're now in anonymous mode 🎭",
-    "editProfile": "Edit Profile"
+    "editProfile": "Edit Profile",
+    "shareProfile": "Share Profile",
+    "shareTitle": "Check out my Rapid Vocabulary Test scores!",
+    "shareText": "I scored {{score}} in Rapid Vocabulary Test! 🎯 {{games}} games played with {{streak}} day streak 🔥",
+    "linkCopied": "Profile link copied to clipboard!",
+    "shareError": "Failed to share. Please try again."
   },
   "editProfile": {
     "title": "Edit Profile",

@@ -8,6 +8,7 @@ import { calculateStreak } from "../utils/streakCalculator";
 import WeeklyProgressChart from "./WeeklyProgressChart";
 import UserAvatar from "./UserAvatar";
 import { useTranslation } from "react-i18next";
+import { useMetaTags } from "../hooks/useMetaTags";
 
 export default function Profile() {
   const { profile, reloadUser, user } = useAppContext();
@@ -37,6 +38,49 @@ export default function Profile() {
     } catch (err) {
       console.error("Unexpected error during logout:", err);
       setError(t("profile.logoutError"));
+    }
+  };
+
+  const handleShare = async () => {
+    const shareUrl = window.location.href;
+    const shareText = t("profile.shareText", {
+      score: highestScore ?? 0,
+      games: stats.gamesPlayed,
+      streak: stats.streak,
+    });
+    const shareTitle = t("profile.shareTitle");
+
+    // Try Web Share API first
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: shareTitle,
+          text: shareText,
+          url: shareUrl,
+        });
+      } catch (err) {
+        // User cancelled or error occurred
+        if ((err as Error).name !== "AbortError") {
+          console.error("Error sharing:", err);
+        }
+      }
+    } else {
+      // Fallback: Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
+        openSnackbar({
+          text: t("profile.linkCopied"),
+          type: "success",
+          duration: 3000,
+        });
+      } catch (err) {
+        console.error("Error copying to clipboard:", err);
+        openSnackbar({
+          text: t("profile.shareError"),
+          type: "error",
+          duration: 3000,
+        });
+      }
     }
   };
 
@@ -100,6 +144,28 @@ export default function Profile() {
     };
   }, [weeklyScores]);
 
+  // Update meta tags for social sharing
+  useMetaTags({
+    title: `${profile?.name || t("profile.anonymousUser")} - ${t("profile.title")} | Rapid Vocabulary Test`,
+    description: t("profile.shareText", {
+      score: highestScore ?? 0,
+      games: stats.gamesPlayed,
+      streak: stats.streak,
+    }),
+    ogTitle: `${profile?.name || t("profile.anonymousUser")}'s Profile`,
+    ogDescription: t("profile.shareText", {
+      score: highestScore ?? 0,
+      games: stats.gamesPlayed,
+      streak: stats.streak,
+    }),
+    twitterTitle: `${profile?.name || t("profile.anonymousUser")}'s Profile`,
+    twitterDescription: t("profile.shareText", {
+      score: highestScore ?? 0,
+      games: stats.gamesPlayed,
+      streak: stats.streak,
+    }),
+  });
+
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 min-h-screen">
@@ -144,28 +210,51 @@ export default function Profile() {
         <h3 className="mt-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-pink-300 to-purple-200">
           {profile?.name || t("profile.anonymousUser")}
         </h3>
-        {/* Edit Profile Button */}
-        {!isAnonymous && (
-          <button
-            onClick={() => navigate("/profile/edit")}
-            className="mt-2 px-4 py-2 bg-gradient-to-r from-purple-500/30 to-pink-500/30 hover:from-purple-500/50 hover:to-pink-500/50 text-purple-200 text-sm font-medium rounded-lg border border-purple-400/30 backdrop-blur-sm transition-all duration-300 flex items-center gap-2"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-              />
-            </svg>
-            {t("profile.editProfile")}
-          </button>
-        )}
+        {/* Action Buttons */}
+        <div className="mt-2 flex gap-2 flex-wrap justify-center">
+          {!isAnonymous && (
+            <>
+              <button
+                onClick={() => navigate("/profile/edit")}
+                className="px-4 py-2 bg-gradient-to-r from-purple-500/30 to-pink-500/30 hover:from-purple-500/50 hover:to-pink-500/50 text-purple-200 text-sm font-medium rounded-lg border border-purple-400/30 backdrop-blur-sm transition-all duration-300 flex items-center gap-2"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                  />
+                </svg>
+                {t("profile.editProfile")}
+              </button>
+              <button
+                onClick={handleShare}
+                className="px-4 py-2 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 hover:from-blue-500/50 hover:to-cyan-500/50 text-blue-200 text-sm font-medium rounded-lg border border-blue-400/30 backdrop-blur-sm transition-all duration-300 flex items-center gap-2"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                  />
+                </svg>
+                {t("profile.shareProfile")}
+              </button>
+            </>
+          )}
+        </div>
       </div>
 
       {!isAnonymous && (

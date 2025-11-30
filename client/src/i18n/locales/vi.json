@@ -64,7 +64,12 @@
     "logoutError": "Không thể đăng xuất. Vui lòng thử lại.",
     "anonymousUser": "Ẩn Danh",
     "anonymousMode": "Bạn đang ở chế độ ẩn danh 🎭",
-    "editProfile": "Chỉnh Sửa Hồ Sơ"
+    "editProfile": "Chỉnh Sửa Hồ Sơ",
+    "shareProfile": "Chia Sẻ Hồ Sơ",
+    "shareTitle": "Xem điểm số của tôi trong Kiểm Tra Từ Vựng Nhanh!",
+    "shareText": "Tôi đạt {{score}} điểm trong Kiểm Tra Từ Vựng Nhanh! 🎯 {{games}} lượt chơi với chuỗi {{streak}} ngày 🔥",
+    "linkCopied": "Đã sao chép liên kết hồ sơ!",
+    "shareError": "Không thể chia sẻ. Vui lòng thử lại."
   },
   "editProfile": {
     "title": "Chỉnh Sửa Hồ Sơ",
