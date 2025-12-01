@@ -51,9 +51,10 @@ const QuizPage: React.FC = () => {
       hideScrollbar
       className="relative min-h-screen w-full max-w-2xl mx-auto"
     >
-      <Header title={t("quiz.title")} />
       {progress.total > 0 && (
-        <StreakBar streak={progress.current} />
+        <div className="mt-1">
+          <StreakBar streak={progress.current} />
+        </div>
       )}
       <CreditsButton />
       <OutOfCreditsCard />
