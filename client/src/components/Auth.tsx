@@ -85,7 +85,7 @@ const Auth: React.FC<AuthProps> = ({ onSignInSuccess, onBack }) => {
           </button>
         )}
         <h1 className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 tracking-wider mb-2">
-          Rapid Vocabulary Test
+          Voka
         </h1>
         <p className="text-center text-gray-400 mb-8">
           {isSignUp ? "Create an account to begin" : "Sign in to your test"}

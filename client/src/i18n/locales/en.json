@@ -6,7 +6,7 @@
     "profile": "Profile"
   },
   "home": {
-    "title": "Rapid Vocabulary Test",
+    "title": "Voka",
     "welcome": "Welcome",
     "welcomeBack": "Welcome, {{name}}!",
     "subtitle": "Ready to level up your vocabulary?",
@@ -33,8 +33,8 @@
     "noQuestions": "No questions available."
   },
   "gameOver": {
-    "title": "Rapid Vocabulary Test",
-    "scorePrefix": "Your final score is",
+    "title": "Voka",
+    "scorePrefix": "Your score is",
     "playAgain": "🎮 Play Again",
     "viewLeaderboard": "🏆 View Leaderboard",
     "anonymousWarning": "⚠️ Your score won't be recorded because you're playing anonymously. Log in to save your scores!"
@@ -70,9 +70,9 @@
     "anonymousMode": "You're now in anonymous mode 🎭",
     "editProfile": "Edit Profile",
     "shareProfile": "Share Profile",
-    "shareTitle": "Check out my Rapid Vocabulary Test scores!",
-    "shareText": "I scored {{score}} in Rapid Vocabulary Test! 🎯 {{games}} games played with {{streak}} day streak 🔥",
-    "linkCopied": "Profile link copied to clipboard!",
+    "shareTitle": "Check out my Voka scores!",
+    "shareText": "I scored {{score}} in Voka! 🎯 {{games}} games played with {{streak}} day streak 🔥",
+    "linkCopied": "Profile link copied!",
     "shareError": "Failed to share. Please try again."
   },
   "editProfile": {

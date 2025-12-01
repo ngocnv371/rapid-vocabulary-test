@@ -6,7 +6,7 @@
     "profile": "Hồ sơ"
   },
   "home": {
-    "title": "Kiểm Tra Từ Vựng Nhanh",
+    "title": "Voka",
     "welcome": "Chào mừng",
     "welcomeBack": "Chào, {{name}}!",
     "subtitle": "Sẵn sàng nâng cấp vốn từ vựng của bạn chưa?",
@@ -33,7 +33,7 @@
     "noQuestions": "Không có câu hỏi nào."
   },
   "gameOver": {
-    "title": "Kiểm Tra Từ Vựng Nhanh",
+    "title": "Voka",
     "scorePrefix": "Điểm của bạn là",
     "playAgain": "🎮 Chơi Lại",
     "viewLeaderboard": "🏆 Xem Bảng Xếp Hạng",
@@ -70,8 +70,8 @@
     "anonymousMode": "Bạn đang ở chế độ ẩn danh 🎭",
     "editProfile": "Chỉnh Sửa Hồ Sơ",
     "shareProfile": "Chia Sẻ Hồ Sơ",
-    "shareTitle": "Xem điểm số của tôi trong Kiểm Tra Từ Vựng Nhanh!",
-    "shareText": "Tôi đạt {{score}} điểm trong Kiểm Tra Từ Vựng Nhanh! 🎯 {{games}} lượt chơi với chuỗi {{streak}} ngày 🔥",
+    "shareTitle": "Xem điểm số của tôi trong Voka!",
+    "shareText": "Tôi đạt {{score}} điểm trong Voka! 🎯 {{games}} lượt chơi với chuỗi {{streak}} ngày 🔥",
     "linkCopied": "Đã sao chép liên kết hồ sơ!",
     "shareError": "Không thể chia sẻ. Vui lòng thử lại."
   },

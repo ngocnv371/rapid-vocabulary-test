@@ -178,7 +178,7 @@ export default function Profile() {
 
   // Update meta tags for social sharing
   useMetaTags({
-    title: `${profileData?.name || t("profile.anonymousUser")} - ${t("profile.title")} | Rapid Vocabulary Test`,
+    title: `${profileData?.name || t("profile.anonymousUser")} - ${t("profile.title")} | Voka`,
     description: t("profile.shareText", {
       score: highestScore ?? 0,
       games: stats.gamesPlayed,

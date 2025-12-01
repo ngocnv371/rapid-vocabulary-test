@@ -1,5 +1,5 @@
 {
-  "name": "Rapid Vocabulary Test",
+  "name": "Voka",
   "description": "A fast-paced multiple-choice vocabulary quiz. Users can select a category, test their knowledge against the clock, and see how they rank on the leaderboard. This application is powered by React and Supabase for backend services.",
   "requestFramePermissions": []
 }

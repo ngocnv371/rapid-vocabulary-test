@@ -27,7 +27,7 @@ const SpiritPage: React.FC = () => {
       hideScrollbar
       className="relative min-h-screen w-full max-w-2xl mx-auto"
     >
-      <Header title="Rapid Vocabulary Test" />
+      <Header title="Voka" />
       <SpiritAnimalSelector onSelect={handleSpiritSelect} />
       <Box p={4}></Box>
       <NavBar activeKey="home" />
