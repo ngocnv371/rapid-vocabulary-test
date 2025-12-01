@@ -2,8 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../services/supabase';
 import type { Category, Word } from '../types';
 import Spinner from './Spinner';
-import EmojiCelebration from './EmojiCelebration';
-import { useEmojiCelebration } from '../hooks/useEmojiCelebration';
 import { useTranslation } from 'react-i18next';
 
 // Quiz Configuration Constants
@@ -37,7 +35,6 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
   
   // Change this to try different effects:
   // 'burst-pop', 'spinning-star', 'confetti-rain', 'ripple-wave', 'firework', or 'random'
-  const { emojiParticles, containerRef, triggerCelebration } = useEmojiCelebration('random');
 
   // Fetch a batch of words
   const fetchWordBatch = async (batchSize: number = BATCH_SIZE): Promise<Word[]> => {
@@ -177,12 +174,9 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
     }
   }, [currentQuestionIndex, words, allMeanings]);
 
-  const handleAnswer = (selectedMeaning: string, event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAnswer = (selectedMeaning: string) => {
     const currentWord = words[currentQuestionIndex];
-    if (selectedMeaning === currentWord.meaning) {
-      // Trigger emoji celebration
-      triggerCelebration(event);
-      
+    if (selectedMeaning === currentWord.meaning) {      
       const newScore = score + 1;
       setScore(newScore);
       
@@ -252,8 +246,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
   const currentWord = words[currentQuestionIndex];
 
   return (
-    <div ref={containerRef} className="w-full max-w-2xl mx-auto p-4 relative">
-      <EmojiCelebration particles={emojiParticles} />
+    <div className="w-full max-w-2xl mx-auto p-4 relative">
       
       {/* Question container */}
       <div 
@@ -274,7 +267,7 @@ export default function Quiz({ category, onGameOver, onBackToCategories, onProgr
         {options.map((option, index) => (
           <button
             key={index}
-            onClick={(e) => handleAnswer(option, e)}
+            onClick={() => handleAnswer(option)}
             className={`bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-200 ease-out border border-white/10 hover:bg-white/10 hover:border-purple-400/50 text-lg font-medium text-gray-200 hover:text-white ${
               isTransitioning 
                 ? 'opacity-0 translate-x-[-20px]' 
