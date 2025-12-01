@@ -19,6 +19,14 @@ const tests: TestItem[] = [
     path: "/test/score-posting",
     icon: "🎯",
   },
+  {
+    id: "progress-bar",
+    title: "Progress Bar Test",
+    description:
+      "Test the progress bar component and its behavior",
+    path: "/test/progress-bar",
+    icon: "📊",
+  },
 ];
 
 const TestPage: React.FC = () => {

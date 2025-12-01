@@ -15,6 +15,7 @@ const GameOverPage = lazy(() => import("../pages/GameOverPage"));
 const SpiritPage = lazy(() => import("../pages/SpiritPage"));
 const TestPage = lazy(() => import("../pages/TestPage"));
 const ScorePostingTestPage = lazy(() => import("../pages/tests/ScorePostingTestPage"));
+const ProgressBarTestPage = lazy(() => import("../pages/tests/ProgressBarTestPage"));
 const ShopPage = lazy(() => import("../pages/ShopPage"));
 const MyOrdersPage = lazy(() => import("../pages/MyOrdersPage"));
 const PaymentSuccessPage = lazy(() => import("../pages/PaymentSuccessPage"));
@@ -42,6 +43,7 @@ export const Layout: FC = () => {
             <Route path="/spirit-animal" element={<SpiritPage />}></Route>
             <Route path="/test" element={<TestPage />}></Route>
             <Route path="/test/score-posting" element={<ScorePostingTestPage />}></Route>
+            <Route path="/test/progress-bar" element={<ProgressBarTestPage />}></Route>
           </AnimationRoutes>
         </Suspense>
       </Box>
