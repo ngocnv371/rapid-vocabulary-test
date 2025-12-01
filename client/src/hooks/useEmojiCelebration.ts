@@ -119,8 +119,10 @@ export function useEmojiCelebration(type: CelebrationType = 'burst-pop') {
   const [emojiParticles, setEmojiParticles] = useState<EmojiParticle[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const triggerCelebration = (event: React.MouseEvent<HTMLElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
+  const triggerCelebration = (targetSelector: string) => {
+    const element = containerRef.current?.querySelector<HTMLElement>(targetSelector);
+    if (!element) return;
+    const rect = element.getBoundingClientRect();
     const containerRect = containerRef.current?.getBoundingClientRect();
     
     if (!containerRect) return;
