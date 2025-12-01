@@ -12,20 +12,21 @@ export default function ProgressBar({ value }: ProgressBarProps) {
   // Number of completed cycles determines background depth
   const cycleCount = Math.floor(value / 10);
   
-  // Generate deepening purple background based on cycle count
+  // Generate lightening purple background based on cycle count
   const getBackgroundStyle = () => {
-    // Start with light purple, deepen with each cycle
-    // Light purple: rgb(233, 213, 255) -> Dark purple: rgb(88, 28, 135)
-    const lightPurple = { r: 233, g: 213, b: 255 };
+    // Start with dark purple, lighten with each cycle
+    // Dark purple: rgb(88, 28, 135) -> Light purple: rgb(233, 213, 255)
     const darkPurple = { r: 88, g: 28, b: 135 };
+    const lightPurple = { r: 233, g: 213, b: 255 };
     
-    // Interpolate between light and dark based on cycle count
-    const maxCycles = 5; // After 10 cycles, reach max darkness
-    const progress = Math.min(cycleCount / maxCycles, 1);
+    // Interpolate between dark and light based on cycle count
+    const maxCycles = 5; // After 5 cycles, reach max lightness and restart
+    const cyclePosition = cycleCount % maxCycles; // Reset to 0 after reaching max
+    const progress = cyclePosition / maxCycles;
     
-    const r = Math.round(lightPurple.r - (lightPurple.r - darkPurple.r) * progress);
-    const g = Math.round(lightPurple.g - (lightPurple.g - darkPurple.g) * progress);
-    const b = Math.round(lightPurple.b - (lightPurple.b - darkPurple.b) * progress);
+    const r = Math.round(darkPurple.r + (lightPurple.r - darkPurple.r) * progress);
+    const g = Math.round(darkPurple.g + (lightPurple.g - darkPurple.g) * progress);
+    const b = Math.round(darkPurple.b + (lightPurple.b - darkPurple.b) * progress);
     
     return {
       backgroundColor: `rgb(${r}, ${g}, ${b})`
