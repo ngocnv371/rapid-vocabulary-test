@@ -45,8 +45,9 @@ const RankDisplay: React.FC<{ rank: number; isTopThree?: boolean }> = ({
 const PlayerAvatar: React.FC<{
   name: string;
   avatarUrl?: string;
+  spirit?: string;
   rank: number;
-}> = ({ name, avatarUrl, rank }) => {
+}> = ({ name, avatarUrl, spirit, rank }) => {
   const gradients: { [key: number]: string } = {
     1: "from-yellow-400 via-yellow-500 to-amber-500",
     2: "from-gray-300 via-gray-400 to-gray-500",
@@ -76,7 +77,7 @@ const PlayerAvatar: React.FC<{
               className="w-full h-full object-cover"
             />
           ) : (
-            initial
+            spirit ? <span className="text-5xl">{spirit}</span> : initial
           )}
         </div>
       </div>
@@ -99,7 +100,7 @@ export default function Leaderboard() {
 
       let query = supabase
         .from("scores")
-        .select("*, profiles(id, name, avatar_url)")
+        .select("*, profiles(id, name, avatar_url, spirit)")
         .order("score", { ascending: false })
         .limit(20);
 
@@ -208,6 +209,7 @@ export default function Leaderboard() {
                         <RankDisplay rank={2} isTopThree />
                         <PlayerAvatar
                           name={topThree[1].profiles?.name || "Player"}
+                          spirit={topThree[1].profiles?.spirit}
                           avatarUrl={topThree[1].profiles?.avatar_url}
                           rank={2}
                         />
@@ -241,6 +243,7 @@ export default function Leaderboard() {
                         <RankDisplay rank={1} isTopThree />
                         <PlayerAvatar
                           name={topThree[0].profiles?.name || "Player"}
+                          spirit={topThree[0].profiles?.spirit}
                           avatarUrl={topThree[0].profiles?.avatar_url}
                           rank={1}
                         />
@@ -274,6 +277,7 @@ export default function Leaderboard() {
                         <RankDisplay rank={3} isTopThree />
                         <PlayerAvatar
                           name={topThree[2].profiles?.name || "Player"}
+                          spirit={topThree[2].profiles?.spirit}
                           avatarUrl={topThree[2].profiles?.avatar_url}
                           rank={3}
                         />
@@ -320,6 +324,7 @@ export default function Leaderboard() {
                       <div className="flex-shrink-0">
                         <PlayerAvatar
                           name={s.profiles?.name || "Player"}
+                          spirit={s.profiles?.spirit}
                           avatarUrl={s.profiles?.avatar_url}
                           rank={actualRank}
                         />

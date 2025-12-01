@@ -32,6 +32,7 @@ export interface Profile {
   name: string | null;
   zalo_id: string | null;
   avatar_url: string | null;
+  spirit: string | null;
 }
 
 export interface Credits {
