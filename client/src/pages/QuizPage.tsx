@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import CreditsButton from "../components/CreditsButton";
 import OutOfCreditsCard from "../components/OutOfCreditsCard";
 import StreakBar from "../components/StreakBar";
+import ProgressBar from "../components/ProgressBar";
 
 const QuizPage: React.FC = () => {
   const { profile } = useAppContext();
@@ -53,7 +54,7 @@ const QuizPage: React.FC = () => {
     >
       {progress.total > 0 && (
         <div className="mt-1">
-          <StreakBar streak={progress.current} />
+          <ProgressBar value={progress.current} />
         </div>
       )}
       <CreditsButton />
