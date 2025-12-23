@@ -46,7 +46,7 @@ const Features: React.FC = () => {
     <section id="features" className="py-20 px-4 bg-brand-dark/30">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Why You'll Love VocabRush</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">Why You'll Love Voka</h2>
           <p className="text-lg text-gray-400 mt-2">Everything you need to become a vocabulary champion.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

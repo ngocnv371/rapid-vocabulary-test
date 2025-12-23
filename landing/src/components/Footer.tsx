@@ -9,9 +9,9 @@ const Footer: React.FC = () => {
         <div>
           <a href="#" className="flex items-center justify-center md:justify-start gap-2 text-xl font-bold text-white mb-2">
             <BrainCircuitIcon className="w-8 h-8 text-brand-light-purple" />
-            <span>VocabRush</span>
+            <span>Voka</span>
           </a>
-          <p className="text-gray-400">&copy; {new Date().getFullYear()} VocabRush. All rights reserved.</p>
+          <p className="text-gray-400">&copy; {new Date().getFullYear()} Voka. All rights reserved.</p>
         </div>
         <div className="flex items-center gap-4">
           <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>

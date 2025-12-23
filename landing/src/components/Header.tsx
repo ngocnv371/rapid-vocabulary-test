@@ -16,7 +16,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         <a href="#" className="flex items-center gap-2 text-xl font-bold text-white">
           <BrainCircuitIcon className="w-8 h-8 text-brand-light-purple" />
-          <span>VocabRush</span>
+          <span>Voka</span>
         </a>
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
