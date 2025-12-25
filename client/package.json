@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "cypress run",
+    "test:e2e:headed": "cypress run --headed"
   },
   "dependencies": {
     "@supabase/supabase-js": "latest",
@@ -22,6 +26,7 @@
     "@types/node": "^22.14.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "cypress": "^13.6.2",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.13",
